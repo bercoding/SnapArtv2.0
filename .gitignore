@@ -38,6 +38,40 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 Pods/
+Podfile.lock
+Podfile.lock
+
+xcuserdata/
+xcuserdata
+*.xcuserdatad/
+
+*.xcworkspace/
+xcshareddata/
+
+.DS_Store
+.Trashes
+*.swp
+*.lock
+*~.nib
+DerivedData/
+build/
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+*.xccheckout
+
+*.moved-aside
+*.xcscmblueprint
+
+
 #
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
