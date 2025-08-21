@@ -1,7 +1,7 @@
-import Foundation
-import UIKit
 import CoreImage
+import Foundation
 import MediaPipeTasksVision
+import UIKit
 
 final class BigEyesFilter {
     private let context = CIContext(options: nil)
@@ -15,7 +15,9 @@ final class BigEyesFilter {
         func avg(_ indices: [Int]) -> CGPoint {
             var sx: CGFloat = 0, sy: CGFloat = 0
             let n = CGFloat(indices.count)
-            for i in indices { sx += CGFloat(first[i].x); sy += CGFloat(first[i].y) }
+            for i in indices {
+                sx += CGFloat(first[i].x); sy += CGFloat(first[i].y)
+            }
             return CGPoint(x: sx/n * size.width, y: sy/n * size.height)
         }
         let leftEyeIdx = [33, 133, 159, 145, 153, 154, 155]
@@ -25,7 +27,7 @@ final class BigEyesFilter {
         let eyeDist = hypot(right.x-left.x, right.y-left.y)
         let radius = max(eyeDist * 0.6, 20)
         
-        guard let bumpL = CIFilter(name: "CIBumpDistortion"),
+        guard let bumpL = CIFilter(name: "CIPinchDistortion"),
               let bumpR = CIFilter(name: "CIBumpDistortion") else { return image }
         bumpL.setValue(ci, forKey: kCIInputImageKey)
         bumpL.setValue(CIVector(x: left.x, y: size.height-left.y), forKey: kCIInputCenterKey)
@@ -41,4 +43,4 @@ final class BigEyesFilter {
               let final = context.createCGImage(out, from: out.extent) else { return image }
         return UIImage(cgImage: final, scale: image.scale, orientation: image.imageOrientation)
     }
-} 
+}

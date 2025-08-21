@@ -6,7 +6,6 @@ struct HomePage: View {
     @State private var selectedCategory: FilterCategory? = nil
     @State private var showCamera = false
     @State private var selectedFilter: FilterType? = nil
-    
     var body: some View {
         ZStack {
             // Thêm background gradient từ AppTheme
@@ -78,6 +77,9 @@ struct HomePage: View {
                     .padding(8)
                     .background(Color.white.opacity(0.2))
                     .clipShape(Circle())
+            }
+            Button {
+                languageViewModel.
             }
         }
         .padding(.horizontal)

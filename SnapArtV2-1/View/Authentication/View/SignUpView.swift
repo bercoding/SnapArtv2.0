@@ -5,18 +5,18 @@ struct SignUpView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     @State private var showingAlert = false
-
+    
     var body: some View {
         ZStack {
             AppTheme.mainGradient.ignoresSafeArea()
-            VStack(spacing: 20) {
-                // Header
+        VStack(spacing: 20) {
+            // Header
                 Text("Đăng ký tài khoản mới")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.top, 20)
-
+                
                 Text("Tạo tài khoản để bắt đầu sử dụng SnapArt")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.8))
@@ -47,24 +47,24 @@ struct SignUpView: View {
                         text: $authViewModel.confirmPassword,
                         isSecure: true
                     )
-                }
+            }
                 .padding(.horizontal, 30)
-
-                Spacer()
-
+            
+            Spacer()
+            
                 // Signup Button
                 Button(action: {
                     authViewModel.signUp()
                 }) {
                     if authViewModel.isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    } else {
-                        Text("Đăng ký")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                    }
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                } else {
+                    Text("Đăng ký")
+                        .font(.headline)
+                        .foregroundColor(.white)
                 }
+            }
                 .buttonStyle(AppTheme.primaryButtonStyle()) // Sửa lỗi ở đây
                 .padding(.horizontal, 30)
                 .disabled(authViewModel.isLoading)
@@ -76,7 +76,7 @@ struct SignUpView: View {
                         dismiss()
                     }
                     .foregroundColor(AppTheme.secondaryColor)
-                }
+        }
                 .padding(.vertical)
             }
         }

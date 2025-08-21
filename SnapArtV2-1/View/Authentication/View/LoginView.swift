@@ -28,7 +28,7 @@ struct LoginView: View {
                 }
                 .padding(.top, 20)
 
-                Spacer()
+//                Spacer()
 
                 // Login Form
                 VStack(spacing: 20) {

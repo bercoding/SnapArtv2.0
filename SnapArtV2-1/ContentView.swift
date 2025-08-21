@@ -5,14 +5,15 @@ import UIKit
 
 import class SnapArtV2_1.CameraViewController
 
+import struct SnapArtV2_1.FilterView
+
 // Import các View khác cần thiết
 import struct SnapArtV2_1.MediaPipeTestButton
-import struct SnapArtV2_1.FilterView
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var authViewModel = AuthViewModel()
-    
+
     var body: some View {
         NavigationStack {
             Group {
@@ -20,8 +21,9 @@ struct ContentView: View {
                     HomePage()
                         .environment(\.managedObjectContext, viewContext)
                         .environmentObject(authViewModel)
+
                 } else {
-                    AuthView()
+                    LoginView()
                         .environmentObject(authViewModel)
                 }
             }
@@ -31,6 +33,3 @@ struct ContentView: View {
         }
     }
 }
-
-
- 

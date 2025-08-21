@@ -18,72 +18,71 @@ struct AuthView: View {
     var body: some View {
         ZStack {
             // Thêm gradient từ AppTheme
-            AppTheme.mainGradient
-                .ignoresSafeArea()
+            Color(.systemBackground).ignoresSafeArea()
             
-        VStack(spacing: 25) {
-            // Thông tin về ứng dụng
-            VStack(spacing: 10) {
-                Text("SnapArt")
-                    .font(.headline)
+            VStack(spacing: 25) {
+                // Thông tin về ứng dụng
+                VStack(spacing: 10) {
+                    Text("SnapArt")
+                        .font(.headline)
                         .foregroundColor(.white) // Thay đổi màu chữ
-                Text("Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt")
-                    .font(.subheadline)
+                    Text("Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt")
+                        .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8)) // Thay đổi màu chữ
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-            }
-            .padding(.top, 40)
-            // Logo và tiêu đề
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .padding(.top, 40)
+                // Logo và tiêu đề
+                Image(systemName: "person.crop.circle.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
                     .foregroundColor(.white) // Thay đổi màu biểu tượng
-                .padding(.top, 50)
+                    .padding(.top, 50)
             
-            Text("Đăng Nhập")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                Text("Đăng Nhập")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
                     .foregroundColor(.white) // Thay đổi màu chữ
-                .padding(.bottom, 20)
+                    .padding(.bottom, 20)
             
-            if isLoading {
-                LoadingView(timeout: $loadingTimeout) {
-                    // Xử lý khi timeout
-                    isLoading = false
-                    loadingTimeout = false
-                }
-            } else {
-                // Hiển thị các nút điều hướng
-                Button(action: {
-                    showLoginSheet = true
-                }) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                            .font(.headline)
-                        Text("Đăng nhập")
-                            .font(.headline)
+                if isLoading {
+                    LoadingView(timeout: $loadingTimeout) {
+                        // Xử lý khi timeout
+                        isLoading = false
+                        loadingTimeout = false
                     }
-                }
+                } else {
+                    // Hiển thị các nút điều hướng
+                    Button(action: {
+                        showLoginSheet = true
+                    }) {
+                        HStack {
+                            Image(systemName: "person.fill")
+                                .font(.headline)
+                            Text("Đăng nhập")
+                                .font(.headline)
+                        }
+                    }
                     .buttonStyle(AppTheme.primaryButtonStyle()) // Sử dụng style từ AppTheme
                 
-                Button(action: {
-                    showSignUpSheet = true
-                }) {
-                    HStack {
-                        Image(systemName: "person.badge.plus")
-                            .font(.headline)
-                        Text("Đăng ký")
-                            .font(.headline)
-                    }
+                    Button(action: {
+                        showSignUpSheet = true
+                    }) {
+                        HStack {
+                            Image(systemName: "person.badge.plus")
+                                .font(.headline)
+                            Text("Đăng ký")
+                                .font(.headline)
+                        }
                     }
                     .buttonStyle(AppTheme.secondaryButtonStyle()) // Sử dụng style từ AppTheme
-            }
+                }
             
-            Spacer()
-        }
-        .padding()
+                Spacer()
+            }
+            .padding()
         }
         .sheet(isPresented: $showLoginSheet) {
             NavigationView {
@@ -94,7 +93,7 @@ struct AuthView: View {
                         showLoginSheet = false
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(AppTheme.primaryColor)
+                            .foregroundColor(    Color(.systemBackground))
                     })
             }
         }
@@ -107,7 +106,7 @@ struct AuthView: View {
                         showSignUpSheet = false
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(AppTheme.primaryColor)
+                            .foregroundColor(    Color(.systemBackground))
                     })
             }
         }
@@ -163,4 +162,3 @@ struct LoadingView: View {
         }
     }
 }
-

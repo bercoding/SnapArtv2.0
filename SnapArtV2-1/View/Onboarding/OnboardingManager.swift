@@ -1,23 +1,21 @@
 import SwiftUI
 
 class OnboardingManager: ObservableObject {
-    // Key để lưu trạng thái trong UserDefaults
     private let hasCompletedOnboardingKey = "hasCompletedOnboarding"
-    
-    // Trạng thái đã hoàn thành onboarding
-    @Published var hasCompletedOnboarding: Bool = false {
+
+    @Published var hasCompletedOnboarding: Bool {
         didSet {
-            // Lưu trạng thái khi thay đổi
             UserDefaults.standard.set(hasCompletedOnboarding, forKey: hasCompletedOnboardingKey)
         }
     }
-    
+
     public init() {
+
         self.hasCompletedOnboarding = UserDefaults.standard.bool(forKey: hasCompletedOnboardingKey)
     }
-    
-    // Đánh dấu đã hoàn thành onboarding
+
+    // Đánh dấu đã hoàn thành onboarding (chỉ có tác dụng trong phiên hiện tại)
     func completeOnboarding() {
         hasCompletedOnboarding = true
     }
-} 
+}

@@ -18,6 +18,7 @@ struct SnapArtV2_0App: App {
     @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var onboardingManager = OnboardingManager() // Added StateObject for OnboardingManager
     @StateObject private var galleryViewModel = GalleryViewModel() // Thêm GalleryViewModel
+    @StateObject private var languageViewModel = LanguageViewModel()
     
     // Thêm trạng thái để theo dõi quá trình khởi tạo
     @State private var isInitialized = false

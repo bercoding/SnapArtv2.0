@@ -30,7 +30,7 @@ struct SplashView: View {
         } else {
             ZStack {
                 // Sử dụng gradient từ AppTheme
-                AppTheme.mainGradient
+                Color(.systemBackground)
                     .ignoresSafeArea()
                 
                 VStack {
@@ -77,7 +77,7 @@ struct SplashView: View {
                 }
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     withAnimation {
                         self.isActive = true
                     }

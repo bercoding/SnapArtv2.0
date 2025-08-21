@@ -21,7 +21,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    // Selected state appearance
+
     override var isSelected: Bool {
         didSet {
             contentView.backgroundColor = isSelected ? UIColor.systemBlue.withAlphaComponent(0.5) : UIColor.black.withAlphaComponent(0.5)

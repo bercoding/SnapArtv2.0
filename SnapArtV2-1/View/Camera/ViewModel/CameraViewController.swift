@@ -1,12 +1,9 @@
-import UIKit
 import AVFoundation
 import MediaPipeTasksVision
 import SnapArtV2_1
-
-
+import UIKit
 
 class CameraViewController: UIViewController {
-    
     // MARK: - Properties
     
     // Camera capture
@@ -38,7 +35,7 @@ class CameraViewController: UIViewController {
     // Processing state
     private var isProcessingFrame = false
     private var lastProcessedTimestamp: TimeInterval = 0
-    private let frameProcessInterval: TimeInterval = 0.1  // Giới hạn tối đa 10 frame/giây
+    private let frameProcessInterval: TimeInterval = 0.1 // Giới hạn tối đa 10 frame/giây
     
     // CI
     private let ciContext = CIContext(options: nil)
@@ -63,6 +60,7 @@ class CameraViewController: UIViewController {
         let mode: String // "pinch" | "bump"
         let scale: CGFloat // độ mạnh hiệu ứng đã chốt
     }
+
     private var committedWarpStamps: [WarpStamp] = []
 
     // Christmas animated effects
@@ -73,7 +71,6 @@ class CameraViewController: UIViewController {
     private var xmasWarmIconView: UIImageView?
     private var xmasWarmBackgroundView: UIImageView?
 
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -111,7 +108,6 @@ class CameraViewController: UIViewController {
         if let overlay = filterOverlay { previewView.bringSubviewToFront(overlay) }
         if let effectView = christmasEffectView { previewView.bringSubviewToFront(effectView) }
         if let iconsView = iconsOverlayView {
-
             iconsView.frame = previewView.bounds
             if let iv = xmasWarmIconView, let img = iv.image {
                 let margin: CGFloat = 8
@@ -139,14 +135,14 @@ class CameraViewController: UIViewController {
         let captureSize: CGFloat = 70
         let captureBottomPadding: CGFloat = max(16, safeBottom + 12)
         captureButton.frame = CGRect(
-            x: (view.bounds.width - captureSize)/2,
+            x: (view.bounds.width - captureSize) / 2,
             y: view.bounds.height - captureSize - captureBottomPadding,
             width: captureSize,
             height: captureSize
         )
-        captureButton.layer.cornerRadius = captureSize/2
+        captureButton.layer.cornerRadius = captureSize / 2
         
-        // Filter selection view ngay trên nút chụp
+    
         let filterHeight: CGFloat = 100
         let spacingBetweenFilterAndCapture: CGFloat = 24
         let filterY = max(safeTop + 80, captureButton.frame.minY - filterHeight - spacingBetweenFilterAndCapture)
@@ -167,12 +163,12 @@ class CameraViewController: UIViewController {
             width: closeSize,
             height: closeSize
         )
-        closeButton.layer.cornerRadius = closeSize/2
+        closeButton.layer.cornerRadius = closeSize / 2
 
         // Warp reset button (góc trái trên, theo safe area)
         let resetSize: CGFloat = 40
         warpResetButton.frame = CGRect(x: 20, y: safeTop + 8, width: resetSize, height: resetSize)
-        warpResetButton.layer.cornerRadius = resetSize/2
+        warpResetButton.layer.cornerRadius = resetSize / 2
         
         // Beauty slider (nằm ngay trên thanh chọn filter)
         let sliderHeight: CGFloat = 34
@@ -291,7 +287,7 @@ class CameraViewController: UIViewController {
         previewView.addSubview(overlay)
         previewView.bringSubviewToFront(overlay)
         
-        self.filterOverlay = overlay
+        filterOverlay = overlay
         print("✅ Filter overlay setup complete")
     }
     
@@ -373,7 +369,7 @@ class CameraViewController: UIViewController {
         }
         warpResetButton.tintColor = .white
         warpResetButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        warpResetButton.layer.cornerRadius = buttonSize/2
+        warpResetButton.layer.cornerRadius = buttonSize / 2
         warpResetButton.isHidden = true
         warpResetButton.addTarget(self, action: #selector(warpResetButtonTapped), for: .touchUpInside)
         previewView.addSubview(warpResetButton)
@@ -435,7 +431,9 @@ class CameraViewController: UIViewController {
     
     private func setupFilterButtons() {
         // Xóa các button cũ nếu có
-        for button in filterButtons { button.removeFromSuperview() }
+        for button in filterButtons {
+            button.removeFromSuperview()
+        }
         filterButtons.removeAll()
         
         // Lấy danh sách filter từ FilterManager
@@ -463,7 +461,7 @@ class CameraViewController: UIViewController {
             
             button.backgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
             button.layer.cornerRadius = buttonSize / 2
-            button.tag = index  // Sử dụng tag để xác định filter
+            button.tag = index // Sử dụng tag để xác định filter
             button.addTarget(self, action: #selector(filterButtonTapped(_:)), for: .touchUpInside)
             
             // Highlight button nếu là filter hiện tại
@@ -726,7 +724,7 @@ class CameraViewController: UIViewController {
     private func makeParticleImage(diameter: CGFloat, color: UIColor, alpha: CGFloat = 1.0) -> CGImage? {
         let size = CGSize(width: diameter, height: diameter)
         let renderer = UIGraphicsImageRenderer(size: size)
-        let img = renderer.image { ctx in
+        let img = renderer.image { _ in
             let rect = CGRect(origin: .zero, size: size)
             color.withAlphaComponent(alpha).setFill()
             UIBezierPath(ovalIn: rect).fill()
@@ -734,7 +732,6 @@ class CameraViewController: UIViewController {
         return img.cgImage
     }
 
-    
     // MARK: - Camera Setup
     
     private func setupCamera() {
@@ -830,7 +827,7 @@ class CameraViewController: UIViewController {
     }
     
 //    // MARK: - Face Mesh
-//    
+//
 //    private func checkFaceMeshStatus() {
 //        if !faceMeshManager.isInitialized {
 //            print("⚠️ Face landmarker chưa được khởi tạo")
@@ -875,8 +872,8 @@ class CameraViewController: UIViewController {
     
     // Hiển thị popup xác nhận lưu ảnh vào Gallery của app
     private func presentSaveConfirmation(for image: UIImage, filterType: FilterType?) {
-        self.pendingCapturedImage = image
-        self.pendingFilterType = filterType
+        pendingCapturedImage = image
+        pendingFilterType = filterType
         let alert = UIAlertController(title: "Lưu ảnh?", message: "Bạn có muốn lưu ảnh này vào Gallery của ứng dụng?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler: { [weak self] _ in
             self?.pendingCapturedImage = nil
@@ -900,7 +897,7 @@ class CameraViewController: UIViewController {
         }
         
         // Gọi action được truyền vào để lưu ảnh thông qua GalleryViewModel
-        self.saveImageAction?(finalImage, filterType?.displayName)
+        saveImageAction?(finalImage, filterType?.displayName)
 
         // Hiển thị thông báo thành công (có thể chuyển vào GalleryViewModel nếu muốn)
         let successLabel = UILabel()
@@ -978,6 +975,7 @@ class CameraViewController: UIViewController {
     }
     
     // MARK: - Capture Preview Overlay
+
     private func showCapturePreview(for image: UIImage, filterType: FilterType?) {
         // Clear nếu đã có
         capturePreviewView?.removeFromSuperview()
@@ -1018,7 +1016,7 @@ class CameraViewController: UIViewController {
         saveBtn.setTitleColor(.white, for: .normal)
         saveBtn.backgroundColor = UIColor.systemBlue
         saveBtn.layer.cornerRadius = 12
-        saveBtn.frame = CGRect(x: view.bounds.midX - buttonWidth - spacing/2,
+        saveBtn.frame = CGRect(x: view.bounds.midX - buttonWidth - spacing / 2,
                                y: view.bounds.height - buttonHeight - 40,
                                width: buttonWidth, height: buttonHeight)
         saveBtn.addTarget(self, action: #selector(onConfirmSaveTapped), for: .touchUpInside)
@@ -1029,7 +1027,7 @@ class CameraViewController: UIViewController {
         cancelBtn.setTitleColor(.white, for: .normal)
         cancelBtn.backgroundColor = UIColor.systemRed
         cancelBtn.layer.cornerRadius = 12
-        cancelBtn.frame = CGRect(x: view.bounds.midX + spacing/2,
+        cancelBtn.frame = CGRect(x: view.bounds.midX + spacing / 2,
                                  y: view.bounds.height - buttonHeight - 40,
                                  width: buttonWidth, height: buttonHeight)
         cancelBtn.addTarget(self, action: #selector(onCancelPreviewTapped), for: .touchUpInside)
@@ -1115,6 +1113,8 @@ class CameraViewController: UIViewController {
                 let dx = w.current.x - w.start.x
                 let dy = w.current.y - w.start.y
                 let dist = hypot(dx, dy)
+                
+                
                 let scaleMag = min(0.6, max(0.14, dist / 80.0))
                 committedWarpStamps.append(WarpStamp(center: w.current, radius: max(w.radius, 40), mode: w.mode, scale: scaleMag))
             }
@@ -1182,8 +1182,8 @@ class CameraViewController: UIViewController {
 }
 
 // MARK: - AVCapturePhotoCaptureDelegate
+
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
-    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard error == nil else {
             print("Error capturing photo: \(error?.localizedDescription ?? "Unknown error")")
@@ -1192,7 +1192,8 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         
         // Lấy dữ liệu hình ảnh
         guard let imageData = photo.fileDataRepresentation(),
-              var capturedImage = UIImage(data: imageData) else {
+              var capturedImage = UIImage(data: imageData)
+        else {
             print("Could not create image from photo data")
             return
         }
@@ -1213,78 +1214,79 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         
         // Nếu có filter và landmarks, áp dụng filter động lên ảnh chụp
         if let landmarkerResult = faceMeshManager.detectFaceMesh(in: capturedImage),
-           !landmarkerResult.faceLandmarks.isEmpty {
-                            if let type = currentFilter {
-                    switch type {
-                    case .beauty:
-                        if let out = BeautyFilter().apply(to: capturedImage, smooth: beautySmooth, brighten: beautyBright) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .xmasWarm:
-                        if let out = XmasWarmFilter().apply(to: capturedImage) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                                case .funnyBigEyes:
-                        if let out = BigEyesFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyTinyNose:
-                        if let out = TinyNoseFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyWideMouth:
-                        if let out = WideMouthFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyPuffyCheeks:
-                        if let out = PuffyCheeksFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnySwirl:
-                        if let out = SwirlFaceFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyLongChin:
-                        if let out = LongChinFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyMegaFace:
-                        if let out = MegaFaceFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyAlienHead:
-                        if let out = AlienHeadFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .funnyWarp:
-                        if let out = self.applyWarpTouches(on: capturedImage) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
-                            return
-                        }
-                    case .dogFace, .glasses, .mustache, .hat, .xmasSanta, .xmasBeard:
-            if let filteredImage = filterManager.applyDynamicFilter(
-                to: capturedImage,
-                with: landmarkerResult,
-                            type: type,
-                            isFrontCamera: false
-            ) {
-                            DispatchQueue.main.async { self.showCapturePreview(for: filteredImage, filterType: type) }
-                return
-                        }
-                    case .none:
-                        break
+           !landmarkerResult.faceLandmarks.isEmpty
+        {
+            if let type = currentFilter {
+                switch type {
+                case .beauty:
+                    if let out = BeautyFilter().apply(to: capturedImage, smooth: beautySmooth, brighten: beautyBright) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
                     }
+                case .xmasWarm:
+                    if let out = XmasWarmFilter().apply(to: capturedImage) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyBigEyes:
+                    if let out = BigEyesFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyTinyNose:
+                    if let out = TinyNoseFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyWideMouth:
+                    if let out = WideMouthFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyPuffyCheeks:
+                    if let out = PuffyCheeksFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnySwirl:
+                    if let out = SwirlFaceFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyLongChin:
+                    if let out = LongChinFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyMegaFace:
+                    if let out = MegaFaceFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyAlienHead:
+                    if let out = AlienHeadFilter().apply(to: capturedImage, landmarks: landmarkerResult) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .funnyWarp:
+                    if let out = applyWarpTouches(on: capturedImage) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: out, filterType: type) }
+                        return
+                    }
+                case .dogFace, .glasses, .mustache, .hat, .xmasSanta, .xmasBeard:
+                    if let filteredImage = filterManager.applyDynamicFilter(
+                        to: capturedImage,
+                        with: landmarkerResult,
+                        type: type,
+                        isFrontCamera: false
+                    ) {
+                        DispatchQueue.main.async { self.showCapturePreview(for: filteredImage, filterType: type) }
+                        return
+                    }
+                case .none:
+                    break
                 }
+            }
         }
         
         // Không có filter hoặc không detect được khuôn mặt: dùng ảnh gốc
@@ -1329,8 +1331,8 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // Kiểm tra xem có đang xử lý frame không
         if isProcessingFrame {
@@ -1362,7 +1364,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             
             // Safely unwrap pixel buffer
             guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
-                  CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess else {
+                  CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess
+            else {
                 self.isProcessingFrame = false
                 return
             }
@@ -1399,8 +1402,9 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                             // Chuẩn bị hình đã xử lý cho funny filters (nếu có)
                             var processedFunnyImage: UIImage? = nil
                             if let current = self.filterManager.currentFilter,
-                                [.beauty, .funnyBigEyes, .funnyTinyNose, .funnyWideMouth, .funnyPuffyCheeks, .funnySwirl, .funnyLongChin, .funnyMegaFace, .funnyAlienHead, .funnyWarp, .xmasWarm].contains(current),
-                                let baseImage = self.imageFromPixelBuffer(pixelBuffer) {
+                               [.beauty, .funnyBigEyes, .funnyTinyNose, .funnyWideMouth, .funnyPuffyCheeks, .funnySwirl, .funnyLongChin, .funnyMegaFace, .funnyAlienHead, .funnyWarp, .xmasWarm].contains(current),
+                               let baseImage = self.imageFromPixelBuffer(pixelBuffer)
+                            {
                                 switch current {
                                 case .beauty:
                                     processedFunnyImage = BeautyFilter().apply(to: baseImage, smooth: self.beautySmooth, brighten: self.beautyBright)
@@ -1424,7 +1428,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                                     processedFunnyImage = self.applyWarpTouches(on: baseImage)
                                 case .xmasWarm:
                                     processedFunnyImage = XmasWarmFilter().apply(to: baseImage)
-                                                                                                                                default:
+                                default:
                                     break
                                 }
                             }
@@ -1454,8 +1458,8 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                                         switch orientation {
                                         case .portrait: t = .identity
                                         case .portraitUpsideDown: t = CGAffineTransform(rotationAngle: .pi)
-                                        case .landscapeLeft: t = CGAffineTransform(rotationAngle: .pi/2)
-                                        case .landscapeRight: t = CGAffineTransform(rotationAngle: -.pi/2)
+                                        case .landscapeLeft: t = CGAffineTransform(rotationAngle: .pi / 2)
+                                        case .landscapeRight: t = CGAffineTransform(rotationAngle: -.pi / 2)
                                         @unknown default: t = .identity
                                         }
                                         if mirrored { t = t.scaledBy(x: -1, y: 1) }
@@ -1468,12 +1472,12 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                                     self.videoPreviewLayer?.isHidden = false
                                     print("🔁 Calling overlay update for: \(self.filterManager.currentFilter?.displayName ?? "nil") isFrontCam=\(self.isFrontCameraActive()) viewSize=\(self.previewView.bounds.size) frameSize=\(frameSize)")
                                     self.filterManager.updateFilterOverlayWithCorrectAspectRatio(
-                                    filterOverlay,
-                                    with: landmarkerResult,
-                                    viewSize: self.previewView.bounds.size,
+                                        filterOverlay,
+                                        with: landmarkerResult,
+                                        viewSize: self.previewView.bounds.size,
                                         frameSize: frameSize,
-                                    isFrontCamera: self.isFrontCameraActive()
-                                )
+                                        isFrontCamera: self.isFrontCameraActive()
+                                    )
                                     filterOverlay.transform = .identity // Reset transform khi trở về filter cũ
                                 }
                                 
@@ -1507,6 +1511,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 }
 
 // MARK: - Icons Overlay (xmasWarm)
+
 extension CameraViewController {
     private func ensureIconsOverlayView() {
         if iconsOverlayView == nil {
@@ -1547,6 +1552,7 @@ extension CameraViewController {
     }
     
     // MARK: - XmasWarm Background (full screen)
+
     private func ensureXmasWarmBackgroundView() {
         if xmasWarmBackgroundView == nil {
             let bg = UIImageView(frame: previewView.bounds)

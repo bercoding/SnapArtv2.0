@@ -472,7 +472,7 @@ class FilterManager {
                         let yFrame = yNorm * frameSize.height
                         return CGPoint(x: xFrame * scale + offsetX, y: yFrame * scale + offsetY)
                     }
-                    // Vẽ mũ (chỉ khi đủ landmarks)
+                    // Vẽ mũ
                     if let santaHat = UIImage(named: FilterType.xmasSanta.imageName), firstFace.count > 386 {
                         let leftBrow = mapPoint(firstFace[159])
                         let rightBrow = mapPoint(firstFace[386])

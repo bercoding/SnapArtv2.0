@@ -34,15 +34,35 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
-            // Sử dụng gradient từ AppTheme
-            AppTheme.mainGradient
-                .ignoresSafeArea()
+            // Nền gradient cục bộ (không phụ thuộc AppTheme)
+            LinearGradient(
+                gradient: Gradient(colors: [Color(red: 0.62, green: 0.59, blue: 0.98), Color(red: 0.82, green: 0.75, blue: 0.98)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
             
             // Content
             VStack {
-                // TabView để lướt giữa các trang
+                TabView(selection: $currentPage) { // Lướt giữa các trang
                     ForEach(0..<pages.count, id: \.self) { index in
                         OnboardingPageView(page: pages[index])
+                        Button(action: {
+                            if currentPage < pages.count - 1 {
+                                withAnimation { currentPage += 1 }
+                            } else {
+                                withAnimation { onboardingManager.completeOnboarding() }
+                            }
+                        }) {
+                            Text(currentPage < pages.count - 1 ? "Tiếp theo" : "Bắt đầu")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                                .padding(.horizontal, 24)
+                        }
                             .tag(index)
                     }
                 }
@@ -62,40 +82,40 @@ struct OnboardingView: View {
                 }
                 .padding(.top, 20)
                 
-                // Button - Sử dụng PrimaryButtonStyle
+                // Button - Primary
                 Button(action: {
                     if currentPage < pages.count - 1 {
-                        withAnimation {
-                            currentPage += 1
-                        }
+                        withAnimation { currentPage += 1 }
                     } else {
-                        // Onboarding completed
-                        withAnimation {
-                            onboardingManager.completeOnboarding()
-                        }
+                        withAnimation { onboardingManager.completeOnboarding() }
                     }
                 }) {
                     Text(currentPage < pages.count - 1 ? "Tiếp theo" : "Bắt đầu")
                         .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal, 24)
                 }
-                .buttonStyle(AppTheme.primaryButtonStyle())
                 .padding(.bottom, 20)
                 
-                // Skip button - Sử dụng TextButtonStyle
+                // Skip button
                 if currentPage < pages.count - 1 {
                     Button("Bỏ qua") {
-                        withAnimation {
-                            onboardingManager.completeOnboarding()
-                        }
+                        withAnimation { onboardingManager.completeOnboarding() }
                     }
-                    .buttonStyle(AppTheme.textButtonStyle())
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .opacity(0.9)
                     .padding(.bottom, 20)
                 }
             }
             .padding(.bottom, 30)
         }
     }
-
+}
 
 // Struct để lưu trữ thông tin cho mỗi trang onboarding
 struct OnboardingPage {
@@ -106,7 +126,7 @@ struct OnboardingPage {
 }
 
 // View cho mỗi trang onboarding
-struct OnboardingPageView: View {   
+struct OnboardingPageView: View {	
     let page: OnboardingPage
     @State private var useSystemImage: Bool = false
     
@@ -129,9 +149,7 @@ struct OnboardingPageView: View {
                         .frame(width: 220, height: 220)
                         .onAppear {
                             // Kiểm tra xem hình ảnh có tồn tại không
-                            if UIImage(named: page.image) == nil {
-                                useSystemImage = true
-                            }
+                            if UIImage(named: page.image) == nil { useSystemImage = true }
                         }
                 }
             }
@@ -147,7 +165,7 @@ struct OnboardingPageView: View {
             // Description
             Text(page.description)
                 .font(.system(size: 18))
-                .foregroundColor(.white.opacity(0.9))
+                .foregroundColor(Color.white.opacity(0.9))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
