@@ -1,0 +1,46 @@
+PODS:
+  - Kingfisher (8.5.0)
+  - MediaPipeTasksCommon (0.10.21)
+  - MediaPipeTasksVision (0.10.21):
+    - MediaPipeTasksCommon (= 0.10.21)
+  - PromisesObjC (2.4.0)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
+  - SnapKit (5.7.1)
+
+DEPENDENCIES:
+  - Kingfisher
+  - MediaPipeTasksVision
+  - PromisesObjC
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - MediaPipeTasksCommon
+    - MediaPipeTasksVision
+    - PromisesObjC
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Kingfisher: ff0d31a1f07bdff6a1ebb3ba08b8e6e567b6500c
+  MediaPipeTasksCommon: 6cfa29170d4900f04d250ad95ec058f14a741f38
+  MediaPipeTasksVision: 7b1c0f5a5820e87e9d96926f5e65d8cd3744fac2
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+
+PODFILE CHECKSUM: 87c36f168ef6fc6f9094c54ecb05bd1a7993b44e
+
+COCOAPODS: 1.16.2
