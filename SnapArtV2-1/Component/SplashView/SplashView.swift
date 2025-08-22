@@ -11,6 +11,7 @@ struct SplashView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var onboardingManager: OnboardingManager // Thay đổi thành EnvironmentObject
     @EnvironmentObject var galleryViewModel: GalleryViewModel // Thêm GalleryViewModel
+    @EnvironmentObject var languageViewModel: LanguageViewModel // Thêm LanguageViewModel
     
     var body: some View {
         if isActive {
@@ -19,13 +20,15 @@ struct SplashView: View {
                     .environment(\.managedObjectContext, viewContext)
                     .environmentObject(authViewModel)
                     .environmentObject(onboardingManager)
-                    .environmentObject(galleryViewModel) 
+                    .environmentObject(galleryViewModel)
+                    .environmentObject(languageViewModel)
             } else {
                 OnboardingView()
                     .environment(\.managedObjectContext, viewContext)
                     .environmentObject(authViewModel)
                     .environmentObject(onboardingManager)
                     .environmentObject(galleryViewModel)
+                    .environmentObject(languageViewModel)
             }
         } else {
             ZStack {
@@ -61,11 +64,13 @@ struct SplashView: View {
                         .font(.system(size: 38, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .padding(.top, 20)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                     
-                    Text("Tạo ảnh độc đáo với filter AR")
+                    Text(String(localized: "Tạo ảnh độc đáo với filter AR"))
                         .font(.system(size: 18, design: .rounded))
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.top, 8)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
@@ -92,4 +97,5 @@ struct SplashView: View {
         .environmentObject(AuthViewModel())
         .environmentObject(OnboardingManager())
         .environmentObject(GalleryViewModel())
+        .environmentObject(LanguageViewModel())
 } 

@@ -14,6 +14,7 @@ struct AuthView: View {
     @State private var loadingTimeout = false
     @State private var showLoginSheet = false
     @State private var showSignUpSheet = false
+    @EnvironmentObject private var languageViewModel: LanguageViewModel
     
     var body: some View {
         ZStack {
@@ -23,14 +24,16 @@ struct AuthView: View {
             VStack(spacing: 25) {
                 // Thông tin về ứng dụng
                 VStack(spacing: 10) {
-                    Text("SnapArt")
+                    Text(String(localized: "SnapArt"))
                         .font(.headline)
-                        .foregroundColor(.white) // Thay đổi màu chữ
-                    Text("Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt")
+                        .foregroundColor(.white)
+                        .id(languageViewModel.refreshID)
+                    Text(String(localized: "Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt"))
                         .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.8)) // Thay đổi màu chữ
+                        .foregroundColor(.white.opacity(0.8))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
+                        .id(languageViewModel.refreshID)
                 }
                 .padding(.top, 40)
                 // Logo và tiêu đề
@@ -38,14 +41,15 @@ struct AuthView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
-                    .foregroundColor(.white) // Thay đổi màu biểu tượng
+                    .foregroundColor(.white)
                     .padding(.top, 50)
             
-                Text("Đăng Nhập")
+                Text(String(localized: "Đăng Nhập"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white) // Thay đổi màu chữ
+                    .foregroundColor(.white)
                     .padding(.bottom, 20)
+                    .id(languageViewModel.refreshID)
             
                 if isLoading {
                     LoadingView(timeout: $loadingTimeout) {
@@ -61,11 +65,12 @@ struct AuthView: View {
                         HStack {
                             Image(systemName: "person.fill")
                                 .font(.headline)
-                            Text("Đăng nhập")
+                            Text(String(localized: "Đăng nhập"))
                                 .font(.headline)
+                                .id(languageViewModel.refreshID)
                         }
                     }
-                    .buttonStyle(AppTheme.primaryButtonStyle()) // Sử dụng style từ AppTheme
+                    .buttonStyle(AppTheme.primaryButtonStyle())
                 
                     Button(action: {
                         showSignUpSheet = true
@@ -73,11 +78,12 @@ struct AuthView: View {
                         HStack {
                             Image(systemName: "person.badge.plus")
                                 .font(.headline)
-                            Text("Đăng ký")
+                            Text(String(localized: "Đăng ký"))
                                 .font(.headline)
+                                .id(languageViewModel.refreshID)
                         }
                     }
-                    .buttonStyle(AppTheme.secondaryButtonStyle()) // Sử dụng style từ AppTheme
+                    .buttonStyle(AppTheme.secondaryButtonStyle())
                 }
             
                 Spacer()
@@ -88,12 +94,13 @@ struct AuthView: View {
             NavigationView {
                 LoginView()
                     .environmentObject(authViewModel)
-                    .navigationBarTitle("Đăng nhập", displayMode: .inline)
+                    .environmentObject(languageViewModel)
+                    .navigationBarTitle(String(localized: "Đăng nhập"), displayMode: .inline)
                     .navigationBarItems(leading: Button(action: {
                         showLoginSheet = false
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(    Color(.systemBackground))
+                            .foregroundColor(Color(.systemBackground))
                     })
             }
         }
@@ -101,12 +108,13 @@ struct AuthView: View {
             NavigationView {
                 SignUpView()
                     .environmentObject(authViewModel)
-                    .navigationBarTitle("Đăng ký", displayMode: .inline)
+                    .environmentObject(languageViewModel)
+                    .navigationBarTitle(String(localized: "Đăng ký"), displayMode: .inline)
                     .navigationBarItems(leading: Button(action: {
                         showSignUpSheet = false
                     }) {
                         Image(systemName: "xmark")
-                            .foregroundColor(    Color(.systemBackground))
+                            .foregroundColor(Color(.systemBackground))
                     })
             }
         }
@@ -135,28 +143,28 @@ struct LoadingView: View {
                         .frame(width: 50, height: 50)
                         .foregroundColor(.orange)
                     
-                    Text("Quá thời gian chờ")
+                    Text(String(localized: "Quá thời gian chờ"))
                         .font(.headline)
-                        .foregroundColor(.white) // Thay đổi màu chữ
+                        .foregroundColor(.white)
                     
-                    Text("Không thể kết nối đến máy chủ")
+                    Text(String(localized: "Không thể kết nối đến máy chủ"))
                         .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.8)) // Thay đổi màu chữ
+                        .foregroundColor(.white.opacity(0.8))
                         .multilineTextAlignment(.center)
                     
-                    Button("Thử lại") {
+                    Button(String(localized: "Thử lại")) {
                         onTimeout()
                     }
-                    .buttonStyle(AppTheme.primaryButtonStyle()) // Sử dụng style từ AppTheme
+                    .buttonStyle(AppTheme.primaryButtonStyle())
                 }
                 .padding()
             } else {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white)) // Thay đổi màu
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .scaleEffect(2)
-                Text("Đang tải...")
+                Text(String(localized: "Đang tải..."))
                     .font(.headline)
-                    .foregroundColor(.white) // Thay đổi màu chữ
+                    .foregroundColor(.white)
                     .padding(.top, 20)
             }
         }

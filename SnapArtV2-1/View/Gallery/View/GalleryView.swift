@@ -9,6 +9,7 @@ struct GalleryView: View {
     @State private var gridColumns = [GridItem(.adaptive(minimum: 100))]
     @Environment(\.dismiss) var dismiss
     @State private var showAlert: Bool = false
+    @EnvironmentObject private var languageViewModel: LanguageViewModel
     
     var body: some View {
         NavigationView {
@@ -24,6 +25,7 @@ struct GalleryView: View {
                             ProgressView("Đang tải ảnh...")
                                 .padding()
                                 .foregroundColor(.white)
+                                .id(languageViewModel.refreshID)
                         } else if viewModel.images.isEmpty {
                             emptyGalleryView
                         } else {
@@ -62,18 +64,21 @@ struct GalleryView: View {
                             gridColumns = [GridItem(.adaptive(minimum: 100))]
                         }) {
                             Label("Hiển thị nhỏ", systemImage: "square.grid.3x3")
+                                .id(languageViewModel.refreshID)
                         }
                         
                         Button(action: {
                             gridColumns = [GridItem(.adaptive(minimum: 150))]
                         }) {
                             Label("Hiển thị vừa", systemImage: "square.grid.2x2")
+                                .id(languageViewModel.refreshID)
                         }
                         
                         Button(action: {
                             showingDeleteConfirmation = true
                         }) {
                             Label("Xóa tất cả", systemImage: "trash")
+                                .id(languageViewModel.refreshID)
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -90,6 +95,7 @@ struct GalleryView: View {
                 Text("Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác.")
             }
         }
+        .id(languageViewModel.refreshID)
         .sheet(isPresented: $showingImageDetail) {
             if let selectedImage = viewModel.selectedImage, let uiImage = selectedImage.image {
                 DetailImage(image: uiImage, dateCreated: selectedImage.createdAt, filterType: selectedImage.filterType, onDelete: {
@@ -134,16 +140,18 @@ struct GalleryView: View {
                 .foregroundColor(.white)
                 .padding()
             
-            Text("Chưa có ảnh nào")
+            Text(String(localized: "Chưa có ảnh nào"))
                 .font(.title3)
                 .fontWeight(.medium)
                 .foregroundColor(.white)
+                .id(languageViewModel.refreshID)
             
-            Text("Chụp ảnh từ camera để lưu vào thư viện")
+            Text(String(localized: "Chụp ảnh từ camera để lưu vào thư viện"))
                 .font(.body)
                 .foregroundColor(.white.opacity(0.8))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .id(languageViewModel.refreshID)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
@@ -153,5 +161,6 @@ struct GalleryView: View {
 struct GalleryView_Previews: PreviewProvider {
     static var previews: some View {
         GalleryView()
+            .environmentObject(LanguageViewModel())
     }
 }

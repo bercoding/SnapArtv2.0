@@ -5,23 +5,26 @@ struct SignUpView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     @State private var showingAlert = false
+    @EnvironmentObject private var languageViewModel: LanguageViewModel
     
     var body: some View {
         ZStack {
             AppTheme.mainGradient.ignoresSafeArea()
-        VStack(spacing: 20) {
-            // Header
-                Text("Đăng ký tài khoản mới")
+            VStack(spacing: 20) {
+                // Header
+                Text(String(localized: "Đăng ký tài khoản mới"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.top, 20)
+                    .id(languageViewModel.refreshID)
                 
-                Text("Tạo tài khoản để bắt đầu sử dụng SnapArt")
+                Text(String(localized: "Tạo tài khoản để bắt đầu sử dụng SnapArt"))
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.8))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
+                    .id(languageViewModel.refreshID)
 
                 Spacer()
 
@@ -42,48 +45,51 @@ struct SignUpView: View {
                     )
 
                     AuthTextFieldView(
-                        iconName: "lock.fill", // Changed from lock.shield to lock.fill for consistency
+                        iconName: "lock.fill",
                         placeholder: "Xác nhận mật khẩu",
                         text: $authViewModel.confirmPassword,
                         isSecure: true
                     )
-            }
+                }
                 .padding(.horizontal, 30)
-            
-            Spacer()
-            
+                
+                Spacer()
+                
                 // Signup Button
                 Button(action: {
                     authViewModel.signUp()
                 }) {
                     if authViewModel.isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                } else {
-                    Text("Đăng ký")
-                        .font(.headline)
-                        .foregroundColor(.white)
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    } else {
+                        Text(String(localized: "Đăng ký"))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .id(languageViewModel.refreshID)
+                    }
                 }
-            }
-                .buttonStyle(AppTheme.primaryButtonStyle()) // Sửa lỗi ở đây
+                .buttonStyle(AppTheme.primaryButtonStyle())
                 .padding(.horizontal, 30)
                 .disabled(authViewModel.isLoading)
 
                 HStack {
-                    Text("Đã có tài khoản?")
+                    Text(String(localized: "Đã có tài khoản?"))
                         .foregroundColor(.white.opacity(0.8))
-                    Button("Đăng nhập") {
+                        .id(languageViewModel.refreshID)
+                    Button(String(localized: "Đăng nhập")) {
                         dismiss()
                     }
                     .foregroundColor(AppTheme.secondaryColor)
-        }
+                    .id(languageViewModel.refreshID)
+                }
                 .padding(.vertical)
             }
         }
-        .alert("Lỗi", isPresented: $showingAlert) {
-            Button("OK") { }
+        .alert(String(localized: "Lỗi"), isPresented: $showingAlert) {
+            Button(String(localized: "OK")) { }
         } message: {
-            Text(authViewModel.errorMessage ?? "Đã xảy ra lỗi không xác định.")
+            Text(authViewModel.errorMessage ?? String(localized: "Đã xảy ra lỗi không xác định."))
         }
         .onReceive(authViewModel.$errorMessage) { errorMessage in
             if errorMessage != nil {
@@ -95,6 +101,7 @@ struct SignUpView: View {
                 dismiss()
             }
         }
+        .id(languageViewModel.refreshID)
     }
 }
 
@@ -102,5 +109,6 @@ struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
             .environmentObject(AuthViewModel.example)
+            .environmentObject(LanguageViewModel())
     }
 } 
