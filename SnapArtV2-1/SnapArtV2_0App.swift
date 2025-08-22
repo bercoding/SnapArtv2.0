@@ -19,6 +19,7 @@ struct SnapArtV2_0App: App {
     @StateObject private var onboardingManager = OnboardingManager() // Added StateObject for OnboardingManager
     @StateObject private var galleryViewModel = GalleryViewModel() // Thêm GalleryViewModel
     @StateObject private var languageViewModel = LanguageViewModel()
+    @StateObject private var purchaseManager = InAppPurchaseManager.shared
     
     // Thêm trạng thái để theo dõi quá trình khởi tạo
     @State private var isInitialized = false
@@ -60,6 +61,7 @@ struct SnapArtV2_0App: App {
                 .environmentObject(onboardingManager)
                 .environmentObject(galleryViewModel) // Cung cấp GalleryViewModel
                 .environmentObject(languageViewModel) // Cung cấp LanguageViewModel
+                .environmentObject(purchaseManager) // Cung cấp InAppPurchaseManager
                 .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
         }
     }

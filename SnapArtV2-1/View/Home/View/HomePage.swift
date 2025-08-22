@@ -8,6 +8,7 @@ struct HomePage: View {
     @State private var showCamera = false
     @State private var selectedFilter: FilterType? = nil
     @State private var showLanguageSettings = false
+    @State private var showPremium = false
     
     var body: some View {
         ZStack {
@@ -65,6 +66,10 @@ struct HomePage: View {
                     showLanguageSettings = false
                 }
         }
+        .sheet(isPresented: $showPremium) {
+            PremiumView()
+                .environmentObject(InAppPurchaseManager.shared)
+        }
         .id(languageViewModel.refreshID) // Force reload toàn bộ view khi ngôn ngữ thay đổi
     }
     
@@ -81,6 +86,18 @@ struct HomePage: View {
                     .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
             }
             Spacer()
+            
+//             Nút Premium
+            Button {
+                showPremium = true
+            } label: {
+                Image(systemName: "crown.fill")
+                    .font(.title2)
+                    .foregroundColor(.yellow)
+                    .padding(8)
+                    .background(Color.white.opacity(0.2))
+                    .clipShape(Circle())
+            }
             
             // Nút chọn ngôn ngữ
             Button {
@@ -115,6 +132,23 @@ struct HomePage: View {
     private var bottomBar: some View {
         HStack(spacing: 16) {
             NavigationLink {
+                HomePage()
+                    .id(languageViewModel.refreshID)
+            } label: {
+                VStack(spacing: 4) {
+                    Image(systemName: "photo.on.rectangle")
+                        .foregroundColor(.white)
+                    Text(NSLocalizedString("Thư viện ảnh", comment: "Gallery"))
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.white.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            }
+            NavigationLink {
                 GalleryView()
                     .id(languageViewModel.refreshID)
             } label: {
@@ -131,6 +165,41 @@ struct HomePage: View {
                 .background(Color.white.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
+            NavigationLink {
+                LanguageView()
+                    .id(languageViewModel.refreshID)
+            } label: {
+                VStack(spacing: 4) {
+                    Image(systemName: "globe")
+                        .foregroundColor(.white)
+                    Text(NSLocalizedString("Language", comment: "Language"))
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.white.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            }
+            NavigationLink {
+                PremiumView()
+                    .id(languageViewModel.refreshID)
+            } label: {
+                VStack(spacing: 4) {
+                    Image(systemName: "photo.on.rectangle")
+                        .foregroundColor(.white)
+                    Text(NSLocalizedString("Premium", comment: "Premium"))
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.white.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            }
+            
             
             
         }

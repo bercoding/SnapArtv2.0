@@ -24,11 +24,11 @@ struct AuthView: View {
             VStack(spacing: 25) {
                 // Thông tin về ứng dụng
                 VStack(spacing: 10) {
-                    Text(String(localized: "SnapArt"))
+                    Text(NSLocalizedString("SnapArt", comment: "App name"))
                         .font(.headline)
                         .foregroundColor(.white)
                         .id(languageViewModel.refreshID)
-                    Text(String(localized: "Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt"))
+                    Text(NSLocalizedString("Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt", comment: "App description"))
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                         .multilineTextAlignment(.center)
@@ -44,7 +44,7 @@ struct AuthView: View {
                     .foregroundColor(.white)
                     .padding(.top, 50)
             
-                Text(String(localized: "Đăng Nhập"))
+                Text(NSLocalizedString("Đăng Nhập", comment: "Sign In"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -65,7 +65,7 @@ struct AuthView: View {
                         HStack {
                             Image(systemName: "person.fill")
                                 .font(.headline)
-                            Text(String(localized: "Đăng nhập"))
+                            Text(NSLocalizedString("Đăng nhập", comment: "Sign In"))
                                 .font(.headline)
                                 .id(languageViewModel.refreshID)
                         }
@@ -78,7 +78,7 @@ struct AuthView: View {
                         HStack {
                             Image(systemName: "person.badge.plus")
                                 .font(.headline)
-                            Text(String(localized: "Đăng ký"))
+                            Text(NSLocalizedString("Đăng ký", comment: "Sign Up"))
                                 .font(.headline)
                                 .id(languageViewModel.refreshID)
                         }
@@ -95,7 +95,7 @@ struct AuthView: View {
                 LoginView()
                     .environmentObject(authViewModel)
                     .environmentObject(languageViewModel)
-                    .navigationBarTitle(String(localized: "Đăng nhập"), displayMode: .inline)
+                    .navigationBarTitle(NSLocalizedString("Đăng nhập", comment: "Sign In"), displayMode: .inline)
                     .navigationBarItems(leading: Button(action: {
                         showLoginSheet = false
                     }) {
@@ -109,7 +109,7 @@ struct AuthView: View {
                 SignUpView()
                     .environmentObject(authViewModel)
                     .environmentObject(languageViewModel)
-                    .navigationBarTitle(String(localized: "Đăng ký"), displayMode: .inline)
+                    .navigationBarTitle(NSLocalizedString("Đăng ký", comment: "Sign Up"), displayMode: .inline)
                     .navigationBarItems(leading: Button(action: {
                         showSignUpSheet = false
                     }) {
@@ -143,16 +143,16 @@ struct LoadingView: View {
                         .frame(width: 50, height: 50)
                         .foregroundColor(.orange)
                     
-                    Text(String(localized: "Quá thời gian chờ"))
+                    Text(NSLocalizedString("Quá thời gian chờ", comment: "Timeout"))
                         .font(.headline)
                         .foregroundColor(.white)
                     
-                    Text(String(localized: "Không thể kết nối đến máy chủ"))
+                    Text(NSLocalizedString("Không thể kết nối đến máy chủ", comment: "Cannot connect to server"))
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                         .multilineTextAlignment(.center)
                     
-                    Button(String(localized: "Thử lại")) {
+                    Button(NSLocalizedString("Thử lại", comment: "Try again")) {
                         onTimeout()
                     }
                     .buttonStyle(AppTheme.primaryButtonStyle())
@@ -162,7 +162,7 @@ struct LoadingView: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .scaleEffect(2)
-                Text(String(localized: "Đang tải..."))
+                Text(NSLocalizedString("Đang tải...", comment: "Loading..."))
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding(.top, 20)

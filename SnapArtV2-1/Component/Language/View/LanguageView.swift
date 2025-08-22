@@ -31,7 +31,7 @@ struct LanguageView: View {
     var Header: some View {
         VStack(spacing: 16) {
             HStack {
-                Text(String(localized: "Ngôn ngữ"))
+                Text(NSLocalizedString("Ngôn ngữ", comment: "Language"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
@@ -40,7 +40,7 @@ struct LanguageView: View {
                 
                 Spacer()
                 
-                Button(String(localized: "OK")) {
+                Button(NSLocalizedString("OK", comment: "OK")) {
                     // Áp dụng ngôn ngữ khi nhấn OK (UIKit bundle override)
                     if !pendingCode.isEmpty { viewModel.selectedCode = pendingCode }
                     viewModel.applyLanguage()
@@ -53,7 +53,7 @@ struct LanguageView: View {
                 .id(viewModel.refreshID)
             }
      
-            Text(String(localized: "Chọn ngôn ngữ cho ứng dụng"))
+            Text(NSLocalizedString("Chọn ngôn ngữ cho ứng dụng", comment: "Choose language for app"))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -114,7 +114,7 @@ struct LanguageRowView: View {
                         .multilineTextAlignment(.leading)
                     
                     // Tên quốc gia hoặc "selected language"
-                    Text(isSelected ? String(localized: "Đã chọn") : language.englishName)
+                    Text(isSelected ? NSLocalizedString("Đã chọn", comment: "Selected") : language.englishName)
                         .font(.subheadline)
                         .foregroundColor(isSelected ? .blue : .secondary)
                         .lineLimit(1)

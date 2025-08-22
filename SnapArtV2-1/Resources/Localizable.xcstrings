@@ -4,7 +4,19 @@
     "" : {
 
     },
+    "An unknown error occurred" : {
+      "comment" : "Unknown error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred"
+          }
+        }
+      }
+    },
     "Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng." : {
+      "comment" : "Image will be permanently deleted from the app",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -87,7 +99,7 @@
       }
     },
     "Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác." : {
-      "comment" : "Delete all message",
+      "comment" : "Delete all confirmation message",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -170,7 +182,7 @@
       }
     },
     "Bắt đầu" : {
-      "comment" : "Start button",
+      "comment" : "Get Started",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -252,7 +264,19 @@
         }
       }
     },
+    "Beauty" : {
+      "comment" : "Beauty",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty"
+          }
+        }
+      }
+    },
     "Bộ lọc khuôn mặt" : {
+      "comment" : "Face filters",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -336,6 +360,7 @@
     },
     "Bộ lọc khuôn mặt AR" : {
       "comment" : "Onboarding page 2 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -418,6 +443,7 @@
       }
     },
     "Bộ lọc:" : {
+      "comment" : "Filter",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -500,7 +526,7 @@
       }
     },
     "Bỏ qua" : {
-      "comment" : "Skip button",
+      "comment" : "Skip",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -582,8 +608,12 @@
         }
       }
     },
+    "Cần quyền truy cập Camera" : {
+      "comment" : "Camera access required"
+    },
     "Chào mừng đến với SnapArt" : {
       "comment" : "Onboarding page 1 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -666,6 +696,7 @@
       }
     },
     "Chi tiết ảnh" : {
+      "comment" : "Image details",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -743,6 +774,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fotoğraf Ayrıntıları"
+          }
+        }
+      }
+    },
+    "Chỉnh sửa nâng cao" : {
+      "comment" : "Advanced editing",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced editing"
           }
         }
       }
@@ -831,6 +873,7 @@
       }
     },
     "Chọn một tùy chọn bên dưới" : {
+      "comment" : "Choose an option below",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -913,7 +956,7 @@
       }
     },
     "Chọn ngôn ngữ cho ứng dụng" : {
-      "comment" : "Choose language subtitle",
+      "comment" : "Choose language for app",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -996,7 +1039,7 @@
       }
     },
     "Chưa có ảnh nào" : {
-      "comment" : "Empty gallery title",
+      "comment" : "No photos yet",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1079,7 +1122,7 @@
       }
     },
     "Chưa có tài khoản?" : {
-      "comment" : "No account",
+      "comment" : "Don't have an account?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1162,7 +1205,7 @@
       }
     },
     "Chụp ảnh từ camera để lưu vào thư viện" : {
-      "comment" : "Empty gallery message",
+      "comment" : "Take photos from camera to save to gallery",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1245,7 +1288,7 @@
       }
     },
     "Đã chọn" : {
-      "comment" : "Selected language text",
+      "comment" : "Selected",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1328,7 +1371,7 @@
       }
     },
     "Đã có tài khoản?" : {
-      "comment" : "Have account",
+      "comment" : "Already have an account?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1410,11 +1453,33 @@
         }
       }
     },
+    "Đã mua" : {
+      "comment" : "Purchased",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchased"
+          }
+        }
+      }
+    },
     "Đã xảy ra lỗi không xác định." : {
-      "comment" : "Unknown error"
+      "comment" : "An unknown error occurred"
+    },
+    "Đang hoạt động" : {
+      "comment" : "Active",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active"
+          }
+        }
+      }
     },
     "Đăng ký" : {
-      "comment" : "Sign up\nSignup button\nSignup title",
+      "comment" : "Sign Up\nSubscribe",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1497,7 +1562,7 @@
       }
     },
     "Đăng ký tài khoản mới" : {
-      "comment" : "Signup title",
+      "comment" : "Create new account",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1580,7 +1645,7 @@
       }
     },
     "Đăng nhập" : {
-      "comment" : "Login\nLogin button\nLogin title",
+      "comment" : "Sign In",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1663,7 +1728,7 @@
       }
     },
     "Đăng Nhập" : {
-      "comment" : "Auth title",
+      "comment" : "Sign In",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1747,6 +1812,7 @@
     },
     "Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị" : {
       "comment" : "Onboarding page 4 description",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1829,7 +1895,7 @@
       }
     },
     "Đăng nhập để tiếp tục" : {
-      "comment" : "Login subtitle",
+      "comment" : "Sign in to continue",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1912,7 +1978,7 @@
       }
     },
     "Đang tải ảnh..." : {
-      "comment" : "Loading images",
+      "comment" : "Loading photos",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1995,7 +2061,7 @@
       }
     },
     "Đang tải..." : {
-      "comment" : "Loading",
+      "comment" : "Loading...",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2078,6 +2144,7 @@
       }
     },
     "Đóng" : {
+      "comment" : "Close",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2155,6 +2222,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kapalı"
+          }
+        }
+      }
+    },
+    "Đồng bộ đám mây" : {
+      "comment" : "Cloud sync",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloud sync"
           }
         }
       }
@@ -2238,6 +2316,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Demo hesabı kullanın"
+          }
+        }
+      }
+    },
+    "Filter mới hàng tuần" : {
+      "comment" : "New filters weekly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New filters weekly"
+          }
+        }
+      }
+    },
+    "Gói định kỳ" : {
+      "comment" : "Subscription plans",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription plans"
           }
         }
       }
@@ -2491,8 +2591,63 @@
         }
       }
     },
+    "Kéo méo (tay)(disable)" : {
+      "comment" : "Face warp (hand) (disabled)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face warp (hand) (disabled)"
+          }
+        }
+      }
+    },
+    "Khôi phục mua hàng" : {
+      "comment" : "Restore purchases",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore purchases"
+          }
+        }
+      }
+    },
+    "Khôi phục mua hàng thành công!" : {
+      "comment" : "Restore successful!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore successful!"
+          }
+        }
+      }
+    },
+    "Không có filter" : {
+      "comment" : "No filter",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No filter"
+          }
+        }
+      }
+    },
+    "Không quảng cáo" : {
+      "comment" : "No ads",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ads"
+          }
+        }
+      }
+    },
     "Không thể kết nối đến máy chủ" : {
-      "comment" : "Cannot connect",
+      "comment" : "Cannot connect to server",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2575,6 +2730,7 @@
       }
     },
     "Kiểm tra MediaPipe" : {
+      "comment" : "Test MediaPipe",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2656,8 +2812,22 @@
         }
       }
     },
+    "Kính" : {
+      "comment" : "Glasses",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glasses"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "comment" : "Language"
+    },
     "Lỗi" : {
-      "comment" : "Error title",
+      "comment" : "Error",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2741,6 +2911,7 @@
     },
     "Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè" : {
       "comment" : "Onboarding page 3 description",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2824,6 +2995,7 @@
     },
     "Lưu trữ và chia sẻ" : {
       "comment" : "Onboarding page 3 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2905,7 +3077,74 @@
         }
       }
     },
+    "Mắt & miệng khổng lồ" : {
+      "comment" : "Giant eyes & mouth",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giant eyes & mouth"
+          }
+        }
+      }
+    },
+    "Mặt chó(disable)" : {
+      "comment" : "Dog face (disabled)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dog face (disabled)"
+          }
+        }
+      }
+    },
+    "Mắt hí" : {
+      "comment" : "Squinty eyes",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Squinty eyes"
+          }
+        }
+      }
+    },
+    "Mắt to" : {
+      "comment" : "Big eyes",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Big eyes"
+          }
+        }
+      }
+    },
+    "Mặt vuông" : {
+      "comment" : "Square face",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Square face"
+          }
+        }
+      }
+    },
+    "Mặt xấu" : {
+      "comment" : "Ugly face",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugly face"
+          }
+        }
+      }
+    },
     "MediaPipe Test" : {
+      "comment" : "MediaPipe Test",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2987,7 +3226,22 @@
         }
       }
     },
+    "Miệng rộng" : {
+      "comment" : "Wide mouth",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wide mouth"
+          }
+        }
+      }
+    },
+    "Mở Cài đặt" : {
+      "comment" : "Open Settings"
+    },
     "Mở Camera với Filter" : {
+      "comment" : "Open Camera with Filter",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3069,8 +3323,99 @@
         }
       }
     },
+    "Mở khóa tất cả tính năng và filter cao cấp" : {
+      "comment" : "Unlock all premium features and filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock all premium features and filters"
+          }
+        }
+      }
+    },
+    "mỗi năm" : {
+      "comment" : "per year",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per year"
+          }
+        }
+      }
+    },
+    "mỗi tháng" : {
+      "comment" : "per month",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per month"
+          }
+        }
+      }
+    },
+    "Mũ" : {
+      "comment" : "Hat",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hat"
+          }
+        }
+      }
+    },
+    "Mũ Noel" : {
+      "comment" : "Christmas hat"
+    },
+    "Mua hàng thành công!" : {
+      "comment" : "Purchase successful!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase successful!"
+          }
+        }
+      }
+    },
+    "Mua một lần" : {
+      "comment" : "One-time purchase",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-time purchase"
+          }
+        }
+      }
+    },
+    "Mũi nhỏ" : {
+      "comment" : "Tiny nose",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiny nose"
+          }
+        }
+      }
+    },
+    "Nâng cấp lên Premium" : {
+      "comment" : "Upgrade to Premium",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to Premium"
+          }
+        }
+      }
+    },
     "Ngôn ngữ" : {
-      "comment" : "Languages title",
+      "comment" : "Language",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3152,8 +3497,19 @@
         }
       }
     },
+    "Noel ấm áp" : {
+      "comment" : "Warm Christmas",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warm Christmas"
+          }
+        }
+      }
+    },
     "OK" : {
-      "comment" : "OK button",
+      "comment" : "OK",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3231,6 +3587,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TAMAM"
+          }
+        }
+      }
+    },
+    "Ông già Noel" : {
+      "comment" : "Santa Claus",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Santa Claus"
+          }
+        }
+      }
+    },
+    "Premium" : {
+      "comment" : "Premium",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        }
+      }
+    },
+    "Purchase is pending" : {
+      "comment" : "Purchase pending",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase is pending"
+          }
+        }
+      }
+    },
+    "Purchase was cancelled" : {
+      "comment" : "Purchase cancelled",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase was cancelled"
           }
         }
       }
@@ -3319,7 +3719,7 @@
       }
     },
     "Quên mật khẩu?" : {
-      "comment" : "Forgot password",
+      "comment" : "Forgot password?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3397,6 +3797,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Şifreyi mi unuttunuz?"
+          }
+        }
+      }
+    },
+    "Râu" : {
+      "comment" : "Mustache",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mustache"
+          }
+        }
+      }
+    },
+    "Râu Noel" : {
+      "comment" : "Christmas beard",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Christmas beard"
           }
         }
       }
@@ -3486,6 +3908,7 @@
     },
     "Tài khoản cá nhân" : {
       "comment" : "Onboarding page 4 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3568,7 +3991,7 @@
       }
     },
     "Tạo ảnh độc đáo với filter AR" : {
-      "comment" : "App tagline",
+      "comment" : "Create unique photos with AR filters",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3734,7 +4157,7 @@
       }
     },
     "Tạo tài khoản để bắt đầu sử dụng SnapArt" : {
-      "comment" : "Signup subtitle",
+      "comment" : "Create account to start using SnapArt",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3816,7 +4239,19 @@
         }
       }
     },
+    "Tất cả filter premium" : {
+      "comment" : "All premium filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All premium filters"
+          }
+        }
+      }
+    },
     "Thời gian chụp:" : {
+      "comment" : "Capture time",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3898,8 +4333,11 @@
         }
       }
     },
+    "Thông báo" : {
+      "comment" : "Notice"
+    },
     "Thử lại" : {
-      "comment" : "Retry",
+      "comment" : "Try again",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3982,6 +4420,7 @@
       }
     },
     "Thử nghiệm Filter với ảnh" : {
+      "comment" : "Test Filter with image",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4147,7 +4586,7 @@
       }
     },
     "Tiếp theo" : {
-      "comment" : "Next button",
+      "comment" : "Next",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4229,8 +4668,31 @@
         }
       }
     },
+    "Tiết kiệm 33%" : {
+      "comment" : "Save 33%",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 33%"
+          }
+        }
+      }
+    },
+    "Tính năng Premium" : {
+      "comment" : "Premium Features",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium Features"
+          }
+        }
+      }
+    },
     "Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe" : {
       "comment" : "Onboarding page 2 description",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4313,7 +4775,7 @@
       }
     },
     "Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt" : {
-      "comment" : "Auth subtitle",
+      "comment" : "App description",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4397,6 +4859,7 @@
     },
     "Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo" : {
       "comment" : "Onboarding page 1 description",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4478,8 +4941,11 @@
         }
       }
     },
+    "Vui lòng cho phép ứng dụng truy cập camera trong Cài đặt để sử dụng tính năng này" : {
+      "comment" : "Please allow the app to access camera in Settings to use this feature"
+    },
     "Xác nhận xóa" : {
-      "comment" : "Delete confirm title",
+      "comment" : "Delete confirmation",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4562,6 +5028,7 @@
       }
     },
     "Xóa" : {
+      "comment" : "Delete",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4644,6 +5111,7 @@
       }
     },
     "Xóa ảnh này?" : {
+      "comment" : "Delete this image?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4804,6 +5272,380 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hepsini sil"
+          }
+        }
+      }
+    },
+    "Xoáy mặt" : {
+      "comment" : "Face swirl",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face swirl"
+          }
+        }
+      }
+    },
+    "Filter" : {
+      "comment" : "Filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filters"
+          }
+        }
+      }
+    },
+    "Không giới hạn" : {
+      "comment" : "Unlimited",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited"
+          }
+        }
+      }
+    },
+    "Hỗ trợ" : {
+      "comment" : "Support",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support"
+          }
+        }
+      }
+    },
+    "Truy cập không giới hạn" : {
+      "comment" : "Unlimited access",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited access"
+          }
+        }
+      }
+    },
+    "Cập nhật thường xuyên" : {
+      "comment" : "Regular updates",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regular updates"
+          }
+        }
+      }
+    },
+    "Trải nghiệm mượt mà" : {
+      "comment" : "Smooth experience",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smooth experience"
+          }
+        }
+      }
+    },
+    "An toàn và tiện lợi" : {
+      "comment" : "Safe and convenient",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safe and convenient"
+          }
+        }
+      }
+    },
+    "Công cụ chuyên nghiệp" : {
+      "comment" : "Professional tools",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Professional tools"
+          }
+        }
+      }
+    },
+    "Tốc độ cao" : {
+      "comment" : "High speed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High speed"
+          }
+        }
+      }
+    },
+    "Xử lý nhanh chóng" : {
+      "comment" : "Fast processing",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast processing"
+          }
+        }
+      }
+    },
+    "Chọn gói phù hợp" : {
+      "comment" : "Choose your plan",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your plan"
+          }
+        }
+      }
+    },
+    "Tháng" : {
+      "comment" : "Monthly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly"
+          }
+        }
+      }
+    },
+    "Năm" : {
+      "comment" : "Yearly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yearly"
+          }
+        }
+      }
+    },
+    "PHỔ BIẾN" : {
+      "comment" : "POPULAR",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POPULAR"
+          }
+        }
+      }
+    },
+    "/năm" : {
+      "comment" : "/year",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/year"
+          }
+        }
+      }
+    },
+    "/tháng" : {
+      "comment" : "/month",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/month"
+          }
+        }
+      }
+    },
+    "Tiết kiệm 33% so với gói tháng" : {
+      "comment" : "Save 33% vs monthly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 33% vs monthly"
+          }
+        }
+      }
+    },
+    "Bắt đầu ngay" : {
+      "comment" : "Get Started",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        }
+      }
+    },
+    "Người dùng nói gì" : {
+      "comment" : "What users say",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What users say"
+          }
+        }
+      }
+    },
+    "Filter đẹp quá! Tôi rất thích tính năng premium." : {
+      "comment" : "Beautiful filters! I love the premium features.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beautiful filters! I love the premium features."
+          }
+        }
+      }
+    },
+    "Ứng dụng tuyệt vời, đáng để mua premium." : {
+      "comment" : "Great app, worth buying premium.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great app, worth buying premium."
+          }
+        }
+      }
+    },
+    "Chất lượng filter rất cao, rất hài lòng!" : {
+      "comment" : "Filter quality is very high, very satisfied!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter quality is very high, very satisfied!"
+          }
+        }
+      }
+    },
+    "Câu hỏi thường gặp" : {
+      "comment" : "Frequently Asked Questions",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequently Asked Questions"
+          }
+        }
+      }
+    },
+    "Tôi có thể hủy subscription không?" : {
+      "comment" : "Can I cancel my subscription?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I cancel my subscription?"
+          }
+        }
+      }
+    },
+    "Có, bạn có thể hủy bất cứ lúc nào trong App Store." : {
+      "comment" : "Yes, you can cancel anytime in the App Store.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you can cancel anytime in the App Store."
+          }
+        }
+      }
+    },
+    "Premium có hoạt động trên tất cả thiết bị không?" : {
+      "comment" : "Does premium work on all devices?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does premium work on all devices?"
+          }
+        }
+      }
+    },
+    "Có, premium được đồng bộ qua iCloud." : {
+      "comment" : "Yes, premium syncs via iCloud.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, premium syncs via iCloud."
+          }
+        }
+      }
+    },
+    "Tôi có thể dùng thử trước khi mua không?" : {
+      "comment" : "Can I try before buying?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I try before buying?"
+          }
+        }
+      }
+    },
+    "Có, bạn có 1 tuần dùng thử miễn phí." : {
+      "comment" : "Yes, you get 1 week free trial.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you get 1 week free trial."
+          }
+        }
+      }
+    },
+    "* Miễn phí dùng thử 7 ngày" : {
+      "comment" : "* 7-day free trial",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* 7-day free trial"
+          }
+        }
+      }
+    },
+    "Bằng việc mua, bạn đồng ý với" : {
+      "comment" : "By purchasing, you agree to",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By purchasing, you agree to"
+          }
+        }
+      }
+    },
+    "Điều khoản sử dụng" : {
+      "comment" : "Terms of Service",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Service"
+          }
+        }
+      }
+    },
+    "Chính sách bảo mật" : {
+      "comment" : "Privacy Policy",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
           }
         }
       }

@@ -60,13 +60,13 @@ struct SplashView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("SnapArt")
+                    Text(NSLocalizedString("SnapArt", comment: "App name"))
                         .font(.system(size: 38, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .padding(.top, 20)
                         .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                     
-                    Text(String(localized: "Tạo ảnh độc đáo với filter AR"))
+                    Text(NSLocalizedString("Tạo ảnh độc đáo với filter AR", comment: "Create unique photos with AR filters"))
                         .font(.system(size: 18, design: .rounded))
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.top, 8)

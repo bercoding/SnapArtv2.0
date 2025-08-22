@@ -81,21 +81,21 @@ struct OnboardingView: View {
                         }
                     }
                 }) {
-                    Text(currentPage < pages.count - 1 ? "Tiếp theo" : "Bắt đầu")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                        .padding(.horizontal, 24)
-                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+                                    Text(currentPage < pages.count - 1 ? NSLocalizedString("Tiếp theo", comment: "Next") : NSLocalizedString("Bắt đầu", comment: "Get Started"))
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 24)
+                    .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                 }
                 .padding(.bottom, 20)
                 
                 // Skip button
                 if currentPage < pages.count - 1 {
-                    Button("Bỏ qua") {
+                    Button(NSLocalizedString("Bỏ qua", comment: "Skip")) {
                         withAnimation { 
                             showLanguageSettings = true
                         }
@@ -125,8 +125,8 @@ struct OnboardingView: View {
 struct OnboardingPage {
     let image: String
     let systemImage: String
-    let title: LocalizedStringKey
-    let description: LocalizedStringKey
+    let title: String
+    let description: String
 }
 
 // View cho mỗi trang onboarding
@@ -161,7 +161,7 @@ struct OnboardingPageView: View {
             .padding(.bottom, 20)
             
             // Title
-            Text(page.title)
+            Text(NSLocalizedString(page.title, comment: "Onboarding title"))
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
@@ -169,7 +169,7 @@ struct OnboardingPageView: View {
                 .id(languageViewModel.refreshID)
             
             // Description
-            Text(page.description)
+            Text(NSLocalizedString(page.description, comment: "Onboarding description"))
                 .font(.system(size: 18))
                 .foregroundColor(Color.white.opacity(0.9))
                 .multilineTextAlignment(.center)

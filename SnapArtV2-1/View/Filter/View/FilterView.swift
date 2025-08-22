@@ -15,7 +15,7 @@ struct FilterView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 20) {
-                Text("Bộ lọc khuôn mặt")
+                Text(NSLocalizedString("Bộ lọc khuôn mặt", comment: "Face filters"))
                     .font(.largeTitle)
                     .foregroundColor(.white) // Thay đổi màu chữ
                     .padding()
@@ -27,7 +27,7 @@ struct FilterView: View {
                     .foregroundColor(.white) // Thay đổi màu biểu tượng
                     .padding()
                 
-                Text("Chọn một tùy chọn bên dưới")
+                Text(NSLocalizedString("Chọn một tùy chọn bên dưới", comment: "Choose an option below"))
                     .font(.headline)
                     .foregroundColor(.white) // Thay đổi màu chữ
                     .padding()
@@ -38,7 +38,7 @@ struct FilterView: View {
                     HStack {
                         Image(systemName: "camera.fill")
                             .font(.system(size: 20))
-                        Text("Mở Camera với Filter")
+                        Text(NSLocalizedString("Mở Camera với Filter", comment: "Open Camera with Filter"))
                             .font(.headline)
                     }
                 }
@@ -52,7 +52,7 @@ struct FilterView: View {
                     HStack {
                         Image(systemName: "photo.fill")
                             .font(.system(size: 20))
-                        Text("Thử nghiệm Filter với ảnh")
+                        Text(NSLocalizedString("Thử nghiệm Filter với ảnh", comment: "Test Filter with image"))
                             .font(.headline)
                     }
                 }
@@ -98,13 +98,13 @@ struct FilterView: View {
            let rootViewController = windowScene.windows.first?.rootViewController {
             
             let alert = UIAlertController(
-                title: "Cần quyền truy cập Camera",
-                message: "Vui lòng cho phép ứng dụng truy cập camera trong Cài đặt để sử dụng tính năng này",
+                title: NSLocalizedString("Cần quyền truy cập Camera", comment: "Camera access required"),
+                message: NSLocalizedString("Vui lòng cho phép ứng dụng truy cập camera trong Cài đặt để sử dụng tính năng này", comment: "Please allow the app to access camera in Settings to use this feature"),
                 preferredStyle: .alert
             )
             
-            alert.addAction(UIAlertAction(title: "Hủy", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Mở Cài đặt", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Hủy", comment: "Cancel"), style: .cancel))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Mở Cài đặt", comment: "Open Settings"), style: .default) { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url)
                 }

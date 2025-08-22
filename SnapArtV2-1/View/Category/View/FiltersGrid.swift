@@ -12,11 +12,10 @@ struct FiltersGrid: View {
                         onSelect(ft)
                     } label: {
                         VStack(spacing: 8) {
-                            Text(ft.icon)
-                                .font(.system(size: 28))
+                            // Chỉ hiển thị text, không hiển thị emoji
                             Text(ft.displayName)
-                                .font(.footnote)
-                                .foregroundColor(.white) // Thay đổi màu chữ thành trắng
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
                                 .lineLimit(2)
                                 .multilineTextAlignment(.center)
                         }
