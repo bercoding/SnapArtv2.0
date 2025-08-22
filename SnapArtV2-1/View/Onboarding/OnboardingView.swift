@@ -2,35 +2,39 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var currentPage = 0
+    @State private var showLanguageSettings = false
     @EnvironmentObject var onboardingManager: OnboardingManager
+    @EnvironmentObject var languageViewModel: LanguageViewModel
     
-    // Dữ liệu cho các trang onboarding
-    private let pages: [OnboardingPage] = [
-        OnboardingPage(
-            image: "onboarding1", // Sử dụng hình ảnh từ Assets nếu có
-            systemImage: "camera.filters", // Fallback sang system image nếu không tìm thấy
-            title: "Chào mừng đến với SnapArt",
-            description: "Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo"
-        ),
-        OnboardingPage(
-            image: "onboarding2",
-            systemImage: "face.smiling",
-            title: "Bộ lọc khuôn mặt AR",
-            description: "Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe"
-        ),
-        OnboardingPage(
-            image: "onboarding3",
-            systemImage: "photo.on.rectangle",
-            title: "Lưu trữ và chia sẻ",
-            description: "Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè"
-        ),
-        OnboardingPage(
-            image: "onboarding4",
-            systemImage: "person.crop.circle.badge.checkmark",
-            title: "Tài khoản cá nhân",
-            description: "Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị"
-        )
-    ]
+    // Dữ liệu cho các trang onboarding (computed để cập nhật theo .locale)
+    private var pages: [OnboardingPage] {
+        [
+            OnboardingPage(
+                image: "onboarding1",
+                systemImage: "camera.filters",
+                title: "Chào mừng đến với SnapArt",
+                description: "Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo"
+            ),
+            OnboardingPage(
+                image: "onboarding2",
+                systemImage: "face.smiling",
+                title: "Bộ lọc khuôn mặt AR",
+                description: "Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe"
+            ),
+            OnboardingPage(
+                image: "onboarding3",
+                systemImage: "photo.on.rectangle",
+                title: "Lưu trữ và chia sẻ",
+                description: "Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè"
+            ),
+            OnboardingPage(
+                image: "onboarding4",
+                systemImage: "person.crop.circle.badge.checkmark",
+                title: "Tài khoản cá nhân",
+                description: "Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị"
+            )
+        ]
+    }
     
     var body: some View {
         ZStack {
@@ -47,22 +51,7 @@ struct OnboardingView: View {
                 TabView(selection: $currentPage) { // Lướt giữa các trang
                     ForEach(0..<pages.count, id: \.self) { index in
                         OnboardingPageView(page: pages[index])
-                        Button(action: {
-                            if currentPage < pages.count - 1 {
-                                withAnimation { currentPage += 1 }
-                            } else {
-                                withAnimation { onboardingManager.completeOnboarding() }
-                            }
-                        }) {
-                            Text(currentPage < pages.count - 1 ? "Tiếp theo" : "Bắt đầu")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                                .padding(.horizontal, 24)
-                        }
+                            .environmentObject(languageViewModel)
                             .tag(index)
                     }
                 }
@@ -87,7 +76,9 @@ struct OnboardingView: View {
                     if currentPage < pages.count - 1 {
                         withAnimation { currentPage += 1 }
                     } else {
-                        withAnimation { onboardingManager.completeOnboarding() }
+                        withAnimation { 
+                            showLanguageSettings = true
+                        }
                     }
                 }) {
                     Text(currentPage < pages.count - 1 ? "Tiếp theo" : "Bắt đầu")
@@ -98,21 +89,34 @@ struct OnboardingView: View {
                         .foregroundColor(.white)
                         .cornerRadius(12)
                         .padding(.horizontal, 24)
+                        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                 }
                 .padding(.bottom, 20)
                 
                 // Skip button
                 if currentPage < pages.count - 1 {
                     Button("Bỏ qua") {
-                        withAnimation { onboardingManager.completeOnboarding() }
+                        withAnimation { 
+                            showLanguageSettings = true
+                        }
                     }
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .opacity(0.9)
                     .padding(.bottom, 20)
+                    .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
                 }
             }
             .padding(.bottom, 30)
+        }
+        .sheet(isPresented: $showLanguageSettings) {
+            LanguageView()
+                .environmentObject(languageViewModel)
+                .onReceive(NotificationCenter.default.publisher(for: .languageChanged)) { _ in
+                    // Khi ngôn ngữ thay đổi, đóng sheet và hoàn thành onboarding
+                    showLanguageSettings = false
+                    onboardingManager.completeOnboarding()
+                }
         }
     }
 }
@@ -121,14 +125,15 @@ struct OnboardingView: View {
 struct OnboardingPage {
     let image: String
     let systemImage: String
-    let title: String
-    let description: String
+    let title: LocalizedStringKey
+    let description: LocalizedStringKey
 }
 
 // View cho mỗi trang onboarding
 struct OnboardingPageView: View {	
     let page: OnboardingPage
     @State private var useSystemImage: Bool = false
+    @EnvironmentObject private var languageViewModel: LanguageViewModel
     
     var body: some View {
         VStack(spacing: 20) {
@@ -161,6 +166,7 @@ struct OnboardingPageView: View {
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .id(languageViewModel.refreshID)
             
             // Description
             Text(page.description)
@@ -169,6 +175,7 @@ struct OnboardingPageView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
+                .id(languageViewModel.refreshID)
             
             Spacer()
             Spacer()
@@ -180,4 +187,5 @@ struct OnboardingPageView: View {
 #Preview {
     OnboardingView()
         .environmentObject(OnboardingManager())
+        .environmentObject(LanguageViewModel())
 } 

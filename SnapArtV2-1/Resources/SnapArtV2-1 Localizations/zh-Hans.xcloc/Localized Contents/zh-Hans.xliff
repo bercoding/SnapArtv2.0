@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="SnapArtV2-1/Resources/Localizable.xcstrings" source-language="vi" target-language="zh-Hans" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"/>
+    </header>
+    <body>
+      <trans-unit id="Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng." xml:space="preserve">
+        <source>Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Bắt đầu" xml:space="preserve">
+        <source>Bắt đầu</source>
+        <note>Start button</note>
+      </trans-unit>
+      <trans-unit id="Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác." xml:space="preserve">
+        <source>Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác.</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Bỏ qua" xml:space="preserve">
+        <source>Bỏ qua</source>
+        <note>Skip button</note>
+      </trans-unit>
+      <trans-unit id="Bộ lọc khuôn mặt" xml:space="preserve">
+        <source>Bộ lọc khuôn mặt</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Bộ lọc khuôn mặt AR" xml:space="preserve">
+        <source>Bộ lọc khuôn mặt AR</source>
+        <note>Onboarding page 2 title</note>
+      </trans-unit>
+      <trans-unit id="Bộ lọc:" xml:space="preserve">
+        <source>Bộ lọc:</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Chào mừng đến với SnapArt" xml:space="preserve">
+        <source>Chào mừng đến với SnapArt</source>
+        <note>Onboarding page 1 title</note>
+      </trans-unit>
+      <trans-unit id="Chi tiết ảnh" xml:space="preserve">
+        <source>Chi tiết ảnh</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Chọn một danh mục phía trên để xem các filter" xml:space="preserve">
+        <source>Chọn một danh mục phía trên để xem các filter</source>
+        <note>Select category message</note>
+      </trans-unit>
+      <trans-unit id="Chọn một tùy chọn bên dưới" xml:space="preserve">
+        <source>Chọn một tùy chọn bên dưới</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Chọn ngôn ngữ cho ứng dụng" xml:space="preserve">
+        <source>Chọn ngôn ngữ cho ứng dụng</source>
+        <note>Choose language subtitle</note>
+      </trans-unit>
+      <trans-unit id="Chưa có ảnh nào" xml:space="preserve">
+        <source>Chưa có ảnh nào</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Chưa có tài khoản?" xml:space="preserve">
+        <source>Chưa có tài khoản?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Chụp ảnh từ camera để lưu vào thư viện" xml:space="preserve">
+        <source>Chụp ảnh từ camera để lưu vào thư viện</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Dùng tài khoản demo" xml:space="preserve">
+        <source>Dùng tài khoản demo</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Hiển thị nhỏ" xml:space="preserve">
+        <source>Hiển thị nhỏ</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Hiển thị vừa" xml:space="preserve">
+        <source>Hiển thị vừa</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Hủy" xml:space="preserve">
+        <source>Hủy</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Không thể kết nối đến máy chủ" xml:space="preserve">
+        <source>Không thể kết nối đến máy chủ</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Kiểm tra MediaPipe" xml:space="preserve">
+        <source>Kiểm tra MediaPipe</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Lỗi" xml:space="preserve">
+        <source>Lỗi</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè" xml:space="preserve">
+        <source>Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè</source>
+        <note>Onboarding page 3 description</note>
+      </trans-unit>
+      <trans-unit id="Lưu trữ và chia sẻ" xml:space="preserve">
+        <source>Lưu trữ và chia sẻ</source>
+        <note>Onboarding page 3 title</note>
+      </trans-unit>
+      <trans-unit id="MediaPipe Test" xml:space="preserve">
+        <source>MediaPipe Test</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Mở Camera với Filter" xml:space="preserve">
+        <source>Mở Camera với Filter</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Ngôn ngữ" xml:space="preserve">
+        <source>Ngôn ngữ</source>
+        <note>Languages title</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <note>OK button</note>
+      </trans-unit>
+      <trans-unit id="Quá thời gian chờ" xml:space="preserve">
+        <source>Quá thời gian chờ</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Quên mật khẩu?" xml:space="preserve">
+        <source>Quên mật khẩu?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="SnapArt" xml:space="preserve">
+        <source>SnapArt</source>
+        <note>App name</note>
+      </trans-unit>
+      <trans-unit id="Tài khoản cá nhân" xml:space="preserve">
+        <source>Tài khoản cá nhân</source>
+        <note>Onboarding page 4 title</note>
+      </trans-unit>
+      <trans-unit id="Tạo ảnh vui theo thời gian thực" xml:space="preserve">
+        <source>Tạo ảnh vui theo thời gian thực</source>
+        <note>App tagline</note>
+      </trans-unit>
+      <trans-unit id="Tạo ảnh độc đáo với filter AR" xml:space="preserve">
+        <source>Tạo ảnh độc đáo với filter AR</source>
+        <note>App tagline</note>
+      </trans-unit>
+      <trans-unit id="Tạo tài khoản để bắt đầu sử dụng SnapArt" xml:space="preserve">
+        <source>Tạo tài khoản để bắt đầu sử dụng SnapArt</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Thời gian chụp:" xml:space="preserve">
+        <source>Thời gian chụp:</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Thư viện ảnh" xml:space="preserve">
+        <source>Thư viện ảnh</source>
+        <note>Gallery</note>
+      </trans-unit>
+      <trans-unit id="Thử lại" xml:space="preserve">
+        <source>Thử lại</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Thử nghiệm Filter với ảnh" xml:space="preserve">
+        <source>Thử nghiệm Filter với ảnh</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Tiếp theo" xml:space="preserve">
+        <source>Tiếp theo</source>
+        <note>Next button</note>
+      </trans-unit>
+      <trans-unit id="Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe" xml:space="preserve">
+        <source>Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe</source>
+        <note>Onboarding page 2 description</note>
+      </trans-unit>
+      <trans-unit id="Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt" xml:space="preserve">
+        <source>Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo" xml:space="preserve">
+        <source>Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo</source>
+        <note>Onboarding page 1 description</note>
+      </trans-unit>
+      <trans-unit id="Xác nhận xóa" xml:space="preserve">
+        <source>Xác nhận xóa</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Xóa" xml:space="preserve">
+        <source>Xóa</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Xóa ảnh này?" xml:space="preserve">
+        <source>Xóa ảnh này?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Xóa tất cả" xml:space="preserve">
+        <source>Xóa tất cả</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đang tải ảnh..." xml:space="preserve">
+        <source>Đang tải ảnh...</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đang tải..." xml:space="preserve">
+        <source>Đang tải...</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đã chọn" xml:space="preserve">
+        <source>Đã chọn</source>
+        <note>Selected language text</note>
+      </trans-unit>
+      <trans-unit id="Đã có tài khoản?" xml:space="preserve">
+        <source>Đã có tài khoản?</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đăng Nhập" xml:space="preserve">
+        <source>Đăng Nhập</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đăng ký" xml:space="preserve">
+        <source>Đăng ký</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đăng ký tài khoản mới" xml:space="preserve">
+        <source>Đăng ký tài khoản mới</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đăng nhập" xml:space="preserve">
+        <source>Đăng nhập</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị" xml:space="preserve">
+        <source>Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị</source>
+        <note>Onboarding page 4 description</note>
+      </trans-unit>
+      <trans-unit id="Đăng nhập để tiếp tục" xml:space="preserve">
+        <source>Đăng nhập để tiếp tục</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Đóng" xml:space="preserve">
+        <source>Đóng</source>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="SnapArtV2-1/Resources/SnapArtV2-1-InfoPlist.xcstrings" source-language="vi" target-language="zh-Hans" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>SnapArtV2-1</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>Camera access is required for taking photos and applying real-time face filters. Without this permission, the app cannot function properly.</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationWhenInUseUsageDescription" xml:space="preserve">
+        <source>Location access may be used for some features</source>
+        <note>Privacy - Location When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>Photo library access is required to save photos</source>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

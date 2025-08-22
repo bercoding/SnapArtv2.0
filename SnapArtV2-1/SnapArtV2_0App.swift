@@ -59,9 +59,8 @@ struct SnapArtV2_0App: App {
                 .environmentObject(authViewModel)
                 .environmentObject(onboardingManager)
                 .environmentObject(galleryViewModel) // Cung cấp GalleryViewModel
-//                .onAppear {
-//                    print("SplashView xuất hiện")
-//                }
+                .environmentObject(languageViewModel) // Cung cấp LanguageViewModel
+                .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
         }
     }
 }

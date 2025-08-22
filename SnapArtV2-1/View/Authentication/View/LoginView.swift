@@ -4,6 +4,7 @@ struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss // Use @Environment(\.dismiss) for SwiftUI 2.0+
     @State private var showingAlert = false // Local state for showing alert
+    @EnvironmentObject private var languageViewModel: LanguageViewModel
     
     var body: some View {
         ZStack {
@@ -17,47 +18,48 @@ struct LoginView: View {
                         .frame(width: 100, height: 100)
                         .foregroundColor(.white)
                     
-                    Text("SnapArt")
+                    Text(String(localized: "SnapArt"))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                        .id(languageViewModel.refreshID)
                     
-                    Text("Đăng nhập để tiếp tục")
+                    Text(String(localized: "Đăng nhập để tiếp tục"))
                         .font(.headline)
                         .foregroundColor(.white.opacity(0.8))
+                        .id(languageViewModel.refreshID)
                 }
                 .padding(.top, 20)
-
-//                Spacer()
 
                 // Login Form
                 VStack(spacing: 20) {
                     AuthTextFieldView(
-                        iconName: "envelope.fill", // Sửa tên tham số
+                        iconName: "envelope.fill",
                         placeholder: "Email",
-                        text: $authViewModel.email // Bind to AuthViewModel.email
+                        text: $authViewModel.email
                     )
                     .autocapitalization(.none)
                     
                     AuthTextFieldView(
-                        iconName: "lock.fill", // Sửa tên tham số
+                        iconName: "lock.fill",
                         placeholder: "Mật khẩu",
-                        text: $authViewModel.password, // Bind to AuthViewModel.password
+                        text: $authViewModel.password,
                         isSecure: true
                     )
                 }
                 .padding(.horizontal, 30)
 
                 // Forgot Password
-                Button("Quên mật khẩu?") {
+                Button(String(localized: "Quên mật khẩu?")) {
                     // Handle forgot password
                 }
                 .font(.footnote)
                 .foregroundColor(.white.opacity(0.8))
                 .padding(.bottom, 10)
+                .id(languageViewModel.refreshID)
 
                 // Test account button
-                Button("Dùng tài khoản demo") {
+                Button(String(localized: "Dùng tài khoản demo")) {
                     authViewModel.email = "test@example.com"
                     authViewModel.password = "password123"
                     authViewModel.signIn()
@@ -65,6 +67,7 @@ struct LoginView: View {
                 .font(.footnote)
                 .foregroundColor(.white.opacity(0.6))
                 .padding(.bottom, 20)
+                .id(languageViewModel.refreshID)
 
                 Button(action: {
                     authViewModel.signIn()
@@ -73,30 +76,33 @@ struct LoginView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
-                        Text("Đăng nhập")
+                        Text(String(localized: "Đăng nhập"))
                             .font(.headline)
                             .foregroundColor(.white)
+                            .id(languageViewModel.refreshID)
                     }
                 }
-                .buttonStyle(AppTheme.primaryButtonStyle()) // Sửa lỗi ở đây
+                .buttonStyle(AppTheme.primaryButtonStyle())
                 .padding(.horizontal, 30)
                 .disabled(authViewModel.isLoading)
 
                 HStack {
-                    Text("Chưa có tài khoản?")
+                    Text(String(localized: "Chưa có tài khoản?"))
                         .foregroundColor(.white.opacity(0.8))
-                    NavigationLink("Đăng ký") {
+                        .id(languageViewModel.refreshID)
+                    NavigationLink(String(localized: "Đăng ký")) {
                         SignUpView()
                     }
                     .foregroundColor(AppTheme.secondaryColor)
+                    .id(languageViewModel.refreshID)
                 }
                 .padding(.vertical)
             }
         }
-        .alert("Lỗi", isPresented: $showingAlert) {
-            Button("OK") { }
+        .alert(String(localized: "Lỗi"), isPresented: $showingAlert) {
+            Button(String(localized: "OK")) { }
         } message: {
-            Text(authViewModel.errorMessage ?? "Đã xảy ra lỗi không xác định.")
+            Text(authViewModel.errorMessage ?? String(localized: "Đã xảy ra lỗi không xác định."))
         }
         .onReceive(authViewModel.$errorMessage) { errorMessage in
             if errorMessage != nil {
@@ -108,6 +114,7 @@ struct LoginView: View {
                 dismiss()
             }
         }
+        .id(languageViewModel.refreshID)
     }
 }
 
@@ -115,5 +122,6 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
             .environmentObject(AuthViewModel.example)
+            .environmentObject(LanguageViewModel())
     }
 } 
