@@ -13,7 +13,7 @@ class InAppPurchaseManager: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    // Product IDs
+    // Product IDs - Must match exactly with Products.storekit
     private let productIDs = [
         "com.snapart.premium"           // Non-consumable
     ]
@@ -48,11 +48,34 @@ class InAppPurchaseManager: ObservableObject {
         
         do {
             let allProductIDs = productIDs + subscriptionIDs
+            print("🔄 Loading products with IDs: \(allProductIDs)")
+            
             products = try await Product.products(for: allProductIDs)
-            print("Loaded \(products.count) products")
+            print("✅ Successfully loaded \(products.count) products")
+            
+            // Debug: Print each product details
+            for product in products {
+                print("📱 Product: \(product.id)")
+                print("   - Name: \(product.displayName)")
+                print("   - Price: \(product.displayPrice)")
+                print("   - Type: \(product.subscription != nil ? "Subscription" : "Non-Consumable")")
+                if let subscription = product.subscription {
+                    print("   - Subscription Period: \(subscription.subscriptionPeriod.unit)")
+                }
+            }
+            
+            // Debug: Check subscription products
+            let subscriptionProducts = products.filter { $0.subscription != nil }
+            let nonConsumableProducts = products.filter { $0.subscription == nil }
+            
+            print("📊 Summary:")
+            print("   - Total: \(products.count)")
+            print("   - Subscriptions: \(subscriptionProducts.count)")
+            print("   - Non-Consumable: \(nonConsumableProducts.count)")
+            
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
-            print("Failed to load products: \(error)")
+            print("❌ Failed to load products: \(error)")
         }
     }
     
