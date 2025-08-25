@@ -37,6 +37,19 @@
         }
       }
     },
+    "%@: %@ - %@" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@ - %3$@"
+          }
+        }
+      }
+    },
+    "🔄 Reload Products" : {
+
+    },
     "An toàn và tiện lợi" : {
       "comment" : "Safe and convenient",
       "localizations" : {
@@ -1636,6 +1649,9 @@
         }
       }
     },
+    "Đã tải %lld sản phẩm" : {
+
+    },
     "Đã xảy ra lỗi không xác định." : {
       "comment" : "An unknown error occurred"
     },
@@ -2231,6 +2247,12 @@
           }
         }
       }
+    },
+    "Đang tải sản phẩm..." : {
+
+    },
+    "Đang tải: %lld subscription products" : {
+
     },
     "Đang tải..." : {
       "comment" : "Loading...",
@@ -2852,6 +2874,15 @@
           }
         }
       }
+    },
+    "Không có gói mua một lần" : {
+
+    },
+    "Không có gói năm" : {
+
+    },
+    "Không có gói tháng" : {
+
     },
     "Không giới hạn" : {
       "comment" : "Unlimited",
@@ -4183,6 +4214,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çıtçıt"
+          }
+        }
+      }
+    },
+    "Subscription: %lld, Non-consumable: %lld" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Subscription: %1$lld, Non-consumable: %2$lld"
           }
         }
       }

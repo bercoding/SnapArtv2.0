@@ -186,14 +186,9 @@ struct PremiumView: View {
                 if selectedPlan == "monthly" {
                     let monthlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
                     if monthlyProducts.isEmpty {
-                        VStack(spacing: 8) {
-                            Text("Không có gói tháng")
-                                .font(.caption)
-                                .foregroundColor(.white.opacity(0.7))
-                            Text("Đang tải: \(purchaseManager.getSubscriptionProducts().count) subscription products")
-                                .font(.caption2)
-                                .foregroundColor(.white.opacity(0.5))
-                        }
+                        Text("Không có gói tháng")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
                     } else {
                         ForEach(monthlyProducts, id: \.id) { product in
                             PricingCard(
@@ -211,14 +206,9 @@ struct PremiumView: View {
                 } else {
                     let yearlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }
                     if yearlyProducts.isEmpty {
-                        VStack(spacing: 8) {
-                            Text("Không có gói năm")
-                                .font(.caption)
-                                .foregroundColor(.white.opacity(0.7))
-                            Text("Đang tải: \(purchaseManager.getSubscriptionProducts().count) subscription products")
-                                .font(.caption2)
-                                .foregroundColor(.white.opacity(0.5))
-                        }
+                        Text("Không có gói năm")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
                     } else {
                         ForEach(yearlyProducts, id: \.id) { product in
                             PricingCard(
@@ -257,54 +247,11 @@ struct PremiumView: View {
                 }
             }
             
-            // Debug info (remove in production)
-            VStack(spacing: 4) {
-                if purchaseManager.products.isEmpty {
-                    VStack(spacing: 8) {
-                        Text("Đang tải sản phẩm...")
-                            .font(.caption)
-                            .foregroundColor(.white.opacity(0.7))
-                        
-                        Button("🔄 Reload Products") {
-                            Task {
-                                await purchaseManager.loadProducts()
-                            }
-                        }
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(Color.white.opacity(0.2))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
-                } else {
-                    Text("Đã tải \(purchaseManager.products.count) sản phẩm")
-                        .font(.caption2)
-                        .foregroundColor(.white.opacity(0.5))
-                    
-                    Text("Subscription: \(purchaseManager.getSubscriptionProducts().count), Non-consumable: \(purchaseManager.getNonConsumableProducts().count)")
-                        .font(.caption2)
-                        .foregroundColor(.white.opacity(0.5))
-                    
-                    // Show product IDs for debugging
-                    ForEach(purchaseManager.products, id: \.id) { product in
-                        Text("\(product.id): \(product.displayName) - \(product.displayPrice)")
-                            .font(.caption2)
-                            .foregroundColor(.white.opacity(0.5))
-                    }
-                    
-                    Button("🔄 Reload Products") {
-                        Task {
-                            await purchaseManager.loadProducts()
-                        }
-                    }
+            // Loading state
+            if purchaseManager.products.isEmpty {
+                Text("Đang tải sản phẩm...")
                     .font(.caption)
-                    .foregroundColor(.blue)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
+                    .foregroundColor(.white.opacity(0.7))
             }
         }
         .padding(.vertical, 16)

@@ -48,34 +48,9 @@ class InAppPurchaseManager: ObservableObject {
         
         do {
             let allProductIDs = productIDs + subscriptionIDs
-            print("🔄 Loading products with IDs: \(allProductIDs)")
-            
             products = try await Product.products(for: allProductIDs)
-            print("✅ Successfully loaded \(products.count) products")
-            
-            // Debug: Print each product details
-            for product in products {
-                print("📱 Product: \(product.id)")
-                print("   - Name: \(product.displayName)")
-                print("   - Price: \(product.displayPrice)")
-                print("   - Type: \(product.subscription != nil ? "Subscription" : "Non-Consumable")")
-                if let subscription = product.subscription {
-                    print("   - Subscription Period: \(subscription.subscriptionPeriod.unit)")
-                }
-            }
-            
-            // Debug: Check subscription products
-            let subscriptionProducts = products.filter { $0.subscription != nil }
-            let nonConsumableProducts = products.filter { $0.subscription == nil }
-            
-            print("📊 Summary:")
-            print("   - Total: \(products.count)")
-            print("   - Subscriptions: \(subscriptionProducts.count)")
-            print("   - Non-Consumable: \(nonConsumableProducts.count)")
-            
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
-            print("❌ Failed to load products: \(error)")
         }
     }
     
@@ -106,7 +81,6 @@ class InAppPurchaseManager: ObservableObject {
         
         try await AppStore.sync()
         await updateSubscriptionStatus()
-        print(" Purchases restored successfully")
     }
     
     // MARK: - Subscription Management
@@ -159,8 +133,6 @@ class InAppPurchaseManager: ObservableObject {
         if product.subscription != nil {
             subscriptionStatus = .active
         }
-        
-        print("Purchase successful: \(product.id)")
     }
 
     // MARK: - Transaction Listener
