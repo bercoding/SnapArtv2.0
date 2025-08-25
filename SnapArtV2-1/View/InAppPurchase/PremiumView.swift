@@ -22,7 +22,7 @@ struct PremiumView: View {
                 )
                 .ignoresSafeArea()
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 0) {
                     // Hero Section - Compact
                     heroSection
                     
@@ -72,19 +72,19 @@ struct PremiumView: View {
     // MARK: - Hero Section - Compact
     
     private var heroSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             // Premium Badge
-            HStack(spacing: 6) {
+            HStack(spacing: 8) {
                 Image(systemName: "crown.fill")
-                    .font(.title3)
+                    .font(.title2)
                     .foregroundColor(.yellow)
                 
                 Text("PREMIUM")
-                    .font(.caption2)
+                    .font(.caption)
                     .fontWeight(.bold)
                     .foregroundColor(.yellow)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 2)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 4)
                     .background(Color.yellow.opacity(0.2))
                     .clipShape(Capsule())
             }
@@ -92,7 +92,7 @@ struct PremiumView: View {
             // Main Title
             VStack(spacing: 8) {
                 Text(NSLocalizedString("Nâng cấp lên Premium", comment: "Upgrade to Premium"))
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                 
@@ -104,28 +104,28 @@ struct PremiumView: View {
             }
             
             // Stats Row - Compact
-            HStack(spacing: 20) {
+            HStack(spacing: 24) {
                 StatItem(number: "20+", label: NSLocalizedString("Filter", comment: "Filters"))
                 StatItem(number: "∞", label: NSLocalizedString("Không giới hạn", comment: "Unlimited"))
                 StatItem(number: "24/7", label: NSLocalizedString("Hỗ trợ", comment: "Support"))
             }
         }
-        .padding(.vertical, 16)
+        .padding(.vertical, 20)
     }
     
     // MARK: - Features Grid Section - Compact
     
     private var featuresGridSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             Text(NSLocalizedString("Tính năng Premium", comment: "Premium Features"))
-                .font(.headline)
+                .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
             LazyVGrid(columns: [
                 GridItem(.flexible()),
                 GridItem(.flexible())
-            ], spacing: 8) {
+            ], spacing: 12) {
                 FeatureCard(
                     icon: "sparkles",
                     title: NSLocalizedString("Tất cả filter premium", comment: "All premium filters"),
@@ -151,15 +151,15 @@ struct PremiumView: View {
                 )
             }
         }
-        .padding(.vertical, 16)
+        .padding(.vertical, 20)
     }
     
     // MARK: - Pricing Section - Compact
     
     private var pricingSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             Text(NSLocalizedString("Chọn gói phù hợp", comment: "Choose your plan"))
-                .font(.headline)
+                .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
@@ -181,7 +181,7 @@ struct PremiumView: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
             
             // Pricing Cards - Compact
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 // Show selected plan products
                 if selectedPlan == "monthly" {
                     let monthlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
@@ -254,13 +254,13 @@ struct PremiumView: View {
                     .foregroundColor(.white.opacity(0.7))
             }
         }
-        .padding(.vertical, 16)
+        .padding(.vertical, 20)
     }
     
     // MARK: - Action Buttons Section - Compact
     
     private var actionButtonsSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             Button {
                 Task {
                     await restorePurchases()
@@ -276,26 +276,26 @@ struct PremiumView: View {
             }
             
             Text(NSLocalizedString("* Miễn phí dùng thử 7 ngày", comment: "* 7-day free trial"))
-                .font(.caption2)
+                .font(.caption)
                 .foregroundColor(.white.opacity(0.7))
                 .multilineTextAlignment(.center)
         }
-        .padding(.vertical, 16)
+        .padding(.vertical, 20)
     }
     
     // MARK: - Legal Section - Compact
     
     private var legalSection: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 8) {
             Text(NSLocalizedString("Bằng việc mua, bạn đồng ý với", comment: "By purchasing, you agree to"))
-                .font(.caption2)
+                .font(.caption)
                 .foregroundColor(.white.opacity(0.6))
             
-            HStack(spacing: 16) {
+            HStack(spacing: 20) {
                 Button(NSLocalizedString("Điều khoản sử dụng", comment: "Terms of Service")) {}
                 Button(NSLocalizedString("Chính sách bảo mật", comment: "Privacy Policy")) {}
             }
-            .font(.caption2)
+            .font(.caption)
             .foregroundColor(.white.opacity(0.6))
             .underline()
         }
@@ -340,14 +340,14 @@ struct StatItem: View {
     let label: String
     
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Text(number)
-                .font(.headline)
+                .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
             Text(label)
-                .font(.caption2)
+                .font(.caption)
                 .foregroundColor(.white.opacity(0.8))
         }
     }
@@ -359,15 +359,15 @@ struct FeatureCard: View {
     let description: String
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 10) {
             Image(systemName: icon)
-                .font(.title3)
+                .font(.title2)
                 .foregroundColor(.yellow)
-                .frame(width: 32, height: 32)
+                .frame(width: 36, height: 36)
                 .background(Color.white.opacity(0.1))
                 .clipShape(Circle())
             
-            VStack(spacing: 2) {
+            VStack(spacing: 3) {
                 Text(title)
                     .font(.caption)
                     .fontWeight(.semibold)
@@ -378,13 +378,13 @@ struct FeatureCard: View {
                     .font(.caption2)
                     .foregroundColor(.white.opacity(0.7))
                     .multilineTextAlignment(.center)
-                    .lineLimit(1)
+                    .lineLimit(2)
             }
         }
-        .padding(8)
+        .padding(12)
         .frame(maxWidth: .infinity)
         .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -396,13 +396,13 @@ struct PlanToggleButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.caption)
+                .font(.subheadline)
                 .fontWeight(.medium)
                 .foregroundColor(isSelected ? .white : .white.opacity(0.7))
-                .padding(.vertical, 8)
+                .padding(.vertical, 10)
                 .frame(maxWidth: .infinity)
                 .background(isSelected ? Color.white.opacity(0.2) : Color.clear)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 }
@@ -418,10 +418,10 @@ struct PricingCard: View {
     }
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 14) {
             // Header
             HStack {
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(product.displayName)
                         .font(.subheadline)
                         .fontWeight(.bold)
@@ -430,7 +430,7 @@ struct PricingCard: View {
                     Text(product.description)
                         .font(.caption2)
                         .foregroundColor(.white.opacity(0.7))
-                        .lineLimit(1)
+                        .lineLimit(2)
                 }
                 
                 Spacer()
@@ -440,17 +440,17 @@ struct PricingCard: View {
                         .font(.caption2)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
                         .background(Color.orange)
                         .clipShape(Capsule())
                 }
             }
             
             // Price
-            HStack(alignment: .bottom, spacing: 4) {
+            HStack(alignment: .bottom, spacing: 6) {
                 Text(product.displayPrice)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
                 Text(isYearly ? NSLocalizedString("/năm", comment: "/year") : NSLocalizedString("/tháng", comment: "/month"))
@@ -469,7 +469,7 @@ struct PricingCard: View {
                         .font(.caption2)
                         .foregroundColor(.yellow)
                 }
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 10)
                 .padding(.vertical, 4)
                 .background(Color.yellow.opacity(0.2))
                 .clipShape(Capsule())
@@ -485,10 +485,10 @@ struct PricingCard: View {
                         .font(.caption)
                         .foregroundColor(.green)
                 }
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 14)
                 .padding(.vertical, 6)
                 .background(Color.green.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 6))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Button(action: onPurchase) {
                     Text(NSLocalizedString("Bắt đầu ngay", comment: "Get Started"))
@@ -496,7 +496,7 @@ struct PricingCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 12)
                         .background(
                             LinearGradient(
                                 colors: [Color(hex: "ff6b6b"), Color(hex: "ee5a24")],
@@ -504,16 +504,16 @@ struct PricingCard: View {
                                 endPoint: .trailing
                             )
                         )
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
         }
-        .padding(16)
+        .padding(18)
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 18)
                 .fill(Color.white.opacity(0.1))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16)
+                    RoundedRectangle(cornerRadius: 18)
                         .stroke(Color.white.opacity(0.2), lineWidth: 1)
                 )
         )

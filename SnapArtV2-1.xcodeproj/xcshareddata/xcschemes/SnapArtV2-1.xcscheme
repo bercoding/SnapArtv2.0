@@ -50,6 +50,9 @@
             ReferencedContainer = "container:SnapArtV2-1.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../SnapArtV2-1/StoreKitTest.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
