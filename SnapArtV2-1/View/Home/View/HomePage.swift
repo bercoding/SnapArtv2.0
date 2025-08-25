@@ -67,7 +67,7 @@ struct HomePage: View {
                 }
         }
         .sheet(isPresented: $showPremium) {
-            PremiumView()
+            PremiumView(purchaseManager: InAppPurchaseManager.shared)
                 .environmentObject(InAppPurchaseManager.shared)
         }
         .id(languageViewModel.refreshID) // Force reload toàn bộ view khi ngôn ngữ thay đổi
@@ -183,7 +183,7 @@ struct HomePage: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
             NavigationLink {
-                PremiumView()
+                PremiumView(purchaseManager: InAppPurchaseManager.shared)
                     .id(languageViewModel.refreshID)
             } label: {
                 VStack(spacing: 4) {

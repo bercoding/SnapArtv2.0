@@ -5,11 +5,12 @@ struct PremiumView: View {
     @EnvironmentObject private var purchaseManager: InAppPurchaseManager
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
+    @StateObject private var viewModel: PremiumViewModel
     @State private var selectedProduct: Product?
-    @State private var showAlert = false
-    @State private var alertMessage = ""
-    @State private var isLoading = false
-    @State private var selectedPlan: String = "monthly"
+    
+    init(purchaseManager: InAppPurchaseManager) {
+        self._viewModel = StateObject(wrappedValue: PremiumViewModel(purchaseManager: purchaseManager))
+    }
     
     var body: some View {
         NavigationView {
@@ -22,23 +23,24 @@ struct PremiumView: View {
                 )
                 .ignoresSafeArea()
                 
-                VStack(spacing: 0) {
-                    // Hero Section - Compact
-                    heroSection
-                    
-                    // Features Grid - Compact
-                    featuresGridSection
-                    
-                    // Pricing Plans - Compact
-                    pricingSection
-                    
-                    // Action Buttons - Compact
-                    actionButtonsSection
-                    
-                    // Legal Info - Compact
-                    legalSection
-                    
-                    Spacer(minLength: 0)
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Hero Section - Compact
+                        heroSection
+                        
+                        // Features Grid - Compact
+                        featuresGridSection
+                        
+                        // Pricing Plans - Compact
+                        pricingSection
+                        
+                        // Action Buttons - Compact
+                        actionButtonsSection
+                        
+                        // Legal Info - Compact
+                        legalSection
+                    }
+                    .padding(.bottom, 30)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
@@ -56,14 +58,14 @@ struct PremiumView: View {
                 }
             }
         }
-        .alert(NSLocalizedString("Thông báo", comment: "Notice"), isPresented: $showAlert) {
+        .alert(NSLocalizedString("Thông báo", comment: "Notice"), isPresented: $viewModel.showAlert) {
             Button(NSLocalizedString("OK", comment: "OK")) {}
         } message: {
-            Text(alertMessage)
+            Text(viewModel.alertMessage)
         }
         .onAppear {
             Task {
-                await purchaseManager.loadProducts()
+                await viewModel.loadProducts()
             }
         }
         .navigationBarBackButtonHidden()
@@ -167,88 +169,105 @@ struct PremiumView: View {
             HStack(spacing: 0) {
                 PlanToggleButton(
                     title: NSLocalizedString("Tháng", comment: "Monthly"),
-                    isSelected: selectedPlan == "monthly",
-                    action: { selectedPlan = "monthly" }
+                    isSelected: viewModel.selectedPlan == "monthly",
+                    action: { viewModel.selectedPlan = "monthly" }
                 )
                 
                 PlanToggleButton(
                     title: NSLocalizedString("Năm", comment: "Yearly"),
-                    isSelected: selectedPlan == "yearly",
-                    action: { selectedPlan = "yearly" }
+                    isSelected: viewModel.selectedPlan == "yearly",
+                    action: { viewModel.selectedPlan = "yearly" }
                 )
             }
             .background(Color.white.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 12))
             
+            // Upgrade message
+            if !viewModel.getUpgradeMessage().isEmpty {
+                HStack {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .foregroundColor(.green)
+                        .font(.caption)
+                    Text(viewModel.getUpgradeMessage())
+                        .font(.caption)
+                        .foregroundColor(.green)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(Color.green.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+            
             // Pricing Cards - Compact
             VStack(spacing: 16) {
                 // Show selected plan products
-                if selectedPlan == "monthly" {
-                    let monthlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
-                    if monthlyProducts.isEmpty {
+                if viewModel.selectedPlan == "monthly" {
+                    if viewModel.monthlyProducts.isEmpty {
                         Text("Không có gói tháng")
                             .font(.caption)
                             .foregroundColor(.white.opacity(0.7))
                     } else {
-                        ForEach(monthlyProducts, id: \.id) { product in
+                        ForEach(viewModel.monthlyProducts, id: \.id) { product in
                             PricingCard(
                                 product: product,
                                 isPopular: false,
-                                isActive: purchaseManager.isSubscriptionActive(),
+                                isActive: viewModel.isSubscriptionActive(for: product),
                                 onPurchase: {
                                     Task {
-                                        await purchaseProduct(product)
+                                        await viewModel.purchaseSubscription(product)
                                     }
-                                }
+                                },
+                                viewModel: viewModel
                             )
                         }
                     }
                 } else {
-                    let yearlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }
-                    if yearlyProducts.isEmpty {
+                    if viewModel.yearlyProducts.isEmpty {
                         Text("Không có gói năm")
                             .font(.caption)
                             .foregroundColor(.white.opacity(0.7))
                     } else {
-                        ForEach(yearlyProducts, id: \.id) { product in
+                        ForEach(viewModel.yearlyProducts, id: \.id) { product in
                             PricingCard(
                                 product: product,
                                 isPopular: true,
-                                isActive: purchaseManager.isSubscriptionActive(),
+                                isActive: viewModel.isSubscriptionActive(for: product),
                                 onPurchase: {
                                     Task {
-                                        await purchaseProduct(product)
+                                        await viewModel.purchaseSubscription(product)
                                     }
-                                }
+                                },
+                                viewModel: viewModel
                             )
                         }
                     }
                 }
                 
                 // Non-consumable product (always show)
-                let nonConsumableProducts = purchaseManager.getNonConsumableProducts()
-                if nonConsumableProducts.isEmpty {
+                if viewModel.nonConsumableProducts.isEmpty {
                     Text("Không có gói mua một lần")
                         .font(.caption)
                         .foregroundColor(.white.opacity(0.7))
                 } else {
-                    ForEach(nonConsumableProducts, id: \.id) { product in
+                    ForEach(viewModel.nonConsumableProducts, id: \.id) { product in
                         PricingCard(
                             product: product,
                             isPopular: false,
-                            isActive: purchaseManager.isProductPurchased(product.id),
+                            isActive: viewModel.isProductPurchased(product.id),
                             onPurchase: {
                                 Task {
-                                    await purchaseProduct(product)
+                                    await viewModel.purchaseProduct(product)
                                 }
-                            }
+                            },
+                            viewModel: viewModel
                         )
                     }
                 }
             }
             
             // Loading state
-            if purchaseManager.products.isEmpty {
+            if viewModel.products.isEmpty {
                 Text("Đang tải sản phẩm...")
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.7))
@@ -263,7 +282,7 @@ struct PremiumView: View {
         VStack(spacing: 16) {
             Button {
                 Task {
-                    await restorePurchases()
+                    await viewModel.restorePurchases()
                 }
             } label: {
                 HStack {
@@ -300,36 +319,6 @@ struct PremiumView: View {
             .underline()
         }
         .padding(.bottom, 20)
-    }
-    
-    // MARK: - Actions
-    
-    private func purchaseProduct(_ product: Product) async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            try await purchaseManager.purchase(product)
-            alertMessage = NSLocalizedString("Mua hàng thành công!", comment: "Purchase successful!")
-            showAlert = true
-        } catch {
-            alertMessage = error.localizedDescription
-            showAlert = true
-        }
-    }
-    
-    private func restorePurchases() async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            try await purchaseManager.restorePurchases()
-            alertMessage = NSLocalizedString("Khôi phục mua hàng thành công!", comment: "Restore successful!")
-            showAlert = true
-        } catch {
-            alertMessage = error.localizedDescription
-            showAlert = true
-        }
     }
 }
 
@@ -412,6 +401,7 @@ struct PricingCard: View {
     let isPopular: Bool
     let isActive: Bool
     let onPurchase: () -> Void
+    let viewModel: PremiumViewModel
     
     private var isYearly: Bool {
         product.id.contains("yearly")
@@ -472,6 +462,22 @@ struct PricingCard: View {
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
                 .background(Color.yellow.opacity(0.2))
+                .clipShape(Capsule())
+            }
+            
+            // Introductory offer badge
+            if viewModel.hasIntroductoryOffer(for: product) {
+                HStack {
+                    Image(systemName: "gift.fill")
+                        .foregroundColor(.green)
+                        .font(.caption2)
+                    Text("1 tuần dùng thử miễn phí")
+                        .font(.caption2)
+                        .foregroundColor(.green)
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(Color.green.opacity(0.2))
                 .clipShape(Capsule())
             }
             

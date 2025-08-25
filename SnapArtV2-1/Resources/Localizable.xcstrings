@@ -37,17 +37,7 @@
         }
       }
     },
-    "%@: %@ - %@" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@: %2$@ - %3$@"
-          }
-        }
-      }
-    },
-    "🔄 Reload Products" : {
+    "1 tuần dùng thử miễn phí" : {
 
     },
     "An toàn và tiện lợi" : {
@@ -1649,9 +1639,6 @@
         }
       }
     },
-    "Đã tải %lld sản phẩm" : {
-
-    },
     "Đã xảy ra lỗi không xác định." : {
       "comment" : "An unknown error occurred"
     },
@@ -1831,6 +1818,9 @@
           }
         }
       }
+    },
+    "Đăng ký thành công!" : {
+      "comment" : "Subscription successful!"
     },
     "Đăng nhập" : {
       "comment" : "Sign In",
@@ -2249,9 +2239,6 @@
       }
     },
     "Đang tải sản phẩm..." : {
-
-    },
-    "Đang tải: %lld subscription products" : {
 
     },
     "Đang tải..." : {
@@ -2831,6 +2818,9 @@
         }
       }
     },
+    "Invalid product" : {
+      "comment" : "Invalid product"
+    },
     "Kéo méo (tay)(disable)" : {
       "comment" : "Face warp (hand) (disabled)",
       "localizations" : {
@@ -2841,6 +2831,9 @@
           }
         }
       }
+    },
+    "Khôi phục hoàn tất. Không tìm thấy sản phẩm nào." : {
+      "comment" : "Restore completed but no products found"
     },
     "Khôi phục mua hàng" : {
       "comment" : "Restore purchases",
@@ -2855,6 +2848,7 @@
     },
     "Khôi phục mua hàng thành công!" : {
       "comment" : "Restore successful!",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3677,6 +3671,9 @@
         }
       }
     },
+    "Nâng cấp lên gói năm để tiết kiệm hơn!" : {
+      "comment" : "Upgrade to yearly for better savings!"
+    },
     "Nâng cấp lên Premium" : {
       "comment" : "Upgrade to Premium",
       "localizations" : {
@@ -3935,6 +3932,9 @@
           }
         }
       }
+    },
+    "Purchase verification failed" : {
+      "comment" : "Verification failed"
     },
     "Purchase was cancelled" : {
       "comment" : "Purchase cancelled",
@@ -4218,16 +4218,6 @@
         }
       }
     },
-    "Subscription: %lld, Non-consumable: %lld" : {
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Subscription: %1$lld, Non-consumable: %2$lld"
-          }
-        }
-      }
-    },
     "Tài khoản cá nhân" : {
       "comment" : "Onboarding page 4 title",
       "extractionState" : "stale",
@@ -4311,6 +4301,9 @@
           }
         }
       }
+    },
+    "Tải từ Firebase" : {
+
     },
     "Tạo ảnh độc đáo với filter AR" : {
       "comment" : "Create unique photos with AR filters",

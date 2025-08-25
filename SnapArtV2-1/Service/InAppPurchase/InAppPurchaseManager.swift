@@ -12,8 +12,9 @@ class InAppPurchaseManager: ObservableObject {
     @Published var subscriptionStatus: SubscriptionStatus = .none
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var currentEntitlements: [Product] = []
     
-    // Product IDs - Must match exactly with Products.storekit
+    // Product IDs
     private let productIDs = [
         "com.snapart.premium"           // Non-consumable
     ]
@@ -23,7 +24,7 @@ class InAppPurchaseManager: ObservableObject {
         "com.snapart.premium.yearly"    // Yearly subscription
     ]
     
-    // StoreKit listeners
+    // StoreKit 2 listeners
     private var updateListenerTask: Task<Void, Error>?
     private var transactionListener: Task<Void, Error>?
     
@@ -49,6 +50,9 @@ class InAppPurchaseManager: ObservableObject {
         do {
             let allProductIDs = productIDs + subscriptionIDs
             products = try await Product.products(for: allProductIDs)
+            
+            // Update current entitlements
+            await updateCurrentEntitlements()
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
         }
@@ -65,7 +69,7 @@ class InAppPurchaseManager: ObservableObject {
         switch result {
         case .success(let verification):
             // Handle successful purchase
-            await handlePurchaseResult(verification, for: product)
+            await handlePurchaseResult(verification)
         case .userCancelled:
             throw InAppPurchaseError.userCancelled
         case .pending:
@@ -75,12 +79,62 @@ class InAppPurchaseManager: ObservableObject {
         }
     }
     
-    func restorePurchases() async throws {
+    func purchaseSubscription(_ product: Product) async throws {
+        guard product.subscription != nil else {
+            throw InAppPurchaseError.invalidProduct
+        }
+        
         isLoading = true
         defer { isLoading = false }
         
-        try await AppStore.sync()
-        await updateSubscriptionStatus()
+        let result = try await product.purchase()
+        
+        switch result {
+        case .success(let verification):
+            await handlePurchaseResult(verification)
+        case .userCancelled:
+            throw InAppPurchaseError.userCancelled
+        case .pending:
+            throw InAppPurchaseError.pending
+        @unknown default:
+            throw InAppPurchaseError.unknown
+        }
+    }
+        func restorePurchases() async throws {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            // Sync với App Store
+            try await AppStore.sync()
+            
+            // Update subscription status
+            await updateSubscriptionStatus()
+            
+            // Update current entitlements
+            await updateCurrentEntitlements()
+            
+            // Force refresh products
+            await loadProducts()
+            
+            // Log để debug
+            print("Restore completed. Active subscriptions: \(purchasedProductIDs)")
+            print("Subscription status: \(subscriptionStatus)")
+            
+        } catch {
+            print("Restore failed: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    // MARK: - App Launch Restore
+    
+    func restoreOnAppLaunch() async {
+        do {
+            try await restorePurchases()
+        } catch {
+            print("App launch restore failed: \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Subscription Management
@@ -93,6 +147,30 @@ class InAppPurchaseManager: ObservableObject {
         }
     }
     
+    private func updateCurrentEntitlements() async {
+        var entitlements: [Product] = []
+        
+        print("🔍 Checking current entitlements...")
+        
+        for await result in Transaction.currentEntitlements {
+            if let transaction = try? result.payloadValue {
+                print("📦 Found transaction: \(transaction.productID)")
+                if let product = getProduct(by: transaction.productID) {
+                    entitlements.append(product)
+                    print("✅ Added product to entitlements: \(product.id)")
+                } else {
+                    print("❌ Product not found for transaction: \(transaction.productID)")
+                }
+            } else {
+                print("❌ Failed to verify transaction")
+            }
+        }
+        
+        currentEntitlements = entitlements
+        print("📊 Total entitlements: \(entitlements.count)")
+        await updateSubscriptionStatus()
+    }
+    
     private func handleTransaction(_ transaction: Transaction) async {
         let productID = transaction.productID
         
@@ -100,9 +178,8 @@ class InAppPurchaseManager: ObservableObject {
         if let product = getProduct(by: productID), product.subscription != nil {
             // Handle subscription
             if transaction.revocationDate == nil {
-                // Active subscription
-                subscriptionStatus = .active
-                purchasedProductIDs.insert(productID)
+                // Active subscription - check if it's a higher tier
+                await handleActiveSubscription(product)
             } else {
                 // Subscription revoked
                 subscriptionStatus = .expired
@@ -121,7 +198,35 @@ class InAppPurchaseManager: ObservableObject {
         await transaction.finish()
     }
     
-    private func handlePurchaseResult(_ verification: VerificationResult<Transaction>, for product: Product) async {
+    private func handleActiveSubscription(_ product: Product) async {
+        // Check if this is a higher tier subscription
+        let isYearly = product.id.contains("yearly")
+        let isMonthly = product.id.contains("monthly")
+        
+        if isYearly {
+            // Yearly subscription is highest tier - activate immediately
+            subscriptionStatus = .active
+            purchasedProductIDs.insert(product.id)
+            
+            // Remove any monthly subscription from purchased list
+            let monthlyProducts = getSubscriptionProducts().filter { $0.id.contains("monthly") }
+            for monthlyProduct in monthlyProducts {
+                purchasedProductIDs.remove(monthlyProduct.id)
+            }
+        } else if isMonthly {
+            // Monthly subscription - check if we already have yearly
+            let yearlyProducts = getSubscriptionProducts().filter { $0.id.contains("yearly") }
+            let hasYearly = yearlyProducts.contains { purchasedProductIDs.contains($0.id) }
+            
+            if !hasYearly {
+                // Only activate monthly if no yearly exists
+                subscriptionStatus = .active
+                purchasedProductIDs.insert(product.id)
+            }
+        }
+    }
+    
+    private func handlePurchaseResult(_ verification: VerificationResult<Transaction>) async {
         guard let transaction = try? verification.payloadValue else {
             errorMessage = "Transaction verification failed"
             return
@@ -129,12 +234,10 @@ class InAppPurchaseManager: ObservableObject {
         
         await handleTransaction(transaction)
         
-        // Check if this is a subscription product
-        if product.subscription != nil {
-            subscriptionStatus = .active
-        }
+        // Update entitlements
+        await updateCurrentEntitlements()
     }
-
+    
     // MARK: - Transaction Listener
     
     private func listenForTransactions() -> Task<Void, Error> {
@@ -178,6 +281,49 @@ class InAppPurchaseManager: ObservableObject {
     func isNonConsumable(_ product: Product) -> Bool {
         return product.subscription == nil
     }
+    
+    // MARK: - Subscription Info
+    
+    func getSubscriptionInfo(for product: Product) -> Product.SubscriptionInfo? {
+        return product.subscription
+    }
+    
+    func getSubscriptionPeriod(for product: Product) -> String {
+        guard let subscription = product.subscription else { return "" }
+        
+        let period = subscription.subscriptionPeriod
+        switch period.unit {
+        case .day:
+            return "\(period.value) ngày"
+        case .week:
+            return "\(period.value) tuần"
+        case .month:
+            return "\(period.value) tháng"
+        case .year:
+            return "\(period.value) năm"
+        @unknown default:
+            return "\(period.value) \(period.unit)"
+        }
+    }
+    
+    func hasIntroductoryOffer(for product: Product) -> Bool {
+        return product.subscription?.introductoryOffer != nil
+    }
+    
+    func getIntroductoryOffer(for product: Product) -> Product.SubscriptionOffer? {
+        return product.subscription?.introductoryOffer
+    }
+    
+    // MARK: - Verification
+    
+    func verifyPurchase(_ verification: VerificationResult<Transaction>) -> Bool {
+        switch verification {
+        case .verified:
+            return true
+        case .unverified:
+            return false
+        }
+    }
 }
 
 // MARK: - Enums
@@ -193,6 +339,8 @@ enum InAppPurchaseError: LocalizedError {
     case userCancelled
     case pending
     case unknown
+    case invalidProduct
+    case verificationFailed
     
     var errorDescription: String? {
         switch self {
@@ -202,6 +350,10 @@ enum InAppPurchaseError: LocalizedError {
             return NSLocalizedString("Purchase is pending", comment: "Purchase pending")
         case .unknown:
             return NSLocalizedString("An unknown error occurred", comment: "Unknown error")
+        case .invalidProduct:
+            return NSLocalizedString("Invalid product", comment: "Invalid product")
+        case .verificationFailed:
+            return NSLocalizedString("Purchase verification failed", comment: "Verification failed")
         }
     }
 } 

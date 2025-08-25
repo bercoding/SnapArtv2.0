@@ -63,6 +63,12 @@ struct SnapArtV2_0App: App {
                 .environmentObject(languageViewModel) // Cung cấp LanguageViewModel
                 .environmentObject(purchaseManager) // Cung cấp InAppPurchaseManager
                 .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
+                .onAppear {
+                    // Auto restore purchases khi app khởi động
+                    Task {
+                        await purchaseManager.restoreOnAppLaunch()
+                    }
+                }
         }
     }
 }
