@@ -22,33 +22,28 @@ struct PremiumView: View {
                 )
                 .ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(spacing: 0) {
-                        // Hero Section
-                        heroSection
-                        
-                        // Features Grid
-                        featuresGridSection
-                        
-                        // Pricing Plans
-                        pricingSection
-                        
-                        // Testimonials
-                        testimonialsSection
-                        
-                        // FAQ Section
-                        faqSection
-                        
-                        // Action Buttons
-                        actionButtonsSection
-                        
-                        // Legal Info
-                        legalSection
-                    }
+                VStack(spacing: 16) {
+                    // Hero Section - Compact
+                    heroSection
+                    
+                    // Features Grid - Compact
+                    featuresGridSection
+                    
+                    // Pricing Plans - Compact
+                    pricingSection
+                    
+                    // Action Buttons - Compact
+                    actionButtonsSection
+                    
+                    // Legal Info - Compact
+                    legalSection
+                    
+                    Spacer(minLength: 0)
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
             }
             .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -62,7 +57,7 @@ struct PremiumView: View {
             }
         }
         .alert(NSLocalizedString("Thông báo", comment: "Notice"), isPresented: $showAlert) {
-            Button(NSLocalizedString("OK", comment: "OK")) { }
+            Button(NSLocalizedString("OK", comment: "OK")) {}
         } message: {
             Text(alertMessage)
         }
@@ -73,65 +68,63 @@ struct PremiumView: View {
         }
     }
     
-    // MARK: - Hero Section
+    // MARK: - Hero Section - Compact
     
     private var heroSection: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 12) {
             // Premium Badge
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 Image(systemName: "crown.fill")
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.yellow)
                 
                 Text("PREMIUM")
-                    .font(.caption)
+                    .font(.caption2)
                     .fontWeight(.bold)
                     .foregroundColor(.yellow)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
                     .background(Color.yellow.opacity(0.2))
                     .clipShape(Capsule())
             }
             
             // Main Title
-            VStack(spacing: 16) {
+            VStack(spacing: 8) {
                 Text(NSLocalizedString("Nâng cấp lên Premium", comment: "Upgrade to Premium"))
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                 
                 Text(NSLocalizedString("Mở khóa tất cả tính năng và filter cao cấp", comment: "Unlock all premium features and filters"))
-                    .font(.title3)
+                    .font(.subheadline)
                     .foregroundColor(.white.opacity(0.9))
                     .multilineTextAlignment(.center)
-                    .lineLimit(3)
+                    .lineLimit(2)
             }
             
-            // Stats Row
-            HStack(spacing: 32) {
-                StatItem(number: "50+", label: NSLocalizedString("Filter", comment: "Filters"))
+            // Stats Row - Compact
+            HStack(spacing: 20) {
+                StatItem(number: "20+", label: NSLocalizedString("Filter", comment: "Filters"))
                 StatItem(number: "∞", label: NSLocalizedString("Không giới hạn", comment: "Unlimited"))
                 StatItem(number: "24/7", label: NSLocalizedString("Hỗ trợ", comment: "Support"))
             }
         }
-        .padding(.horizontal, 24)
-        .padding(.top, 40)
-        .padding(.bottom, 32)
+        .padding(.vertical, 16)
     }
     
-    // MARK: - Features Grid Section
+    // MARK: - Features Grid Section - Compact
     
     private var featuresGridSection: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 12) {
             Text(NSLocalizedString("Tính năng Premium", comment: "Premium Features"))
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
             LazyVGrid(columns: [
                 GridItem(.flexible()),
                 GridItem(.flexible())
-            ], spacing: 16) {
+            ], spacing: 8) {
                 FeatureCard(
                     icon: "sparkles",
                     title: NSLocalizedString("Tất cả filter premium", comment: "All premium filters"),
@@ -155,30 +148,17 @@ struct PremiumView: View {
                     title: NSLocalizedString("Đồng bộ đám mây", comment: "Cloud sync"),
                     description: NSLocalizedString("An toàn và tiện lợi", comment: "Safe and convenient")
                 )
-                
-                FeatureCard(
-                    icon: "wand.and.stars",
-                    title: NSLocalizedString("Chỉnh sửa nâng cao", comment: "Advanced editing"),
-                    description: NSLocalizedString("Công cụ chuyên nghiệp", comment: "Professional tools")
-                )
-                
-                FeatureCard(
-                    icon: "bolt.fill",
-                    title: NSLocalizedString("Tốc độ cao", comment: "High speed"),
-                    description: NSLocalizedString("Xử lý nhanh chóng", comment: "Fast processing")
-                )
             }
         }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 32)
+        .padding(.vertical, 16)
     }
     
-    // MARK: - Pricing Section
+    // MARK: - Pricing Section - Compact
     
     private var pricingSection: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 16) {
             Text(NSLocalizedString("Chọn gói phù hợp", comment: "Choose your plan"))
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
@@ -198,16 +178,64 @@ struct PremiumView: View {
             }
             .background(Color.white.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.horizontal, 24)
             
-            // Pricing Cards
-            VStack(spacing: 16) {
+            // Pricing Cards - Compact
+            VStack(spacing: 12) {
+                // Show selected plan products
                 if selectedPlan == "monthly" {
-                    ForEach(purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }, id: \.id) { product in
+                    let monthlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
+                    if monthlyProducts.isEmpty {
+                        Text("Không có gói tháng")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
+                    } else {
+                        ForEach(monthlyProducts, id: \.id) { product in
+                            PricingCard(
+                                product: product,
+                                isPopular: false,
+                                isActive: purchaseManager.isSubscriptionActive(),
+                                onPurchase: {
+                                    Task {
+                                        await purchaseProduct(product)
+                                    }
+                                }
+                            )
+                        }
+                    }
+                } else {
+                    let yearlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }
+                    if yearlyProducts.isEmpty {
+                        Text("Không có gói năm")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
+                    } else {
+                        ForEach(yearlyProducts, id: \.id) { product in
+                            PricingCard(
+                                product: product,
+                                isPopular: true,
+                                isActive: purchaseManager.isSubscriptionActive(),
+                                onPurchase: {
+                                    Task {
+                                        await purchaseProduct(product)
+                                    }
+                                }
+                            )
+                        }
+                    }
+                }
+                
+                // Non-consumable product (always show)
+                let nonConsumableProducts = purchaseManager.getNonConsumableProducts()
+                if nonConsumableProducts.isEmpty {
+                    Text("Không có gói mua một lần")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
+                } else {
+                    ForEach(nonConsumableProducts, id: \.id) { product in
                         PricingCard(
                             product: product,
                             isPopular: false,
-                            isActive: purchaseManager.isSubscriptionActive(),
+                            isActive: purchaseManager.isProductPurchased(product.id),
                             onPurchase: {
                                 Task {
                                     await purchaseProduct(product)
@@ -215,109 +243,40 @@ struct PremiumView: View {
                             }
                         )
                     }
+                }
+            }
+            
+            // Debug info (remove in production)
+            VStack(spacing: 4) {
+                if purchaseManager.products.isEmpty {
+                    Text("Đang tải sản phẩm...")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.7))
                 } else {
-                    ForEach(purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }, id: \.id) { product in
-                        PricingCard(
-                            product: product,
-                            isPopular: true,
-                            isActive: purchaseManager.isSubscriptionActive(),
-                            onPurchase: {
-                                Task {
-                                    await purchaseProduct(product)
-                                }
-                            }
-                        )
+                    Text("Đã tải \(purchaseManager.products.count) sản phẩm")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.5))
+                    
+                    Text("Subscription: \(purchaseManager.getSubscriptionProducts().count), Non-consumable: \(purchaseManager.getNonConsumableProducts().count)")
+                        .font(.caption2)
+                        .foregroundColor(.white.opacity(0.5))
+                    
+                    // Show product IDs for debugging
+                    ForEach(purchaseManager.products, id: \.id) { product in
+                        Text("\(product.id): \(product.displayName) - \(product.displayPrice)")
+                            .font(.caption2)
+                            .foregroundColor(.white.opacity(0.5))
                     }
                 }
-                
-                // Non-consumable product
-                ForEach(purchaseManager.getNonConsumableProducts(), id: \.id) { product in
-                    PricingCard(
-                        product: product,
-                        isPopular: false,
-                        isActive: purchaseManager.isProductPurchased(product.id),
-                        onPurchase: {
-                            Task {
-                                await purchaseProduct(product)
-                            }
-                        }
-                    )
-                }
-            }
-            .padding(.horizontal, 24)
-        }
-        .padding(.vertical, 32)
-    }
-    
-    // MARK: - Testimonials Section
-    
-    private var testimonialsSection: some View {
-        VStack(spacing: 20) {
-            Text(NSLocalizedString("Người dùng nói gì", comment: "What users say"))
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    TestimonialCard(
-                        name: "Nguyễn Văn A",
-                        rating: 5,
-                        comment: NSLocalizedString("Filter đẹp quá! Tôi rất thích tính năng premium.", comment: "Beautiful filters! I love the premium features.")
-                    )
-                    
-                    TestimonialCard(
-                        name: "Trần Thị B",
-                        rating: 5,
-                        comment: NSLocalizedString("Ứng dụng tuyệt vời, đáng để mua premium.", comment: "Great app, worth buying premium.")
-                    )
-                    
-                    TestimonialCard(
-                        name: "Lê Văn C",
-                        rating: 5,
-                        comment: NSLocalizedString("Chất lượng filter rất cao, rất hài lòng!", comment: "Filter quality is very high, very satisfied!")
-                    )
-                }
-                .padding(.horizontal, 24)
             }
         }
-        .padding(.vertical, 32)
+        .padding(.vertical, 16)
     }
     
-    // MARK: - FAQ Section
-    
-    private var faqSection: some View {
-        VStack(spacing: 20) {
-            Text(NSLocalizedString("Câu hỏi thường gặp", comment: "Frequently Asked Questions"))
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            VStack(spacing: 12) {
-                FAQItem(
-                    question: NSLocalizedString("Tôi có thể hủy subscription không?", comment: "Can I cancel my subscription?"),
-                    answer: NSLocalizedString("Có, bạn có thể hủy bất cứ lúc nào trong App Store.", comment: "Yes, you can cancel anytime in the App Store.")
-                )
-                
-                FAQItem(
-                    question: NSLocalizedString("Premium có hoạt động trên tất cả thiết bị không?", comment: "Does premium work on all devices?"),
-                    answer: NSLocalizedString("Có, premium được đồng bộ qua iCloud.", comment: "Yes, premium syncs via iCloud.")
-                )
-                
-                FAQItem(
-                    question: NSLocalizedString("Tôi có thể dùng thử trước khi mua không?", comment: "Can I try before buying?"),
-                    answer: NSLocalizedString("Có, bạn có 1 tuần dùng thử miễn phí.", comment: "Yes, you get 1 week free trial.")
-                )
-            }
-            .padding(.horizontal, 24)
-        }
-        .padding(.vertical, 32)
-    }
-    
-    // MARK: - Action Buttons Section
+    // MARK: - Action Buttons Section - Compact
     
     private var actionButtonsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             Button {
                 Task {
                     await restorePurchases()
@@ -333,30 +292,30 @@ struct PremiumView: View {
             }
             
             Text(NSLocalizedString("* Miễn phí dùng thử 7 ngày", comment: "* 7-day free trial"))
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.white.opacity(0.7))
                 .multilineTextAlignment(.center)
         }
-        .padding(.vertical, 32)
+        .padding(.vertical, 16)
     }
     
-    // MARK: - Legal Section
+    // MARK: - Legal Section - Compact
     
     private var legalSection: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 6) {
             Text(NSLocalizedString("Bằng việc mua, bạn đồng ý với", comment: "By purchasing, you agree to"))
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.white.opacity(0.6))
             
             HStack(spacing: 16) {
-                Button(NSLocalizedString("Điều khoản sử dụng", comment: "Terms of Service")) { }
-                Button(NSLocalizedString("Chính sách bảo mật", comment: "Privacy Policy")) { }
+                Button(NSLocalizedString("Điều khoản sử dụng", comment: "Terms of Service")) {}
+                Button(NSLocalizedString("Chính sách bảo mật", comment: "Privacy Policy")) {}
             }
-            .font(.caption)
+            .font(.caption2)
             .foregroundColor(.white.opacity(0.6))
             .underline()
         }
-        .padding(.bottom, 40)
+        .padding(.bottom, 20)
     }
     
     // MARK: - Actions
@@ -390,21 +349,21 @@ struct PremiumView: View {
     }
 }
 
-// MARK: - Supporting Views
+// MARK: - Supporting Views - Compact
 
 struct StatItem: View {
     let number: String
     let label: String
     
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
             Text(number)
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
             Text(label)
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.white.opacity(0.8))
         }
     }
@@ -416,32 +375,32 @@ struct FeatureCard: View {
     let description: String
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
             Image(systemName: icon)
-                .font(.title2)
+                .font(.title3)
                 .foregroundColor(.yellow)
-                .frame(width: 40, height: 40)
+                .frame(width: 32, height: 32)
                 .background(Color.white.opacity(0.1))
                 .clipShape(Circle())
             
-            VStack(spacing: 4) {
+            VStack(spacing: 2) {
                 Text(title)
-                    .font(.subheadline)
+                    .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                 
                 Text(description)
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundColor(.white.opacity(0.7))
                     .multilineTextAlignment(.center)
-                    .lineLimit(2)
+                    .lineLimit(1)
             }
         }
-        .padding()
+        .padding(8)
         .frame(maxWidth: .infinity)
         .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
@@ -453,13 +412,13 @@ struct PlanToggleButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.subheadline)
+                .font(.caption)
                 .fontWeight(.medium)
                 .foregroundColor(isSelected ? .white : .white.opacity(0.7))
-                .padding(.vertical, 12)
+                .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
                 .background(isSelected ? Color.white.opacity(0.2) : Color.clear)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
 }
@@ -475,19 +434,19 @@ struct PricingCard: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             // Header
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(product.displayName)
-                        .font(.headline)
+                        .font(.subheadline)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     
                     Text(product.description)
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.white.opacity(0.7))
-                        .lineLimit(2)
+                        .lineLimit(1)
                 }
                 
                 Spacer()
@@ -497,23 +456,23 @@ struct PricingCard: View {
                         .font(.caption2)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
                         .background(Color.orange)
                         .clipShape(Capsule())
                 }
             }
             
             // Price
-            HStack(alignment: .bottom, spacing: 8) {
+            HStack(alignment: .bottom, spacing: 4) {
                 Text(product.displayPrice)
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
                 Text(isYearly ? NSLocalizedString("/năm", comment: "/year") : NSLocalizedString("/tháng", comment: "/month"))
-                    .font(.subheadline)
+                    .font(.caption)
                     .foregroundColor(.white.opacity(0.7))
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 2)
             }
             
             // Savings badge for yearly
@@ -521,12 +480,13 @@ struct PricingCard: View {
                 HStack {
                     Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
+                        .font(.caption2)
                     Text(NSLocalizedString("Tiết kiệm 33% so với gói tháng", comment: "Save 33% vs monthly"))
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.yellow)
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
                 .background(Color.yellow.opacity(0.2))
                 .clipShape(Capsule())
             }
@@ -536,22 +496,23 @@ struct PricingCard: View {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(.green)
+                        .font(.caption)
                     Text(isYearly ? NSLocalizedString("Đang hoạt động", comment: "Active") : NSLocalizedString("Đã mua", comment: "Purchased"))
-                        .font(.subheadline)
+                        .font(.caption)
                         .foregroundColor(.green)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
                 .background(Color.green.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .clipShape(RoundedRectangle(cornerRadius: 6))
             } else {
                 Button(action: onPurchase) {
                     Text(NSLocalizedString("Bắt đầu ngay", comment: "Get Started"))
-                        .font(.headline)
+                        .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
+                        .padding(.vertical, 10)
                         .background(
                             LinearGradient(
                                 colors: [Color(hex: "ff6b6b"), Color(hex: "ee5a24")],
@@ -559,95 +520,19 @@ struct PricingCard: View {
                                 endPoint: .trailing
                             )
                         )
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
         }
-        .padding(20)
+        .padding(16)
         .background(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 16)
                 .fill(Color.white.opacity(0.1))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.white.opacity(0.2), lineWidth: 1)
                 )
         )
-    }
-}
-
-struct TestimonialCard: View {
-    let name: String
-    let rating: Int
-    let comment: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Rating
-            HStack {
-                ForEach(1...5, id: \.self) { index in
-                    Image(systemName: index <= rating ? "star.fill" : "star")
-                        .foregroundColor(.yellow)
-                        .font(.caption)
-                }
-            }
-            
-            // Comment
-            Text(comment)
-                .font(.subheadline)
-                .foregroundColor(.white)
-                .lineLimit(4)
-            
-            // Name
-            Text("- \(name)")
-                .font(.caption)
-                .foregroundColor(.white.opacity(0.7))
-                .fontWeight(.medium)
-        }
-        .padding(16)
-        .frame(width: 280)
-        .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-}
-
-struct FAQItem: View {
-    let question: String
-    let answer: String
-    @State private var isExpanded = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Button {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    isExpanded.toggle()
-                }
-            } label: {
-                HStack {
-                    Text(question)
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.leading)
-                    
-                    Spacer()
-                    
-                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.white.opacity(0.7))
-                        .font(.caption)
-                }
-            }
-            
-            if isExpanded {
-                Text(answer)
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.8))
-                    .multilineTextAlignment(.leading)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-        }
-        .padding(16)
-        .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
@@ -674,8 +559,8 @@ extension Color {
             .sRGB,
             red: Double(r) / 255,
             green: Double(g) / 255,
-            blue:  Double(b) / 255,
+            blue: Double(b) / 255,
             opacity: Double(a) / 255
         )
     }
-} 
+}

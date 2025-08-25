@@ -88,28 +88,28 @@ struct HomePage: View {
             Spacer()
             
 //             Nút Premium
-            Button {
-                showPremium = true
-            } label: {
-                Image(systemName: "crown.fill")
-                    .font(.title2)
-                    .foregroundColor(.yellow)
-                    .padding(8)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(Circle())
-            }
+//            Button {
+//                showPremium = true
+//            } label: {
+//                Image(systemName: "crown.fill")
+//                    .font(.title2)
+//                    .foregroundColor(.yellow)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
             
             // Nút chọn ngôn ngữ
-            Button {
-                showLanguageSettings = true
-            } label: {
-                Image(systemName: "globe")
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(Circle())
-            }
+//            Button {
+//                showLanguageSettings = true
+//            } label: {
+//                Image(systemName: "globe")
+//                    .font(.title2)
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
             
             // Nút đăng xuất
             Button {
@@ -136,9 +136,9 @@ struct HomePage: View {
                     .id(languageViewModel.refreshID)
             } label: {
                 VStack(spacing: 4) {
-                    Image(systemName: "photo.on.rectangle")
+                    Image(systemName: "house.circle")
                         .foregroundColor(.white)
-                    Text(NSLocalizedString("Thư viện ảnh", comment: "Gallery"))
+                    Text(NSLocalizedString("Trang Chủ", comment: "Home"))
                         .font(.caption)
                         .foregroundColor(.white)
                         .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi

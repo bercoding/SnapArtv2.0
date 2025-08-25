@@ -4,6 +4,50 @@
     "" : {
 
     },
+    "* Miễn phí dùng thử 7 ngày" : {
+      "comment" : "* 7-day free trial",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* 7-day free trial"
+          }
+        }
+      }
+    },
+    "/năm" : {
+      "comment" : "/year",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/year"
+          }
+        }
+      }
+    },
+    "/tháng" : {
+      "comment" : "/month",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/month"
+          }
+        }
+      }
+    },
+    "An toàn và tiện lợi" : {
+      "comment" : "Safe and convenient",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safe and convenient"
+          }
+        }
+      }
+    },
     "An unknown error occurred" : {
       "comment" : "Unknown error",
       "localizations" : {
@@ -181,6 +225,17 @@
         }
       }
     },
+    "Bằng việc mua, bạn đồng ý với" : {
+      "comment" : "By purchasing, you agree to",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By purchasing, you agree to"
+          }
+        }
+      }
+    },
     "Bắt đầu" : {
       "comment" : "Get Started",
       "localizations" : {
@@ -260,6 +315,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Başlamak"
+          }
+        }
+      }
+    },
+    "Bắt đầu ngay" : {
+      "comment" : "Get Started",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
           }
         }
       }
@@ -611,6 +677,29 @@
     "Cần quyền truy cập Camera" : {
       "comment" : "Camera access required"
     },
+    "Cập nhật thường xuyên" : {
+      "comment" : "Regular updates",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regular updates"
+          }
+        }
+      }
+    },
+    "Câu hỏi thường gặp" : {
+      "comment" : "Frequently Asked Questions",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequently Asked Questions"
+          }
+        }
+      }
+    },
     "Chào mừng đến với SnapArt" : {
       "comment" : "Onboarding page 1 title",
       "extractionState" : "stale",
@@ -691,6 +780,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snapart'a hoş geldiniz"
+          }
+        }
+      }
+    },
+    "Chất lượng filter rất cao, rất hài lòng!" : {
+      "comment" : "Filter quality is very high, very satisfied!",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter quality is very high, very satisfied!"
           }
         }
       }
@@ -778,13 +879,36 @@
         }
       }
     },
+    "Chính sách bảo mật" : {
+      "comment" : "Privacy Policy",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
     "Chỉnh sửa nâng cao" : {
       "comment" : "Advanced editing",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Advanced editing"
+          }
+        }
+      }
+    },
+    "Chọn gói phù hợp" : {
+      "comment" : "Choose your plan",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your plan"
           }
         }
       }
@@ -1287,6 +1411,54 @@
         }
       }
     },
+    "Có, bạn có 1 tuần dùng thử miễn phí." : {
+      "comment" : "Yes, you get 1 week free trial.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you get 1 week free trial."
+          }
+        }
+      }
+    },
+    "Có, bạn có thể hủy bất cứ lúc nào trong App Store." : {
+      "comment" : "Yes, you can cancel anytime in the App Store.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you can cancel anytime in the App Store."
+          }
+        }
+      }
+    },
+    "Có, premium được đồng bộ qua iCloud." : {
+      "comment" : "Yes, premium syncs via iCloud.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, premium syncs via iCloud."
+          }
+        }
+      }
+    },
+    "Công cụ chuyên nghiệp" : {
+      "comment" : "Professional tools",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Professional tools"
+          }
+        }
+      }
+    },
     "Đã chọn" : {
       "comment" : "Selected",
       "localizations" : {
@@ -1479,7 +1651,7 @@
       }
     },
     "Đăng ký" : {
-      "comment" : "Sign Up\nSubscribe",
+      "comment" : "Sign Up",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2143,6 +2315,17 @@
         }
       }
     },
+    "Điều khoản sử dụng" : {
+      "comment" : "Terms of Service",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Service"
+          }
+        }
+      }
+    },
     "Đóng" : {
       "comment" : "Close",
       "localizations" : {
@@ -2320,6 +2503,29 @@
         }
       }
     },
+    "Filter" : {
+      "comment" : "Filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filters"
+          }
+        }
+      }
+    },
+    "Filter đẹp quá! Tôi rất thích tính năng premium." : {
+      "comment" : "Beautiful filters! I love the premium features.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beautiful filters! I love the premium features."
+          }
+        }
+      }
+    },
     "Filter mới hàng tuần" : {
       "comment" : "New filters weekly",
       "localizations" : {
@@ -2333,6 +2539,7 @@
     },
     "Gói định kỳ" : {
       "comment" : "Subscription plans",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2508,6 +2715,17 @@
         }
       }
     },
+    "Hỗ trợ" : {
+      "comment" : "Support",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support"
+          }
+        }
+      }
+    },
     "Hủy" : {
       "comment" : "Cancel",
       "localizations" : {
@@ -2631,6 +2849,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No filter"
+          }
+        }
+      }
+    },
+    "Không giới hạn" : {
+      "comment" : "Unlimited",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited"
           }
         }
       }
@@ -3336,6 +3565,7 @@
     },
     "mỗi năm" : {
       "comment" : "per year",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3347,6 +3577,7 @@
     },
     "mỗi tháng" : {
       "comment" : "per month",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3383,6 +3614,7 @@
     },
     "Mua một lần" : {
       "comment" : "One-time purchase",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3399,6 +3631,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiny nose"
+          }
+        }
+      }
+    },
+    "Năm" : {
+      "comment" : "Yearly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yearly"
           }
         }
       }
@@ -3493,6 +3736,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dil"
+          }
+        }
+      }
+    },
+    "Người dùng nói gì" : {
+      "comment" : "What users say",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What users say"
           }
         }
       }
@@ -3602,6 +3857,17 @@
         }
       }
     },
+    "PHỔ BIẾN" : {
+      "comment" : "POPULAR",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POPULAR"
+          }
+        }
+      }
+    },
     "Premium" : {
       "comment" : "Premium",
       "localizations" : {
@@ -3609,6 +3875,21 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium"
+          }
+        }
+      }
+    },
+    "PREMIUM" : {
+
+    },
+    "Premium có hoạt động trên tất cả thiết bị không?" : {
+      "comment" : "Does premium work on all devices?",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does premium work on all devices?"
           }
         }
       }
@@ -4250,6 +4531,17 @@
         }
       }
     },
+    "Tháng" : {
+      "comment" : "Monthly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly"
+          }
+        }
+      }
+    },
     "Thời gian chụp:" : {
       "comment" : "Capture time",
       "localizations" : {
@@ -4670,11 +4962,23 @@
     },
     "Tiết kiệm 33%" : {
       "comment" : "Save 33%",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save 33%"
+          }
+        }
+      }
+    },
+    "Tiết kiệm 33% so với gói tháng" : {
+      "comment" : "Save 33% vs monthly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 33% vs monthly"
           }
         }
       }
@@ -4686,6 +4990,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium Features"
+          }
+        }
+      }
+    },
+    "Tốc độ cao" : {
+      "comment" : "High speed",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High speed"
+          }
+        }
+      }
+    },
+    "Tôi có thể dùng thử trước khi mua không?" : {
+      "comment" : "Can I try before buying?",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I try before buying?"
+          }
+        }
+      }
+    },
+    "Tôi có thể hủy subscription không?" : {
+      "comment" : "Can I cancel my subscription?",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I cancel my subscription?"
           }
         }
       }
@@ -4770,6 +5110,31 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MediaPipe Technology ile Gerçek Zamanlı Yüz Filtreleri Deneyin"
+          }
+        }
+      }
+    },
+    "Trải nghiệm mượt mà" : {
+      "comment" : "Smooth experience",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smooth experience"
+          }
+        }
+      }
+    },
+    "Trang Chủ" : {
+      "comment" : "Home"
+    },
+    "Truy cập không giới hạn" : {
+      "comment" : "Unlimited access",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited access"
           }
         }
       }
@@ -4937,6 +5302,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İlginç ve benzersiz yüz filtreleri ile fotoğraf düzenleme uygulaması"
+          }
+        }
+      }
+    },
+    "Ứng dụng tuyệt vời, đáng để mua premium." : {
+      "comment" : "Great app, worth buying premium.",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great app, worth buying premium."
           }
         }
       }
@@ -5287,365 +5664,14 @@
         }
       }
     },
-    "Filter" : {
-      "comment" : "Filters",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Filters"
-          }
-        }
-      }
-    },
-    "Không giới hạn" : {
-      "comment" : "Unlimited",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlimited"
-          }
-        }
-      }
-    },
-    "Hỗ trợ" : {
-      "comment" : "Support",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Support"
-          }
-        }
-      }
-    },
-    "Truy cập không giới hạn" : {
-      "comment" : "Unlimited access",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlimited access"
-          }
-        }
-      }
-    },
-    "Cập nhật thường xuyên" : {
-      "comment" : "Regular updates",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regular updates"
-          }
-        }
-      }
-    },
-    "Trải nghiệm mượt mà" : {
-      "comment" : "Smooth experience",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Smooth experience"
-          }
-        }
-      }
-    },
-    "An toàn và tiện lợi" : {
-      "comment" : "Safe and convenient",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Safe and convenient"
-          }
-        }
-      }
-    },
-    "Công cụ chuyên nghiệp" : {
-      "comment" : "Professional tools",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Professional tools"
-          }
-        }
-      }
-    },
-    "Tốc độ cao" : {
-      "comment" : "High speed",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "High speed"
-          }
-        }
-      }
-    },
     "Xử lý nhanh chóng" : {
       "comment" : "Fast processing",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fast processing"
-          }
-        }
-      }
-    },
-    "Chọn gói phù hợp" : {
-      "comment" : "Choose your plan",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose your plan"
-          }
-        }
-      }
-    },
-    "Tháng" : {
-      "comment" : "Monthly",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monthly"
-          }
-        }
-      }
-    },
-    "Năm" : {
-      "comment" : "Yearly",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yearly"
-          }
-        }
-      }
-    },
-    "PHỔ BIẾN" : {
-      "comment" : "POPULAR",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "POPULAR"
-          }
-        }
-      }
-    },
-    "/năm" : {
-      "comment" : "/year",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "/year"
-          }
-        }
-      }
-    },
-    "/tháng" : {
-      "comment" : "/month",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "/month"
-          }
-        }
-      }
-    },
-    "Tiết kiệm 33% so với gói tháng" : {
-      "comment" : "Save 33% vs monthly",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save 33% vs monthly"
-          }
-        }
-      }
-    },
-    "Bắt đầu ngay" : {
-      "comment" : "Get Started",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Started"
-          }
-        }
-      }
-    },
-    "Người dùng nói gì" : {
-      "comment" : "What users say",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What users say"
-          }
-        }
-      }
-    },
-    "Filter đẹp quá! Tôi rất thích tính năng premium." : {
-      "comment" : "Beautiful filters! I love the premium features.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beautiful filters! I love the premium features."
-          }
-        }
-      }
-    },
-    "Ứng dụng tuyệt vời, đáng để mua premium." : {
-      "comment" : "Great app, worth buying premium.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Great app, worth buying premium."
-          }
-        }
-      }
-    },
-    "Chất lượng filter rất cao, rất hài lòng!" : {
-      "comment" : "Filter quality is very high, very satisfied!",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Filter quality is very high, very satisfied!"
-          }
-        }
-      }
-    },
-    "Câu hỏi thường gặp" : {
-      "comment" : "Frequently Asked Questions",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frequently Asked Questions"
-          }
-        }
-      }
-    },
-    "Tôi có thể hủy subscription không?" : {
-      "comment" : "Can I cancel my subscription?",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Can I cancel my subscription?"
-          }
-        }
-      }
-    },
-    "Có, bạn có thể hủy bất cứ lúc nào trong App Store." : {
-      "comment" : "Yes, you can cancel anytime in the App Store.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yes, you can cancel anytime in the App Store."
-          }
-        }
-      }
-    },
-    "Premium có hoạt động trên tất cả thiết bị không?" : {
-      "comment" : "Does premium work on all devices?",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Does premium work on all devices?"
-          }
-        }
-      }
-    },
-    "Có, premium được đồng bộ qua iCloud." : {
-      "comment" : "Yes, premium syncs via iCloud.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yes, premium syncs via iCloud."
-          }
-        }
-      }
-    },
-    "Tôi có thể dùng thử trước khi mua không?" : {
-      "comment" : "Can I try before buying?",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Can I try before buying?"
-          }
-        }
-      }
-    },
-    "Có, bạn có 1 tuần dùng thử miễn phí." : {
-      "comment" : "Yes, you get 1 week free trial.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yes, you get 1 week free trial."
-          }
-        }
-      }
-    },
-    "* Miễn phí dùng thử 7 ngày" : {
-      "comment" : "* 7-day free trial",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "* 7-day free trial"
-          }
-        }
-      }
-    },
-    "Bằng việc mua, bạn đồng ý với" : {
-      "comment" : "By purchasing, you agree to",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "By purchasing, you agree to"
-          }
-        }
-      }
-    },
-    "Điều khoản sử dụng" : {
-      "comment" : "Terms of Service",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terms of Service"
-          }
-        }
-      }
-    },
-    "Chính sách bảo mật" : {
-      "comment" : "Privacy Policy",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Privacy Policy"
           }
         }
       }

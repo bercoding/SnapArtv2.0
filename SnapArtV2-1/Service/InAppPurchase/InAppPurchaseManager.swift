@@ -49,10 +49,10 @@ class InAppPurchaseManager: ObservableObject {
         do {
             let allProductIDs = productIDs + subscriptionIDs
             products = try await Product.products(for: allProductIDs)
-            print("✅ Loaded \(products.count) products")
+            print("Loaded \(products.count) products")
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
-            print("❌ Failed to load products: \(error)")
+            print("Failed to load products: \(error)")
         }
     }
     
@@ -83,7 +83,7 @@ class InAppPurchaseManager: ObservableObject {
         
         try await AppStore.sync()
         await updateSubscriptionStatus()
-        print("✅ Purchases restored successfully")
+        print(" Purchases restored successfully")
     }
     
     // MARK: - Subscription Management
@@ -137,7 +137,7 @@ class InAppPurchaseManager: ObservableObject {
             subscriptionStatus = .active
         }
         
-        print("✅ Purchase successful: \(product.id)")
+        print("Purchase successful: \(product.id)")
     }
 
     // MARK: - Transaction Listener

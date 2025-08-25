@@ -8,8 +8,8 @@ struct LanguageView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(.systemBackground).ignoresSafeArea()
-                
+                AppTheme.mainGradient
+                    .ignoresSafeArea()
                 VStack(spacing: 0) {
                     // Header
                     Header
@@ -21,11 +21,13 @@ struct LanguageView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+        
         }
         .id(viewModel.refreshID) // Force reload toàn bộ view khi refreshID thay đổi
         .onAppear {
             pendingCode = viewModel.selectedCode
         }
+        .navigationBarBackButtonHidden()
     }
     
     var Header: some View {
