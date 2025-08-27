@@ -17,7 +17,7 @@ class InterstitialAdManager: NSObject, ObservableObject {
     }
     
     func loadAd() {
-        let request = GADRequest()
+        let request = Request()
         InterstitialAd.load(with: adUnitId, request: request) { [weak self] ad, error in
             if let error = error {
                 print("Failed to load interstitial ad: \(error.localizedDescription)")
@@ -49,14 +49,14 @@ class InterstitialAdManager: NSObject, ObservableObject {
     }
 }
 
-// MARK: - GADFullScreenContentDelegate
-extension InterstitialAdManager: GADFullScreenContentDelegate {
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+// MARK: - FullScreenContentDelegate
+extension InterstitialAdManager: FullScreenContentDelegate {
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("Interstitial ad dismissed")
         loadAd() // Load ad mới
     }
     
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Interstitial ad failed to present with error: \(error.localizedDescription)")
         loadAd() // Load ad mới
     }
