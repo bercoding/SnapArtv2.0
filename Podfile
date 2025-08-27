@@ -34,4 +34,6 @@ target 'SnapArtV2-1' do
   # Reactive programming
   pod 'RxSwift'
   pod 'RxCocoa'
+  
+  pod 'Google-Mobile-Ads-SDK'
 end
