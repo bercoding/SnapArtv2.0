@@ -40,17 +40,22 @@ class ResumeFlowCoordinator: ObservableObject {
         }
         
         // Lấy root view controller để hiển thị app open ad
-        if let rootVC = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }?
-            .rootViewController {
-            
+        let rootVC = getRootViewController()
+        
+        if let rootVC = rootVC {
             appOpenAdManager.presentAdIfAvailable(from: rootVC) { [weak self] in
                 self?.appEvents.notifyAppOpenAdFinished()
             }
         } else {
             appEvents.notifyAppOpenAdFinished()
         }
+    }
+    
+    private func getRootViewController() -> UIViewController? {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first(where: { $0.isKeyWindow }) else {
+            return nil
+        }
+        return window.rootViewController
     }
 } 
