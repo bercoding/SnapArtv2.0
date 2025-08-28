@@ -49,12 +49,6 @@ struct SnapArtV2_0App: App {
                             }
                         }
                     
-                case .appOpenAd:
-                    Color.clear
-                        .onAppear {
-                            resumeFlowCoordinator.showAppOpenAdIfAvailable()
-                        }
-                    
                 case .language:
                     LanguageView()
                         .environmentObject(languageViewModel)

@@ -5,7 +5,6 @@ class AppEvents: ObservableObject {
     static let shared = AppEvents()
     
     @Published var splashDidFinish = PassthroughSubject<Void, Never>()
-    @Published var appOpenAdDidFinish = PassthroughSubject<Void, Never>()
     @Published var languageDidFinish = PassthroughSubject<Void, Never>()
     @Published var onboardingDidFinish = PassthroughSubject<Void, Never>()
     @Published var userDidLogin = PassthroughSubject<Void, Never>()
@@ -15,10 +14,6 @@ class AppEvents: ObservableObject {
     
     func notifySplashFinished() {
         splashDidFinish.send()
-    }
-    
-    func notifyAppOpenAdFinished() {
-        appOpenAdDidFinish.send()
     }
     
     func notifyLanguageFinished() {

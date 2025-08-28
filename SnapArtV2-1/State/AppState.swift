@@ -7,7 +7,6 @@ class AppState: ObservableObject {
     @Published var currentFlow: AppFlow = .splash
     @Published var hasCompletedOnboarding: Bool = false
     @Published var hasShownLanguageOnce: Bool = false
-    @Published var isAppOpenAdReady: Bool = false
     
     private init() {
         loadUserDefaults()
@@ -35,7 +34,6 @@ class AppState: ObservableObject {
 
 enum AppFlow {
     case splash
-    case appOpenAd
     case language
     case onboarding
     case main

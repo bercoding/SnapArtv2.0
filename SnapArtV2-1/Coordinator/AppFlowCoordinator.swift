@@ -5,7 +5,6 @@ class AppFlowCoordinator: ObservableObject {
     static let shared = AppFlowCoordinator()
     
     @Published var currentFlow: AppFlow = .splash
-    @Published var shouldShowAppOpenAd = false
     
     private var cancellables = Set<AnyCancellable>()
     private let appState = AppState.shared
@@ -17,23 +16,15 @@ class AppFlowCoordinator: ObservableObject {
     }
     
     private func setupEventHandlers() {
-        // Splash finished -> Show App Open Ad
+        // Splash finished -> Show Language hoặc Onboarding hoặc Main
         appEvents.splashDidFinish
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                self?.showAppOpenAd()
+                self?.showNextFlowAfterSplash()
             }
             .store(in: &cancellables)
         
-        // App Open Ad finished -> Show Language or Onboarding
-        appEvents.appOpenAdDidFinish
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.showNextFlow()
-            }
-            .store(in: &cancellables)
-        
-        // Language finished -> Show Onboarding or Main
+        // Language finished -> Show Onboarding hoặc Main
         appEvents.languageDidFinish
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -67,14 +58,7 @@ class AppFlowCoordinator: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func showAppOpenAd() {
-        currentFlow = .appOpenAd
-        shouldShowAppOpenAd = true
-    }
-    
-    private func showNextFlow() {
-        shouldShowAppOpenAd = false
-        
+    private func showNextFlowAfterSplash() {
         if !appState.hasShownLanguageOnce {
             currentFlow = .language
         } else if !appState.hasCompletedOnboarding {
@@ -98,7 +82,6 @@ class AppFlowCoordinator: ObservableObject {
     
     private func resetToSplash() {
         currentFlow = .splash
-        shouldShowAppOpenAd = false
     }
     
     func resetAppFlow() {
