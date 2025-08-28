@@ -79,7 +79,7 @@ class InAppPurchaseManager: ObservableObject {
         }
     }
     
-    func purchaseSubscription(_ product: Product) async throws {
+    func purchaseSubscription(_ product: Product) async throws {    
         guard product.subscription != nil else {
             throw InAppPurchaseError.invalidProduct
         }

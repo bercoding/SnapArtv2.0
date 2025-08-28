@@ -69,6 +69,7 @@ struct PremiumView: View {
             }
         }
         .navigationBarBackButtonHidden()
+       
     }
     
     // MARK: - Hero Section - Compact
