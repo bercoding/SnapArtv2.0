@@ -33,7 +33,7 @@ struct SplashView: View {
         } else {
             ZStack {
                 // Sử dụng gradient từ AppTheme
-                Color(.systemBackground)
+                AppTheme.mainGradient
                     .ignoresSafeArea()
                 
                 VStack {
@@ -82,9 +82,15 @@ struct SplashView: View {
                 }
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                // Preload App Open Ad trong lúc hiển thị splash
+                AppOpenAdManager.shared.loadAdIfNeeded()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         self.isActive = true
+                    }
+                    // Gọi Open App Ad ngay sau Splash (trễ 0.2s cho an toàn chuyển view)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        AppOpenAdManager.shared.presentAdIfAvailable()
                     }
                 }
             }
