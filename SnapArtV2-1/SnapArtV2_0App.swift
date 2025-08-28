@@ -14,9 +14,15 @@ struct SnapArtV2_0App: App {
     @StateObject private var appFlowCoordinator = AppFlowCoordinator.shared
     @StateObject private var resumeFlowCoordinator = ResumeFlowCoordinator.shared
     
+    // Thêm lại các ViewModel cần thiết
+    @StateObject private var languageViewModel = LanguageViewModel()
+    @StateObject private var authViewModel = AuthViewModel()
+    @StateObject private var onboardingManager = OnboardingManager()
+    @StateObject private var galleryViewModel = GalleryViewModel()
+    
     init() {
         // Khởi tạo Google Mobile Ads SDK
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.shared.start(completionHandler: nil)
         
         // Khởi tạo Firebase
         FirebaseApp.configure()
@@ -50,6 +56,7 @@ struct SnapArtV2_0App: App {
                     
                 case .language:
                     LanguageView()
+                        .environmentObject(languageViewModel)
                         .onAppear {
                             // Language chỉ hiển thị 1 lần
                             if !AppState.shared.hasShownLanguageOnce {
@@ -62,6 +69,7 @@ struct SnapArtV2_0App: App {
                     
                 case .onboarding:
                     OnboardingView()
+                        .environmentObject(onboardingManager)
                         .onAppear {
                             // Onboarding chỉ hiển thị 1 lần
                             if !AppState.shared.hasCompletedOnboarding {
@@ -74,6 +82,10 @@ struct SnapArtV2_0App: App {
                     
                 case .main:
                     ContentView()
+                        .environmentObject(authViewModel)
+                        .environmentObject(galleryViewModel)
+                        .environmentObject(languageViewModel)
+                        .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
                 }
             }
             .environmentObject(appFlowCoordinator)
