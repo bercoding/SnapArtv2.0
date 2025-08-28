@@ -41,6 +41,7 @@ struct SnapArtV2_0App: App {
                 switch appFlowCoordinator.currentFlow {
                 case .splash:
                     SplashView()
+                        .environmentObject(languageViewModel)
                         .onAppear {
                             // Splash hiển thị 1.5 giây
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -70,6 +71,7 @@ struct SnapArtV2_0App: App {
                 case .onboarding:
                     OnboardingView()
                         .environmentObject(onboardingManager)
+                        .environmentObject(languageViewModel)
                         .onAppear {
                             // Onboarding chỉ hiển thị 1 lần
                             if !AppState.shared.hasCompletedOnboarding {
@@ -90,6 +92,7 @@ struct SnapArtV2_0App: App {
             }
             .environmentObject(appFlowCoordinator)
             .environmentObject(resumeFlowCoordinator)
+            .environmentObject(languageViewModel) // Cung cấp cho tất cả view con
         }
     }
 }
