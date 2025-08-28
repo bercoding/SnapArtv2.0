@@ -24,7 +24,7 @@ class AppOpenAdManager: NSObject, ObservableObject {
         }
         
         // Load ad mới
-        let request = GADRequest()
+        let request = Request()
         AppOpenAd.load(with: adUnitId, request: request) { [weak self] ad, error in
             if let error = error {
                 print("Failed to load app open ad: \(error.localizedDescription)")
@@ -63,14 +63,14 @@ class AppOpenAdManager: NSObject, ObservableObject {
     }
 }
 
-// MARK: - GADFullScreenContentDelegate
-extension AppOpenAdManager: GADFullScreenContentDelegate {
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+// MARK: - FullScreenContentDelegate
+extension AppOpenAdManager: FullScreenContentDelegate {
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("App open ad dismissed")
         loadAdIfNeeded()
     }
     
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("App open ad failed to present with error: \(error.localizedDescription)")
         loadAdIfNeeded()
     }

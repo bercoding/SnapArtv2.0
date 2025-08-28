@@ -4,6 +4,12 @@
     "" : {
 
     },
+    "Ad" : {
+
+    },
+    "Ad Not Ready" : {
+
+    },
     "Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng." : {
       "localizations" : {
         "ar" : {
@@ -3235,6 +3241,9 @@
         }
       }
     },
+    "Please wait a moment for the ad to load, then try again." : {
+
+    },
     "Quá thời gian chờ" : {
       "comment" : "Timeout",
       "localizations" : {
@@ -4477,6 +4486,9 @@
           }
         }
       }
+    },
+    "Unlock" : {
+
     },
     "Xác nhận xóa" : {
       "comment" : "Delete confirm title",

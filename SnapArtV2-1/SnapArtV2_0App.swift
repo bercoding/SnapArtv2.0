@@ -6,61 +6,78 @@
 //
 
 import SwiftUI
-import FirebaseCore
-import MediaPipeTasksVision
+import GoogleMobileAds
+import Firebase
 
 @main
 struct SnapArtV2_0App: App {
-    // Use CoreDataManager instead of PersistenceController
-    let coreDataManager = CoreDataManager.shared
-    
-    // Tạo AuthViewModel ở cấp ứng dụng để quản lý trạng thái đăng nhập
-    @StateObject private var authViewModel = AuthViewModel()
-    @StateObject private var onboardingManager = OnboardingManager() // Added StateObject for OnboardingManager
-    @StateObject private var galleryViewModel = GalleryViewModel() // Thêm GalleryViewModel
-    @StateObject private var languageViewModel = LanguageViewModel()
-    
-    // Thêm trạng thái để theo dõi quá trình khởi tạo
-    @State private var isInitialized = false
+    @StateObject private var appFlowCoordinator = AppFlowCoordinator.shared
+    @StateObject private var resumeFlowCoordinator = ResumeFlowCoordinator.shared
     
     init() {
-        print("SnapArtV2_0App init bắt đầu")
+        // Khởi tạo Google Mobile Ads SDK
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
-        // Khởi tạo Firebase trực tiếp, đảm bảo chạy đầu tiên
-        do {
-            if FirebaseApp.app() == nil {
-                FirebaseApp.configure()
-                print("Firebase đã được khởi tạo thành công")
-            } else {
-                print("Firebase đã được khởi tạo trước đó")
-            }
-        } catch {
-            print("Lỗi khi khởi tạo Firebase: \(error.localizedDescription)")
-        }
+        // Khởi tạo Firebase
+        FirebaseApp.configure()
         
-        // Không cần gọi FirebaseManager.shared.configure() nữa
-        print("Firebase configuration completed")
-        
-        // Khởi tạo sẵn MediaPipeFaceMeshManager
-        do {
-            _ = MediaPipeFaceMeshManager.shared
-            print("MediaPipe Face Mesh được khởi tạo")
-        } catch {
-            print(" Lỗi khi khởi tạo MediaPipeFaceMeshManager: \(error.localizedDescription)")
-        }
-        
-        print("SnapArtV2_0App init hoàn thành")
+        // Khởi tạo các ad managers
+        _ = NativeAdManager.shared
+        _ = RewardedAdManager.shared
+        _ = InterstitialAdManager.shared
+        _ = AppOpenAdManager.shared
     }
-
+    
     var body: some Scene {
         WindowGroup {
-            SplashView()
-                .environment(\.managedObjectContext, coreDataManager.persistentContainer.viewContext) // Đảm bảo sử dụng viewContext
-                .environmentObject(authViewModel)
-                .environmentObject(onboardingManager)
-                .environmentObject(galleryViewModel) // Cung cấp GalleryViewModel
-                .environmentObject(languageViewModel) // Cung cấp LanguageViewModel
-                .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
+            ZStack {
+                // Main content
+                switch appFlowCoordinator.currentFlow {
+                case .splash:
+                    SplashView()
+                        .onAppear {
+                            // Splash hiển thị 1.5 giây
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                AppEvents.shared.notifySplashFinished()
+                            }
+                        }
+                    
+                case .appOpenAd:
+                    Color.clear
+                        .onAppear {
+                            resumeFlowCoordinator.showAppOpenAdIfAvailable()
+                        }
+                    
+                case .language:
+                    LanguageView()
+                        .onAppear {
+                            // Language chỉ hiển thị 1 lần
+                            if !AppState.shared.hasShownLanguageOnce {
+                                AppState.shared.setLanguageShownOnce()
+                            }
+                        }
+                        .onDisappear {
+                            AppEvents.shared.notifyLanguageFinished()
+                        }
+                    
+                case .onboarding:
+                    OnboardingView()
+                        .onAppear {
+                            // Onboarding chỉ hiển thị 1 lần
+                            if !AppState.shared.hasCompletedOnboarding {
+                                AppState.shared.setOnboardingCompleted()
+                            }
+                        }
+                        .onDisappear {
+                            AppEvents.shared.notifyOnboardingFinished()
+                        }
+                    
+                case .main:
+                    ContentView()
+                }
+            }
+            .environmentObject(appFlowCoordinator)
+            .environmentObject(resumeFlowCoordinator)
         }
     }
 }
