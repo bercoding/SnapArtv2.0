@@ -1,0 +1,180 @@
+{
+  "sourceLanguage" : "vi",
+  "strings" : {
+    "Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng." : {
+
+    },
+    "Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác." : {
+
+    },
+    "Bắt đầu" : {
+      "comment" : "Start button"
+    },
+    "Bộ lọc khuôn mặt" : {
+
+    },
+    "Bộ lọc khuôn mặt AR" : {
+      "comment" : "Onboarding page 2 title"
+    },
+    "Bộ lọc:" : {
+
+    },
+    "Bỏ qua" : {
+      "comment" : "Skip button"
+    },
+    "Chào mừng đến với SnapArt" : {
+      "comment" : "Onboarding page 1 title"
+    },
+    "Chi tiết ảnh" : {
+
+    },
+    "Chọn một danh mục phía trên để xem các filter" : {
+      "comment" : "Select category message"
+    },
+    "Chọn một tùy chọn bên dưới" : {
+
+    },
+    "Chọn ngôn ngữ cho ứng dụng" : {
+      "comment" : "Choose language subtitle"
+    },
+    "Chưa có ảnh nào" : {
+
+    },
+    "Chưa có tài khoản?" : {
+
+    },
+    "Chụp ảnh từ camera để lưu vào thư viện" : {
+
+    },
+    "Đã chọn" : {
+      "comment" : "Selected language text"
+    },
+    "Đã có tài khoản?" : {
+
+    },
+    "Đăng ký" : {
+
+    },
+    "Đăng ký tài khoản mới" : {
+
+    },
+    "Đăng nhập" : {
+
+    },
+    "Đăng Nhập" : {
+
+    },
+    "Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị" : {
+      "comment" : "Onboarding page 4 description"
+    },
+    "Đăng nhập để tiếp tục" : {
+
+    },
+    "Đang tải ảnh..." : {
+
+    },
+    "Đang tải..." : {
+
+    },
+    "Đóng" : {
+
+    },
+    "Dùng tài khoản demo" : {
+
+    },
+    "Hiển thị nhỏ" : {
+
+    },
+    "Hiển thị vừa" : {
+
+    },
+    "Hủy" : {
+
+    },
+    "Không thể kết nối đến máy chủ" : {
+
+    },
+    "Kiểm tra MediaPipe" : {
+
+    },
+    "Lỗi" : {
+
+    },
+    "Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè" : {
+      "comment" : "Onboarding page 3 description"
+    },
+    "Lưu trữ và chia sẻ" : {
+      "comment" : "Onboarding page 3 title"
+    },
+    "MediaPipe Test" : {
+
+    },
+    "Mở Camera với Filter" : {
+
+    },
+    "Ngôn ngữ" : {
+      "comment" : "Languages title"
+    },
+    "OK" : {
+      "comment" : "OK button"
+    },
+    "Quá thời gian chờ" : {
+
+    },
+    "Quên mật khẩu?" : {
+
+    },
+    "SnapArt" : {
+      "comment" : "App name"
+    },
+    "Tài khoản cá nhân" : {
+      "comment" : "Onboarding page 4 title"
+    },
+    "Tạo ảnh độc đáo với filter AR" : {
+      "comment" : "App tagline"
+    },
+    "Tạo ảnh vui theo thời gian thực" : {
+      "comment" : "App tagline"
+    },
+    "Tạo tài khoản để bắt đầu sử dụng SnapArt" : {
+
+    },
+    "Thời gian chụp:" : {
+
+    },
+    "Thử lại" : {
+
+    },
+    "Thử nghiệm Filter với ảnh" : {
+
+    },
+    "Thư viện ảnh" : {
+      "comment" : "Gallery"
+    },
+    "Tiếp theo" : {
+      "comment" : "Next button"
+    },
+    "Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe" : {
+      "comment" : "Onboarding page 2 description"
+    },
+    "Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt" : {
+
+    },
+    "Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo" : {
+      "comment" : "Onboarding page 1 description"
+    },
+    "Xác nhận xóa" : {
+
+    },
+    "Xóa" : {
+
+    },
+    "Xóa ảnh này?" : {
+
+    },
+    "Xóa tất cả" : {
+
+    }
+  },
+  "version" : "1.0"
+}

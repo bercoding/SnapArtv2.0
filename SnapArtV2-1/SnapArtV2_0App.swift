@@ -8,67 +8,65 @@
 import SwiftUI
 import FirebaseCore
 import MediaPipeTasksVision
+import GoogleMobileAds
 
 @main
 struct SnapArtV2_0App: App {
-    // Use CoreDataManager instead of PersistenceController
     let coreDataManager = CoreDataManager.shared
     
-    // Tạo AuthViewModel ở cấp ứng dụng để quản lý trạng thái đăng nhập
     @StateObject private var authViewModel = AuthViewModel()
-    @StateObject private var onboardingManager = OnboardingManager() // Added StateObject for OnboardingManager
-    @StateObject private var galleryViewModel = GalleryViewModel() // Thêm GalleryViewModel
+    @StateObject private var onboardingManager = OnboardingManager()
+    @StateObject private var galleryViewModel = GalleryViewModel()
     @StateObject private var languageViewModel = LanguageViewModel()
     @StateObject private var purchaseManager = InAppPurchaseManager.shared
     
-    // Thêm trạng thái để theo dõi quá trình khởi tạo
-    @State private var isInitialized = false
+    // New app-level state and coordinators
+    @StateObject private var appState = AppState()
+    @StateObject private var appFlow = AppFlowCoordinator(state: AppState())
+    private var resumeFlow: ResumeFlowCoordinator { ResumeFlowCoordinator(state: appState) }
+    
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var showOverlaySplash = false
     
     init() {
-        print("SnapArtV2_0App init bắt đầu")
-        
-        // Khởi tạo Firebase trực tiếp, đảm bảo chạy đầu tiên
-        do {
-            if FirebaseApp.app() == nil {
-                FirebaseApp.configure()
-                print("Firebase đã được khởi tạo thành công")
-            } else {
-                print("Firebase đã được khởi tạo trước đó")
-            }
-        } catch {
-            print("Lỗi khi khởi tạo Firebase: \(error.localizedDescription)")
-        }
-        
-        // Không cần gọi FirebaseManager.shared.configure() nữa
-        print("Firebase configuration completed")
-        
-        // Khởi tạo sẵn MediaPipeFaceMeshManager
-        do {
-            _ = MediaPipeFaceMeshManager.shared
-            print("MediaPipe Face Mesh được khởi tạo")
-        } catch {
-            print(" Lỗi khi khởi tạo MediaPipeFaceMeshManager: \(error.localizedDescription)")
-        }
-        
-        print("SnapArtV2_0App init hoàn thành")
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "Simulator" ]
+        MobileAds.shared.start(completionHandler: nil)
+        if FirebaseApp.app() == nil { FirebaseApp.configure() }
+        do { _ = MediaPipeFaceMeshManager.shared } catch { print(error.localizedDescription) }
     }
 
     var body: some Scene {
         WindowGroup {
             SplashView()
-                .environment(\.managedObjectContext, coreDataManager.persistentContainer.viewContext) // Đảm bảo sử dụng viewContext
+                .environment(\.managedObjectContext, coreDataManager.persistentContainer.viewContext)
                 .environmentObject(authViewModel)
                 .environmentObject(onboardingManager)
-                .environmentObject(galleryViewModel) // Cung cấp GalleryViewModel
-                .environmentObject(languageViewModel) // Cung cấp LanguageViewModel
-                .environmentObject(purchaseManager) // Cung cấp InAppPurchaseManager
+                .environmentObject(galleryViewModel)
+                .environmentObject(languageViewModel)
+                .environmentObject(purchaseManager)
                 .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
                 .onAppear {
-                    // Auto restore purchases khi app khởi động
-                    Task {
-                        await purchaseManager.restoreOnAppLaunch()
-                    }
+                    Task { await purchaseManager.restoreOnAppLaunch() }
+                    // Preload Interstitial Ad
+                    InterstitialAdManager.shared.loadAd()
+                    
+                    // Khởi tạo Native Ad
+                    _ = NativeAdManager.shared
+                    
+                    // Khởi tạo Rewarded Ad
+                    _ = RewardedAdManager.shared
                 }
+                .sheet(isPresented: $appFlow.showLanguage) {
+                    LanguageView().environmentObject(languageViewModel)
+                }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                resumeFlow.handleActive(
+                    showSplash: { showOverlaySplash = true },
+                    afterSplash: { showOverlaySplash = false }
+                )
+            }
         }
     }
 }
