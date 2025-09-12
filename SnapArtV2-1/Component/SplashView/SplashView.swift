@@ -83,14 +83,17 @@ struct SplashView: View {
             }
             .onAppear {
                 // Preload App Open Ad trong lúc hiển thị splash
-                AppOpenAdManager.shared.loadAdIfNeeded()
+                AppOpenAdManager.shared.loadAppOpenAd()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         self.isActive = true
                     }
                     // Gọi Open App Ad ngay sau Splash (trễ 0.2s cho an toàn chuyển view)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        AppOpenAdManager.shared.presentAdIfAvailable()
+                        if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+                            print("Attempting to show app open ad from SplashView")
+                            AppOpenAdManager.shared.showAppOpenAdIfAvailable()
+                        }
                     }
                 }
             }

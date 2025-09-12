@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.thanhnhan.SnapArtV2-1</string>
+	<string>com.snapart.premium</string>
 	<key>PROJECT_ID</key>
 	<string>readlog-92ecb</string>
 	<key>STORAGE_BUCKET</key>
@@ -32,5 +32,7 @@
 	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>GADMobileAdsAutoInitEnabled</key>
 	<true></true>
+	<key>DATABASE_URL</key>
+	<string>https://readlog-92ecb-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

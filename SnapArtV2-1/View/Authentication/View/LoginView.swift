@@ -30,7 +30,7 @@ struct LoginView: View {
                         .id(languageViewModel.refreshID)
                 }
                 .padding(.top, 20)
-
+                
                 // Login Form
                 VStack(spacing: 20) {
                     AuthTextFieldView(
@@ -48,7 +48,7 @@ struct LoginView: View {
                     )
                 }
                 .padding(.horizontal, 30)
-
+                
                 // Forgot Password
                 Button(NSLocalizedString("Quên mật khẩu?", comment: "Forgot password?")) {
                     // Handle forgot password
@@ -57,7 +57,7 @@ struct LoginView: View {
                 .foregroundColor(.white.opacity(0.8))
                 .padding(.bottom, 10)
                 .id(languageViewModel.refreshID)
-
+                
                 // Test account button
                 Button(NSLocalizedString("Dùng tài khoản demo", comment: "Use demo account")) {
                     authViewModel.email = "test@example.com"
@@ -68,7 +68,7 @@ struct LoginView: View {
                 .foregroundColor(.white.opacity(0.6))
                 .padding(.bottom, 20)
                 .id(languageViewModel.refreshID)
-
+                
                 Button(action: {
                     authViewModel.signIn()
                 }) {
@@ -85,7 +85,7 @@ struct LoginView: View {
                 .buttonStyle(AppTheme.primaryButtonStyle())
                 .padding(.horizontal, 30)
                 .disabled(authViewModel.isLoading)
-
+                
                 HStack {
                     Text(NSLocalizedString("Chưa có tài khoản?", comment: "Don't have an account?"))
                         .foregroundColor(.white.opacity(0.8))
@@ -115,13 +115,15 @@ struct LoginView: View {
             }
         }
         .id(languageViewModel.refreshID)
+        .withBannerAd(adUnitId: "ca-app-pub-3940256099942544/2934735716")
+        
+    }
+    
+    struct LoginView_Previews: PreviewProvider {
+        static var previews: some View {
+            LoginView()
+                .environmentObject(AuthViewModel.example)
+                .environmentObject(LanguageViewModel())
+        }
     }
 }
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-            .environmentObject(AuthViewModel.example)
-            .environmentObject(LanguageViewModel())
-    }
-} 

@@ -6,68 +6,75 @@ import UIKit
 import struct SnapArtV2_1.MediaPipeTestButton
 
 struct FilterView: View {
+    @EnvironmentObject var filterManager: FilterManager
+    @StateObject private var galleryViewModel = GalleryViewModel()
     @State private var showCamera = false
     
     var body: some View {
-        ZStack {
-            // Thêm gradient từ AppTheme
-            AppTheme.mainGradient
-                .ignoresSafeArea()
-            
-            VStack(spacing: 20) {
-                Text(NSLocalizedString("Bộ lọc khuôn mặt", comment: "Face filters"))
-                    .font(.largeTitle)
-                    .foregroundColor(.white) // Thay đổi màu chữ
-                    .padding()
+        NavigationView {
+            ZStack {
+                // Thêm gradient từ AppTheme
+                AppTheme.mainGradient
+                    .ignoresSafeArea()
                 
-                Image(systemName: "face.smiling")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white) // Thay đổi màu biểu tượng
-                    .padding()
-                
-                Text(NSLocalizedString("Chọn một tùy chọn bên dưới", comment: "Choose an option below"))
-                    .font(.headline)
-                    .foregroundColor(.white) // Thay đổi màu chữ
-                    .padding()
-                
-                Button(action: {
-                    checkCameraPermissionAndOpen()
-                }) {
-                    HStack {
-                        Image(systemName: "camera.fill")
-                            .font(.system(size: 20))
-                        Text(NSLocalizedString("Mở Camera với Filter", comment: "Open Camera with Filter"))
-                            .font(.headline)
+                VStack(spacing: 20) {
+                    // Tiêu đề
+                    Text(NSLocalizedString("Chọn Filter", comment: "Select Filter"))
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.top, 20)
+                    
+                    // Hiển thị filter hiện tại
+                    Text(NSLocalizedString("Filter hiện tại: \(filterManager.currentFilter?.displayName ?? "Không có")", comment: "Current Filter"))
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.bottom, 10)
+                    
+                    // Nút mở camera
+                    Button(action: {
+                        checkCameraPermissionAndOpen()
+                    }) {
+                        VStack(spacing: 10) {
+                            Image(systemName: "camera.fill")
+                                .font(.system(size: 50))
+                                .foregroundColor(.white)
+                            Text(NSLocalizedString("Mở Camera", comment: "Open Camera"))
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 30)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.blue.opacity(0.6))
+                        )
                     }
-                }
-                .buttonStyle(AppTheme.primaryButtonStyle()) // Sử dụng style từ AppTheme
-                .padding(.bottom, 10)
-                
-                Button {
-                    // Chuyển đến MediaPipeTestButtonView
-                    // (Không thể sử dụng NavigationLink trực tiếp với buttonStyle)
-                } label: {
-                    HStack {
-                        Image(systemName: "photo.fill")
-                            .font(.system(size: 20))
-                        Text(NSLocalizedString("Thử nghiệm Filter với ảnh", comment: "Test Filter with image"))
-                            .font(.headline)
+                    .buttonStyle(AppTheme.primaryButtonStyle()) // Sử dụng style từ AppTheme
+                    
+                    // Nút thử nghiệm MediaPipe
+                    Button(action: {
+                        // Không cần làm gì vì NavigationLink sẽ xử lý điều hướng
+                    }) {
+                        HStack {
+                            Image(systemName: "face.dashed")
+                                .font(.system(size: 20))
+                            Text(NSLocalizedString("Thử nghiệm Filter với ảnh", comment: "Test Filter with image"))
+                                .font(.headline)
+                        }
                     }
+                    .buttonStyle(AppTheme.secondaryButtonStyle()) // Sử dụng style từ AppTheme
+                    
+                    // Thêm NavigationLink ẩn để điều hướng
+                    NavigationLink(destination: MediaPipeTestButtonView()) {
+                        EmptyView()
+                    }
+                    .opacity(0) // Ẩn NavigationLink
                 }
-                .buttonStyle(AppTheme.secondaryButtonStyle()) // Sử dụng style từ AppTheme
-                
-                // Thêm NavigationLink ẩn để điều hướng
-                NavigationLink(destination: MediaPipeTestButtonView()) {
-                    EmptyView()
-                }
-                .opacity(0) // Ẩn NavigationLink
+                .padding()
             }
-            .padding()
-        }
-        .fullScreenCover(isPresented: $showCamera) {
-            CameraViewControllerRepresentable(isPresented: $showCamera)
+            .fullScreenCover(isPresented: $showCamera) {
+                CameraViewControllerRepresentable(isPresented: $showCamera)
+            }
         }
     }
     
@@ -139,6 +146,9 @@ struct CameraViewControllerRepresentable: UIViewControllerRepresentable {
             isPresented = false
         }
         cameraVC.saveImageAction = { image, filterType in // Truyền action lưu ảnh
+            // Hiện Interstitial Ad trước khi lưu ảnh
+            InterstitialAdManager.shared.showInterstitialAd()
+            // Sau khi ad đóng, lưu ảnh và chuyển sang Gallery
             galleryViewModel.saveImage(image, filterType: filterType)
         }
         return cameraVC

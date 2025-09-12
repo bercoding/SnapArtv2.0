@@ -1,84 +1,89 @@
 import Foundation
 import GoogleMobileAds
-//import UIKit
+import UIKit
 
-final class InterstitialAdManager: NSObject, ObservableObject {
-	static let shared = InterstitialAdManager()
-	
-	private var interstitial: InterstitialAd?
-	private var isLoading = false
-	
-	// Test ID Interstitial: ca-app-pub-3940256099942544/4411468910
-	private let adUnitId = "ca-app-pub-3940256099942544/4411468910"
-	
-	private override init() {
-		super.init()
-		loadAd()
-	}
-	
-	func loadAd() {
-		guard !isLoading else { return }
-		isLoading = true
-		
-		let request = Request()
-		InterstitialAd.load(with: adUnitId, request: request) { [weak self] ad, error in
-			guard let self = self else { return }
-			self.isLoading = false
-			
-			if let error = error {
-				print("[Interstitial] Failed to load: \(error.localizedDescription)")
-				return
-			}
-			
-			self.interstitial = ad
-			print("[Interstitial] Loaded successfully")
-		}
-	}
-	
-	func showAd(from viewController: UIViewController, completion: (() -> Void)? = nil) {
-		guard let ad = interstitial else {
-			print("[Interstitial] No ad available, loading new one")
-			loadAd()
-			completion?()
-			return
-		}
-		
-		ad.fullScreenContentDelegate = self
-		ad.present(from: viewController)
-		
-		// Store completion for delegate callbacks
-		objc_setAssociatedObject(ad, "completion", completion, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-	}
-	
-	func showAdIfAvailable(from viewController: UIViewController, completion: (() -> Void)? = nil) {
-		showAd(from: viewController, completion: completion)
-	}
+class InterstitialAdManager: NSObject, ObservableObject {
+    static let shared = InterstitialAdManager()
+    
+    private var interstitialAd: InterstitialAd?
+    // Sử dụng ID quảng cáo test chính xác cho Interstitial Ad
+    private let adUnitID = "ca-app-pub-3940256099942544/4411468910" // Test ID cho Interstitial Ad
+    
+    @Published var isAdLoaded = false
+    
+    override init() {
+        super.init()
+        print("InterstitialAdManager initialized")
+        loadInterstitialAd()
+    }
+    
+    func loadInterstitialAd() {
+        // Kiểm tra nếu người dùng là premium thì không tải quảng cáo
+        if let currentUser = UserProfileManager.shared.currentUser, 
+           currentUser.stats.premiumStatus == true {
+            print("User is premium, not loading interstitial ad")
+            self.interstitialAd = nil
+            self.isAdLoaded = false
+            return
+        }
+        
+        print("Interstitial ad loading started with ID: \(adUnitID)")
+        
+        // Sử dụng cú pháp đúng cho InterstitialAd.load
+        let request = Request()
+        InterstitialAd.load(with: adUnitID, 
+                          request: request) { [weak self] ad, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                self.isAdLoaded = false
+                
+                // Thử tải lại sau 30 giây
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in
+                    self?.loadInterstitialAd()
+                }
+                return
+            }
+            
+            self.interstitialAd = ad
+            self.interstitialAd?.fullScreenContentDelegate = self
+            self.isAdLoaded = true
+            print("Interstitial ad loaded successfully")
+        }
+    }
+    
+    func showInterstitialAd() {
+        // Kiểm tra nếu người dùng là premium thì không hiển thị quảng cáo
+        if let currentUser = UserProfileManager.shared.currentUser, 
+           currentUser.stats.premiumStatus == true {
+            print("User is premium, not showing interstitial ad")
+            return
+        }
+        
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+            if let ad = interstitialAd {
+                print("Showing interstitial ad")
+                ad.present(from: rootViewController)
+            } else {
+                print("Interstitial ad wasn't ready, loading new ad")
+                loadInterstitialAd()
+            }
+        } else {
+            print("No root view controller found")
+        }
+    }
 }
 
+// MARK: - FullScreenContentDelegate
 extension InterstitialAdManager: FullScreenContentDelegate {
-	func adDidDismissFullScreenContent(_ ad: any FullScreenPresentingAd) {
-		print("[Interstitial] Dismissed")
-		interstitial = nil
-		loadAd() // Preload next ad
-		
-		// Call completion
-		if let completion = objc_getAssociatedObject(ad, "completion") as? (() -> Void) {
-			completion()
-		}
-	}
-	
-	func ad(_ ad: any FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: any Error) {
-		print("[Interstitial] Present failed: \(error.localizedDescription)")
-		interstitial = nil
-		loadAd()
-		
-		// Call completion even on failure
-		if let completion = objc_getAssociatedObject(ad, "completion") as? (() -> Void) {
-			completion()
-		}
-	}
-	
-	func adDidRecordImpression(_ ad: any FullScreenPresentingAd) {
-		print("[Interstitial] Impression recorded")
-	}
-} 
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
+        print("Interstitial ad dismissed")
+        loadInterstitialAd()
+    }
+    
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Interstitial ad failed to present with error: \(error.localizedDescription)")
+        loadInterstitialAd()
+    }
+}

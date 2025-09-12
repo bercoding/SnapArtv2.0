@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BannerAdModifier: ViewModifier {
 	let adUnitId: String
+	@StateObject private var profileManager = UserProfileManager.shared
 	
 	init(adUnitId: String = "ca-app-pub-5416045972856349/6224999479") {
 		self.adUnitId = adUnitId
@@ -10,8 +11,12 @@ struct BannerAdModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		content
 			.safeAreaInset(edge: .bottom) {
-				VStack(spacing: 0) {
-					BannerAdBar(adUnitId: adUnitId)
+				if profileManager.currentUser?.stats.premiumStatus != true {
+					VStack(spacing: 0) {
+						BannerAdBar(adUnitId: adUnitId)
+					}
+				} else {
+					EmptyView()
 				}
 			}
 	}
@@ -26,14 +31,15 @@ private struct BannerAdBar: View {
 	var body: some View {
 		ZStack(alignment: .topTrailing) {
 			if isRendering {
-				BannerAdView(adUnitId: adUnitId) {
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-						withAnimation { isDisplayed = true }
-					}
-				}
-				.background(.ultraThinMaterial)
-				.clipped()
-				.transition(.move(edge: .bottom).combined(with: .opacity))
+				BannerAdView(adUnitID: adUnitId)
+				    .background(.ultraThinMaterial)
+				    .clipped()
+				    .transition(.move(edge: .bottom).combined(with: .opacity))
+				    .onAppear {
+				        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+				            withAnimation { isDisplayed = true }
+				        }
+				    }
 			}
 			if isDisplayed {
 				Button(action: { withAnimation { isDisplayed = false } }) {

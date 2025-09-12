@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 final class FilterUnlockManager: ObservableObject {
+    
     static let shared = FilterUnlockManager()
     
     @Published var unlockedFilters: Set<FilterType> = []
@@ -11,17 +12,32 @@ final class FilterUnlockManager: ObservableObject {
         .funnyBigEyes,      // Giant Eyes
         .funnyWideMouth,    // Giant Mouth
         .funnyMegaFace,     // Ugly Face
-        .funnyAlienHead     // Alien Head (thêm vào cho đẹp)
+        .funnyAlienHead     // Alien Head
     ]
     
     private let userDefaultsKey = "UnlockedFilters"
     
     private init() {
         loadUnlockedFilters()
+        
+        // Kiểm tra người dùng premium khi khởi tạo
+        checkPremiumStatus()
+        
+        // Đăng ký lắng nghe thông báo khi trạng thái premium thay đổi
+        NotificationCenter.default.addObserver(self, selector: #selector(checkPremiumStatus), name: .premiumStatusChanged, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // Kiểm tra filter có bị khóa không
     func isFilterLocked(_ filter: FilterType) -> Bool {
+        // Nếu là người dùng premium, không có filter nào bị khóa
+        if UserProfileManager.shared.currentUser?.stats.premiumStatus == true {
+            return false
+        }
+        
         return lockedFilters.contains(filter) && !unlockedFilters.contains(filter)
     }
     
@@ -38,6 +54,22 @@ final class FilterUnlockManager: ObservableObject {
         saveUnlockedFilters()
         
         print("[FilterUnlock] Unlocked filter: \(filter)")
+    }
+    
+    // Mở khóa tất cả filter cho người dùng premium
+    func unlockAllFiltersForPremium() {
+        for filter in lockedFilters {
+            unlockedFilters.insert(filter)
+        }
+        saveUnlockedFilters()
+        print("[FilterUnlock] Unlocked all filters for premium user")
+    }
+    
+    // Kiểm tra trạng thái premium và mở khóa filter nếu cần
+    @objc private func checkPremiumStatus() {
+        if UserProfileManager.shared.currentUser?.stats.premiumStatus == true {
+            unlockAllFiltersForPremium()
+        }
     }
     
     // Lưu trạng thái unlock vào UserDefaults

@@ -1,18 +1,38 @@
 import Foundation
 import StoreKit
+import SwiftUI
 import Combine
 
 @MainActor
 class PremiumViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var showAlert = false
+    @Published var alertTitle = ""
     @Published var alertMessage = ""
     @Published var selectedPlan: String = "monthly"
+    @Published var isPurchasing = false
+    @Published var showError = false
+    @Published var errorMessage = ""
+    @Published var purchaseSuccess = false
     
-    private let purchaseManager: InAppPurchaseManager
+    // Đổi từ private thành internal để có thể truy cập từ PremiumView
+    let purchaseManager: InAppPurchaseManager
+    private var cancellables = Set<AnyCancellable>()
     
     init(purchaseManager: InAppPurchaseManager) {
         self.purchaseManager = purchaseManager
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        purchaseManager.$errorMessage
+            .compactMap { $0 }
+            .sink { [weak self] message in
+                self?.showAlert = true
+                self?.alertTitle = "Lỗi"
+                self?.alertMessage = message
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Computed Properties
@@ -21,82 +41,16 @@ class PremiumViewModel: ObservableObject {
         purchaseManager.products
     }
     
-    var subscriptionProducts: [Product] {
-        purchaseManager.getSubscriptionProducts()
+    var monthlyProducts: [Product] {
+        purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
+    }
+    
+    var yearlyProducts: [Product] {
+        purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }
     }
     
     var nonConsumableProducts: [Product] {
         purchaseManager.getNonConsumableProducts()
-    }
-    
-    var monthlyProducts: [Product] {
-        subscriptionProducts.filter { $0.id.contains("monthly") }
-    }
-    
-    var yearlyProducts: [Product] {
-        subscriptionProducts.filter { $0.id.contains("yearly") }
-    }
-    
-    var isSubscriptionActive: Bool {
-        purchaseManager.isSubscriptionActive()
-    }
-    
-    // MARK: - Actions
-    
-    func purchaseProduct(_ product: Product) async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            try await purchaseManager.purchase(product)
-            alertMessage = NSLocalizedString("Mua hàng thành công!", comment: "Purchase successful!")
-            showAlert = true
-        } catch {
-            alertMessage = error.localizedDescription
-            showAlert = true
-        }
-    }
-    
-    func purchaseSubscription(_ product: Product) async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            try await purchaseManager.purchaseSubscription(product)
-            alertMessage = NSLocalizedString("Đăng ký thành công!", comment: "Subscription successful!")
-            showAlert = true
-        } catch {
-            alertMessage = error.localizedDescription
-            showAlert = true
-        }
-    }
-    
-    func restorePurchases() async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            try await purchaseManager.restorePurchases()
-            
-            // Check if any subscriptions were restored
-            let hasActiveSubscriptions = purchaseManager.isSubscriptionActive() || 
-                                       !purchaseManager.purchasedProductIDs.isEmpty
-            
-            if hasActiveSubscriptions {
-                alertMessage = NSLocalizedString("Khôi phục mua hàng thành công! Đã tìm thấy \(purchaseManager.purchasedProductIDs.count) sản phẩm.", comment: "Restore successful with count")
-            } else {
-                alertMessage = NSLocalizedString("Khôi phục hoàn tất. Không tìm thấy sản phẩm nào.", comment: "Restore completed but no products found")
-            }
-            showAlert = true
-            
-        } catch {
-            alertMessage = "Khôi phục thất bại: \(error.localizedDescription)"
-            showAlert = true
-        }
-    }
-    
-    func loadProducts() async {
-        await purchaseManager.loadProducts()
     }
     
     // MARK: - Helper Methods
@@ -109,43 +63,143 @@ class PremiumViewModel: ObservableObject {
         return purchaseManager.hasIntroductoryOffer(for: product)
     }
     
-    func getSubscriptionPeriod(for product: Product) -> String {
-        return purchaseManager.getSubscriptionPeriod(for: product)
+    func formatPrice(_ product: Product) -> String {
+        return product.displayPrice
     }
     
-    // MARK: - Subscription Status Logic
-    
-    func isSubscriptionActive(for product: Product) -> Bool {
-        let productID = product.id
-        let isYearly = productID.contains("yearly")
-        let isMonthly = productID.contains("monthly")
+    func formatSubscriptionPeriod(_ product: Product) -> String {
+        guard let subscription = product.subscription else {
+            return ""
+        }
         
-        if isYearly {
-            // Yearly is active if purchased
-            return purchaseManager.isProductPurchased(productID)
-        } else if isMonthly {
-            // Monthly is active if purchased AND no yearly exists
-            if purchaseManager.isProductPurchased(productID) {
-                let yearlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("yearly") }
-                let hasYearly = yearlyProducts.contains { purchaseManager.isProductPurchased($0.id) }
-                return !hasYearly
+        let unit = subscription.subscriptionPeriod.unit
+        let value = subscription.subscriptionPeriod.value
+        
+        switch unit {
+        case .day:
+            return "\(value) ngày"
+        case .week:
+            return "\(value) tuần"
+        case .month:
+            return "\(value) tháng"
+        case .year:
+            return "\(value) năm"
+        @unknown default:
+            return ""
+        }
+    }
+    
+    func purchaseProduct(_ product: Product) {
+        Task {
+            isPurchasing = true
+            
+            do {
+                try await purchaseManager.purchase(product)
+                
+                isPurchasing = false
+                purchaseSuccess = true
+                
+                // Cập nhật trạng thái premium cho người dùng
+                updateUserPremiumStatus()
+                
+                // Gửi thông báo rằng trạng thái premium đã thay đổi
+                NotificationCenter.default.post(name: .premiumStatusChanged, object: nil)
+                
+                // Hiển thị thông báo thành công
+                showAlert = true
+                alertTitle = "Thành công"
+                alertMessage = "Bạn đã mua gói Premium thành công!"
+            } catch {
+                isPurchasing = false
+                showError = true
+                errorMessage = error.localizedDescription
+                
+                showAlert = true
+                alertTitle = "Lỗi"
+                alertMessage = "Không thể hoàn tất giao dịch: \(error.localizedDescription)"
             }
-            return false
         }
-        
-        return false
     }
     
-    func canUpgradeToYearly() -> Bool {
-        // Can upgrade if monthly is active
-        let monthlyProducts = purchaseManager.getSubscriptionProducts().filter { $0.id.contains("monthly") }
-        return monthlyProducts.contains { purchaseManager.isProductPurchased($0.id) }
+    func purchaseSubscription(_ product: Product) {
+        Task {
+            isPurchasing = true
+            
+            do {
+                try await purchaseManager.purchaseSubscription(product)
+                
+                isPurchasing = false
+                purchaseSuccess = true
+                
+                // Cập nhật trạng thái premium cho người dùng
+                updateUserPremiumStatus()
+                
+                // Gửi thông báo rằng trạng thái premium đã thay đổi
+                NotificationCenter.default.post(name: .premiumStatusChanged, object: nil)
+                
+                // Hiển thị thông báo thành công
+                showAlert = true
+                alertTitle = "Thành công"
+                alertMessage = "Bạn đã đăng ký gói Premium thành công!"
+            } catch {
+                isPurchasing = false
+                showError = true
+                errorMessage = error.localizedDescription
+                
+                showAlert = true
+                alertTitle = "Lỗi"
+                alertMessage = "Không thể hoàn tất đăng ký: \(error.localizedDescription)"
+            }
+        }
     }
     
-    func getUpgradeMessage() -> String {
-        if canUpgradeToYearly() {
-            return NSLocalizedString("Nâng cấp lên gói năm để tiết kiệm hơn!", comment: "Upgrade to yearly for better savings!")
+    func restorePurchases() {
+        Task {
+            isLoading = true
+            
+            do {
+                try await purchaseManager.restorePurchases()
+                
+                isLoading = false
+                
+                // Kiểm tra xem có khôi phục được gì không
+                if purchaseManager.isSubscriptionActive() || !purchaseManager.currentEntitlements.isEmpty {
+                    purchaseSuccess = true
+                    
+                    // Cập nhật trạng thái premium cho người dùng
+                    updateUserPremiumStatus()
+                    
+                    // Gửi thông báo rằng trạng thái premium đã thay đổi
+                    NotificationCenter.default.post(name: .premiumStatusChanged, object: nil)
+                    
+                    // Hiển thị thông báo thành công
+                    showAlert = true
+                    alertTitle = "Thành công"
+                    alertMessage = "Đã khôi phục gói Premium của bạn!"
+                } else {
+                    showAlert = true
+                    alertTitle = "Thông báo"
+                    alertMessage = "Không tìm thấy gói Premium nào đã mua trước đây."
+                }
+            } catch {
+                isLoading = false
+                showAlert = true
+                alertTitle = "Lỗi"
+                alertMessage = "Không thể khôi phục giao dịch: \(error.localizedDescription)"
+            }
         }
-        return ""
+    }
+    
+    // Cập nhật trạng thái premium cho người dùng hiện tại
+    private func updateUserPremiumStatus() {
+        Task {
+            do {
+                if let userId = UserProfileManager.shared.currentUser?.id {
+                    try await UserProfileManager.shared.updatePremiumStatus(true)
+                }
+            } catch {
+                print("Failed to update premium status: \(error.localizedDescription)")
+            }
+        }
     }
 } 

@@ -7,27 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A57AC5E7AD550824AC4BB8 /* Pods_SnapArtV2_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E997204DF7C0BDF7B3926287 /* Pods_SnapArtV2_1.framework */; };
 		C4230E572E44A3C10057C36C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4230E562E44A3C10057C36C /* FirebaseAuth */; };
 		C4230E592E44A3C10057C36C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C4230E582E44A3C10057C36C /* FirebaseDatabase */; };
 		C4230E5B2E44A3C10057C36C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C4230E5A2E44A3C10057C36C /* FirebaseFirestore */; };
 		C4230E5D2E44A3C10057C36C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C4230E5C2E44A3C10057C36C /* FirebaseStorage */; };
+		C447892F2E60418600AD7742 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C447892E2E60418600AD7742 /* FirebaseCrashlytics */; };
+		C44789312E6041F000AD7742 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C44789302E6041F000AD7742 /* FirebaseCrashlytics */; };
 		C45D56312E3C62200082C002 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C45D56302E3C62200082C002 /* FirebaseAuth */; };
 		C45D56332E3C62200082C002 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C45D56322E3C62200082C002 /* FirebaseFirestore */; };
 		C45D56352E3C62200082C002 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C45D56342E3C62200082C002 /* FirebaseStorage */; };
-		FD78A457056A75D53A2575BC /* Pods_SnapArtV2_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC8ABB74FDBFCF636B817E1F /* Pods_SnapArtV2_1.framework */; };
+		C4C0B4E72E6EB07900BEAF7D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C4C0B4E62E6EB07900BEAF7D /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11A315CBEDA3B7297DA4BD10 /* Pods-SnapArtV2-1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapArtV2-1.release.xcconfig"; path = "Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1.release.xcconfig"; sourceTree = "<group>"; };
+		5B7A191C0505DC996D51A73F /* Pods-SnapArtV2-1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapArtV2-1.debug.xcconfig"; path = "Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1.debug.xcconfig"; sourceTree = "<group>"; };
+		A18F34A33A73C06116CE474F /* Pods-SnapArtV2-1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapArtV2-1.release.xcconfig"; path = "Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1.release.xcconfig"; sourceTree = "<group>"; };
 		C4DA8A502E3B032F00AD62D9 /* SnapArtV2-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnapArtV2-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC8ABB74FDBFCF636B817E1F /* Pods_SnapArtV2_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnapArtV2_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7EC30E2611C24828BFF4405 /* Pods-SnapArtV2-1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapArtV2-1.debug.xcconfig"; path = "Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1.debug.xcconfig"; sourceTree = "<group>"; };
+		E997204DF7C0BDF7B3926287 /* Pods_SnapArtV2_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnapArtV2_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		C44532E42E5200840022D268 /* Exceptions for "SnapArtV2-1" folder in "SnapArtV2-1" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Component/Resources/SnapArtV2-1 Localizations/ar.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/de.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/en.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/es.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/fr.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/hi.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/hu.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/id.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/ja.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/ko.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/ms.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/th.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/tr.xcloc",
+				"Component/Resources/SnapArtV2-1 Localizations/zh-Hans.xcloc",
 				face_landmarker.task,
 				Info.plist,
 			);
@@ -57,18 +74,21 @@
 				C45D56312E3C62200082C002 /* FirebaseAuth in Frameworks */,
 				C45D56332E3C62200082C002 /* FirebaseFirestore in Frameworks */,
 				C4230E5D2E44A3C10057C36C /* FirebaseStorage in Frameworks */,
+				C447892F2E60418600AD7742 /* FirebaseCrashlytics in Frameworks */,
+				C44789312E6041F000AD7742 /* FirebaseCrashlytics in Frameworks */,
+				C4C0B4E72E6EB07900BEAF7D /* FirebaseDatabase in Frameworks */,
 				C4230E5B2E44A3C10057C36C /* FirebaseFirestore in Frameworks */,
-				FD78A457056A75D53A2575BC /* Pods_SnapArtV2_1.framework in Frameworks */,
+				01A57AC5E7AD550824AC4BB8 /* Pods_SnapArtV2_1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9209F4606EF30533113768B3 /* Frameworks */ = {
+		B33B684B52744D27EBBF76FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DC8ABB74FDBFCF636B817E1F /* Pods_SnapArtV2_1.framework */,
+				E997204DF7C0BDF7B3926287 /* Pods_SnapArtV2_1.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,7 +99,7 @@
 				C4DA8A522E3B032F00AD62D9 /* SnapArtV2-1 */,
 				C4DA8A512E3B032F00AD62D9 /* Products */,
 				DEF8CAFCB3BB019E5EF8D299 /* Pods */,
-				9209F4606EF30533113768B3 /* Frameworks */,
+				B33B684B52744D27EBBF76FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +114,8 @@
 		DEF8CAFCB3BB019E5EF8D299 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E7EC30E2611C24828BFF4405 /* Pods-SnapArtV2-1.debug.xcconfig */,
-				11A315CBEDA3B7297DA4BD10 /* Pods-SnapArtV2-1.release.xcconfig */,
+				5B7A191C0505DC996D51A73F /* Pods-SnapArtV2-1.debug.xcconfig */,
+				A18F34A33A73C06116CE474F /* Pods-SnapArtV2-1.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -107,12 +127,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4DA8A602E3B033100AD62D9 /* Build configuration list for PBXNativeTarget "SnapArtV2-1" */;
 			buildPhases = (
-				5F672F970AE94791FB999238 /* [CP] Check Pods Manifest.lock */,
+				26B044E43B5D583B3F6547BB /* [CP] Check Pods Manifest.lock */,
 				C4DA8A4C2E3B032F00AD62D9 /* Sources */,
 				C4DA8A4D2E3B032F00AD62D9 /* Frameworks */,
 				C4DA8A4E2E3B032F00AD62D9 /* Resources */,
-				B9373DCEAC6088E4B77AFD21 /* [CP] Embed Pods Frameworks */,
-				62C66084534068290017F1F7 /* [CP] Copy Pods Resources */,
+				C44789322E60423A00AD7742 /* Crashlytics Run  */,
+				B0C2EA286F08B0D757C9A763 /* [CP] Embed Pods Frameworks */,
+				A86431A6D0676583519D576C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,7 +209,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F672F970AE94791FB999238 /* [CP] Check Pods Manifest.lock */ = {
+		26B044E43B5D583B3F6547BB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -210,7 +231,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		62C66084534068290017F1F7 /* [CP] Copy Pods Resources */ = {
+		A86431A6D0676583519D576C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,7 +250,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B9373DCEAC6088E4B77AFD21 /* [CP] Embed Pods Frameworks */ = {
+		B0C2EA286F08B0D757C9A763 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,6 +268,29 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SnapArtV2-1/Pods-SnapArtV2-1-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C44789322E60423A00AD7742 /* Crashlytics Run  */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(SRCROOT)/$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(SRCROOT)/$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Crashlytics Run ";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -388,7 +432,7 @@
 		};
 		C4DA8A612E3B033100AD62D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7EC30E2611C24828BFF4405 /* Pods-SnapArtV2-1.debug.xcconfig */;
+			baseConfigurationReference = 5B7A191C0505DC996D51A73F /* Pods-SnapArtV2-1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -411,7 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thanhnhan.SnapArtV2-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapart.premium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -421,7 +465,7 @@
 		};
 		C4DA8A622E3B033100AD62D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11A315CBEDA3B7297DA4BD10 /* Pods-SnapArtV2-1.release.xcconfig */;
+			baseConfigurationReference = A18F34A33A73C06116CE474F /* Pods-SnapArtV2-1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -437,14 +481,14 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientATIONS_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thanhnhan.SnapArtV2-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.snapart.premium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -507,6 +551,14 @@
 			package = C45D562F2E3C62200082C002 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
+		C447892E2E60418600AD7742 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseCrashlytics;
+		};
+		C44789302E6041F000AD7742 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseCrashlytics;
+		};
 		C45D56302E3C62200082C002 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C45D562F2E3C62200082C002 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -521,6 +573,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C45D562F2E3C62200082C002 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		C4C0B4E62E6EB07900BEAF7D /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -5,10 +5,11 @@ final class AdsService {
 	private init() {}
 	
 	func preloadOpenAd() {
-		AppOpenAdManager.shared.loadAdIfNeeded()
+		AppOpenAdManager.shared.loadAppOpenAd()
 	}
 	
 	func presentOpenAd(completion: (() -> Void)? = nil) {
-		AppOpenAdManager.shared.presentAdIfAvailable(completion: completion)
+		AppOpenAdManager.shared.showAppOpenAdIfAvailable()
+		completion?()
 	}
 } 

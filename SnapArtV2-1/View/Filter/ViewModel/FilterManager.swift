@@ -6,12 +6,12 @@ import MediaPipeTasksVision
  * FilterManager - Lớp quản lý filter duy nhất trong ứng dụng
  * Quản lý việc lựa chọn filter và áp dụng filter lên hình ảnh
  */
-class FilterManager {
+class FilterManager: ObservableObject {
     // Singleton instance
     static let shared = FilterManager()
     
     // Filter hiện tại đang áp dụng
-    private(set) var currentFilter: FilterType?
+    @Published private(set) var currentFilter: FilterType?
     
     // Danh sách các filter có sẵn
     private(set) var availableFilters: [FilterType] = [

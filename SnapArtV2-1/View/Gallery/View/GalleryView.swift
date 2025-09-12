@@ -3,6 +3,7 @@ import SwiftUI
 
 struct GalleryView: View {
     @StateObject private var viewModel = GalleryViewModel()
+    @StateObject private var interstitialAdManager = InterstitialAdManager.shared
     @State private var showingImageDetail = false
     @State private var showingDeleteConfirmation = false
     @State private var imageToDelete: UUID?
@@ -33,6 +34,11 @@ struct GalleryView: View {
                         }
                     }
                     .refreshable {
+                        // Hiện Interstitial Ad khi refresh Gallery
+                        if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+                            print("Attempting to show interstitial ad from GalleryView")
+                            interstitialAdManager.showInterstitialAd()
+                        }
                         viewModel.fetchSavedImages()
                     }
                 }
@@ -56,7 +62,7 @@ struct GalleryView: View {
                 }
             }
             .navigationTitle(NSLocalizedString("Thư viện ảnh", comment: "Gallery"))
-            .foregroundColor(.white)
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -94,6 +100,7 @@ struct GalleryView: View {
             } message: {
                 Text(NSLocalizedString("Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác.", comment: "Delete all confirmation message"))
             }
+           
         }
         .id(languageViewModel.refreshID)
         .sheet(isPresented: $showingImageDetail) {
@@ -107,6 +114,7 @@ struct GalleryView: View {
                 })
             }
         }
+        .withBannerAd(adUnitId: "ca-app-pub-3940256099942544/2934735716")
     }
     
     // Grid view hiển thị các ảnh
@@ -164,3 +172,4 @@ struct GalleryView_Previews: PreviewProvider {
             .environmentObject(LanguageViewModel())
     }
 }
+

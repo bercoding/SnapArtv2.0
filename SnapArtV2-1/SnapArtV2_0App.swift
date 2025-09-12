@@ -7,8 +7,10 @@
 
 import SwiftUI
 import FirebaseCore
-import MediaPipeTasksVision
+import FirebaseAuth
+import FirebaseDatabase
 import GoogleMobileAds
+import MediaPipeTasksVision
 
 @main
 struct SnapArtV2_0App: App {
@@ -19,8 +21,6 @@ struct SnapArtV2_0App: App {
     @StateObject private var galleryViewModel = GalleryViewModel()
     @StateObject private var languageViewModel = LanguageViewModel()
     @StateObject private var purchaseManager = InAppPurchaseManager.shared
-    
-    // New app-level state and coordinators
     @StateObject private var appState = AppState()
     @StateObject private var appFlow = AppFlowCoordinator(state: AppState())
     private var resumeFlow: ResumeFlowCoordinator { ResumeFlowCoordinator(state: appState) }
@@ -29,12 +29,29 @@ struct SnapArtV2_0App: App {
     @State private var showOverlaySplash = false
     
     init() {
-        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "Simulator" ]
+        // QUAN TRỌNG: Phải khởi tạo Firebase trước, sau đó mới cấu hình Database
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        
+        // Sau khi đã khởi tạo Firebase, mới cấu hình Database
+        let db = Database.database()
+        db.isPersistenceEnabled = true
+        
+        // Cấu hình quảng cáo và các thành phần khác
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "Simulator","Thanh Nhan" ]
         MobileAds.shared.start(completionHandler: nil)
-        if FirebaseApp.app() == nil { FirebaseApp.configure() }
-        do { _ = MediaPipeFaceMeshManager.shared } catch { print(error.localizedDescription) }
+        
+        do {
+            _ = MediaPipeFaceMeshManager.shared
+        } catch {
+            // Xử lý lỗi nếu có
+        }
+        
+        // Thiết lập Firebase Realtime Database sau khi Firebase đã được khởi tạo
+        setupFirebaseRealtimeDatabase()
     }
-
+    
     var body: some Scene {
         WindowGroup {
             SplashView()
@@ -48,7 +65,7 @@ struct SnapArtV2_0App: App {
                 .onAppear {
                     Task { await purchaseManager.restoreOnAppLaunch() }
                     // Preload Interstitial Ad
-                    InterstitialAdManager.shared.loadAd()
+                    InterstitialAdManager.shared.loadInterstitialAd()
                     
                     // Khởi tạo Native Ad
                     _ = NativeAdManager.shared
@@ -67,6 +84,17 @@ struct SnapArtV2_0App: App {
                     afterSplash: { showOverlaySplash = false }
                 )
             }
+        }
+    }
+    
+    // Thiết lập Firebase Realtime Database
+    private func setupFirebaseRealtimeDatabase() {
+        // Bảo vệ bằng try-catch để tránh crash
+        do {
+            // Thiết lập cấu trúc ban đầu cho database
+            ChatManager.setupInitialDatabaseStructure()
+        } catch {
+            print("ERROR: Không thể thiết lập Firebase Realtime Database: \(error.localizedDescription)")
         }
     }
 }

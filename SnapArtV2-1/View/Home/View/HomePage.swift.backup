@@ -1,0 +1,291 @@
+//import Firebase
+//import FirebaseAuth
+//import FirebaseFirestore
+//import GoogleMobileAds
+//import SwiftUI
+//
+//struct HomePage: View {
+//    @StateObject private var authViewModel = AuthViewModel()
+//    @StateObject private var interstitialAdManager = InterstitialAdManager.shared
+//    @StateObject private var languageViewModel = LanguageViewModel()
+//    @StateObject private var chatManager = ChatManager.shared
+//    
+//    @State private var selectedCategory: FilterCategory?
+//    @State private var selectedFilter: FilterType?
+//    @State private var showCamera = false
+//    @State private var showLanguageSettings = false
+//    @State private var showPremium = false
+//    
+//    // Kích thước của bottom bar để tính toán padding
+//    private let bottomBarHeight: CGFloat = 120
+//    
+//    var body: some View {
+//        ZStack(alignment: .bottom) {
+//            // Gradient background
+//            AppTheme.mainGradient
+//                .ignoresSafeArea()
+//            
+//            VStack(spacing: 0) {
+//                // Header
+//                header
+//                
+//                // Category chips
+//                CategoryChipsView(selectedCategory: $selectedCategory)
+//                    .padding(.top, 5)
+//                
+//                // Filter grid với padding dưới cùng để tránh bị che bởi bottom bar
+//                ScrollView {
+//                    if let cat = selectedCategory {
+//                        FiltersGrid(category: cat, onSelect: { ft in
+//                            selectedFilter = ft
+//                            FilterManager.shared.setFilter(ft)
+//                            // Hiện Interstitial Ad trước khi mở Camera
+//                            if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+//                                print("Attempting to show interstitial ad from HomePage")
+//                                interstitialAdManager.showInterstitialAd()
+//                                // Đợi một chút để quảng cáo có thể hiển thị trước khi mở camera
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                                    showCamera = true
+//                                }
+//                            } else {
+//                                showCamera = true
+//                            }
+//                        })
+//                        .padding(.bottom, bottomBarHeight) // Thêm padding để tránh bị che bởi bottom bar
+//                    } else {
+//                        // Sử dụng ZStack để căn giữa hoàn toàn
+//                        ZStack {
+//                            VStack(spacing: 12) {
+//                                // Thêm khoảng trống để đẩy nội dung xuống giữa màn hình
+//                                Spacer()
+//                                    .frame(height: 80)
+//                                
+//                                // Biểu tượng thanh trượt
+//                                Image(systemName: "slider.horizontal.3")
+//                                    .font(.system(size: 42, weight: .semibold))
+//                                    .foregroundColor(.white)
+//                                
+//                                // Thông báo
+//                                Text(NSLocalizedString("Chọn một danh mục phía trên để xem các filter", comment: "Select category message"))
+//                                    .font(.callout)
+//                                    .foregroundColor(.white.opacity(0.8))
+//                                    .id(languageViewModel.refreshID)
+//                                    .multilineTextAlignment(.center)
+//                                    .padding(.horizontal)
+//                                
+//                                Spacer()
+//                            }
+//                            .padding(20)
+//                            .background(
+//                                RoundedRectangle(cornerRadius: 15)
+//                                    .fill(Color.white.opacity(0.1))
+//                            )
+//                            .padding(.horizontal, 20)
+//                            .padding(.vertical, 50)
+//                            .frame(maxHeight: .infinity)
+//                        }
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        
+//                        // Thêm padding dưới cùng để tránh bị che bởi bottom bar
+//                        Spacer()
+//                            .frame(height: bottomBarHeight)
+//                    }
+//                }
+//            }
+//            .ignoresSafeArea(.all, edges: .top) // Loại bỏ khoảng trắng trên cùng
+//            
+//            // Bottom bar được đặt ở dưới cùng của ZStack
+//            bottomBar
+//        }
+//        .navigationBarHidden(true) // Ẩn thanh điều hướng
+//        .fullScreenCover(isPresented: $showCamera) {
+//            CameraViewControllerRepresentable(isPresented: $showCamera)
+//        }
+//        .sheet(isPresented: $showLanguageSettings) {
+//            LanguageView()
+//                .environmentObject(languageViewModel)
+//                .onReceive(NotificationCenter.default.publisher(for: .languageChanged)) { _ in
+//                    // Khi ngôn ngữ thay đổi, đóng sheet
+//                    showLanguageSettings = false
+//                }
+//        }
+//        .sheet(isPresented: $showPremium) {
+//            PremiumView(purchaseManager: InAppPurchaseManager.shared)
+//                .environmentObject(InAppPurchaseManager.shared)
+//        }
+//        .id(languageViewModel.refreshID) // Force reload toàn bộ view khi ngôn ngữ thay đổi
+//    }
+//    
+//    private var header: some View {
+//        HStack {
+//            VStack(alignment: .leading, spacing: 2) {
+//                Text(NSLocalizedString("SnapArt", comment: "App name"))
+//                    .font(.system(size: 28, weight: .bold, design: .rounded)) // Font lớn và đậm hơn
+//                    .foregroundColor(.white)
+//                    .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+//                Text(NSLocalizedString("Tạo ảnh vui theo thời gian thực", comment: "App tagline"))
+//                    .font(.subheadline)
+//                    .foregroundColor(.white.opacity(0.8))
+//                    .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+//            }
+//            Spacer()
+//            
+//            // Nút Force Crash
+//            Button {
+//                Crashlytics.crashlytics().log("Force crash tapped from HomePage header")
+//                fatalError("Test Crash - Manual trigger")
+//            } label: {
+//                Image(systemName: "bolt.trianglebadge.exclamationmark")
+//                    .font(.title2)
+//                    .foregroundColor(.yellow)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
+//            
+//            Button {
+//                FilterUnlockManager.shared.resetAllFilters()
+//            } label: {
+//                Image(systemName: "arrow.counterclockwise")
+//                    .font(.title2)
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
+//            
+//            // Nút đăng xuất
+//            Button {
+//                authViewModel.signOut()
+//            } label: {
+//                Image(systemName: "rectangle.portrait.and.arrow.right")
+//                    .font(.title2)
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
+//        }
+//        .padding(.horizontal)
+//        .padding(.vertical, 8) // Giảm padding dọc
+//        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0) // Thêm padding cho safe area
+//        .background(.ultraThinMaterial)
+//        .id(languageViewModel.refreshID) // Force reload khi ngôn ngữ thay đổi
+//    }
+//        
+//    private var bottomBar: some View {
+//        VStack(spacing: 0) {
+//            // Chỉ hiển thị banner ad nếu người dùng không phải là Premium
+//            if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+//                // Bọc banner ad trong một container để đảm bảo nó full chiều ngang
+//                ZStack {
+//                    Color.black.opacity(0.3) // Nền tối cho banner
+//                    
+//                    BannerAdView(adUnitID: "ca-app-pub-3940256099942544/2435281174")
+//                        .frame(height: 50)
+//                        .padding(.vertical, 5) // Thêm padding dọc để tách khỏi bottom bar
+//                }
+//                .frame(maxWidth: .infinity)
+//                .frame(height: 60) // Chiều cao cố định cho container
+//            }
+//            
+//            // Navigation bar
+//            HStack(spacing: 12) {
+//                // Trang chủ
+//                NavigationLink {
+//                    HomePage()
+//                        .id(languageViewModel.refreshID)
+//                } label: {
+//                    VStack(spacing: 4) {
+//                        Image(systemName: "house.circle")
+//                            .foregroundColor(.white)
+//                        Text(NSLocalizedString("Trang Chủ", comment: "Home"))
+//                            .font(.caption)
+//                            .foregroundColor(.white)
+//                            .id(languageViewModel.refreshID)
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .padding(.vertical, 10)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                }
+//                
+//                // Thư viện ảnh
+//                NavigationLink {
+//                    GalleryView()
+//                        .id(languageViewModel.refreshID)
+//                } label: {
+//                    VStack(spacing: 4) {
+//                        Image(systemName: "photo.on.rectangle")
+//                            .foregroundColor(.white)
+//                        Text(NSLocalizedString("Thư viện", comment: "Gallery"))
+//                            .font(.caption)
+//                            .foregroundColor(.white)
+//                            .id(languageViewModel.refreshID)
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .padding(.vertical, 10)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                }
+//                
+//                // Chat
+//                NavigationLink {
+//                    ChatListView()
+//                        .id(languageViewModel.refreshID)
+//                } label: {
+//                    ZStack {
+//                        VStack(spacing: 4) {
+//                            Image(systemName: "message.circle")
+//                                .foregroundColor(.white)
+//                            Text(NSLocalizedString("Tin nhắn", comment: "Chat"))
+//                                .font(.caption)
+//                                .foregroundColor(.white)
+//                                .id(languageViewModel.refreshID)
+//                        }
+//                        
+//                        // Badge cho tin nhắn chưa đọc
+//                        if chatManager.unreadConversationsCount > 0 {
+//                            Text("\(chatManager.unreadConversationsCount)")
+//                                .font(.caption2)
+//                                .padding(4)
+//                                .background(Color.red)
+//                                .clipShape(Circle())
+//                                .foregroundColor(.white)
+//                                .offset(x: 12, y: -12)
+//                        }
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .padding(.vertical, 10)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                }
+//                
+//                // Hồ sơ
+//                NavigationLink {
+//                    ProfileView()
+//                        .id(languageViewModel.refreshID)
+//                } label: {
+//                    VStack(spacing: 4) {
+//                        Image(systemName: "person.circle")
+//                            .foregroundColor(.white)
+//                        Text(NSLocalizedString("Hồ sơ", comment: "Profile"))
+//                            .font(.caption)
+//                            .foregroundColor(.white)
+//                            .id(languageViewModel.refreshID)
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                    .padding(.vertical, 10)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                }
+//            }
+//            .padding(.horizontal)
+//            .padding(.vertical, 5)
+//            .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0) // Thêm padding cho safe area
+//            .background(Color.black.opacity(0.5)) // Nền cho phần navigation
+//        }
+//        .background(Color.clear) // Nền trong suốt cho toàn bộ VStack
+//        .ignoresSafeArea(.all, edges: .bottom) // Đảm bảo bottom bar kéo dài đến cạnh dưới
+//    }
+//}

@@ -55,4 +55,4 @@ Có nhiều cách để truy cập chức năng chat:
 ## Yêu cầu hệ thống
 
 - iOS 15.0 trở lên
-- Kết nối internet ổn định để đồng bộ tin nhắn và hình ảnh
+- Kết nối internet ổn định để đồng bộ tin nhắn và hình ảnh 

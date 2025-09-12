@@ -1,67 +1,156 @@
 import SwiftUI
+import GoogleMobileAds
 
 struct LanguageView: View {
     @EnvironmentObject private var viewModel: LanguageViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) private var presentationMode
+    @StateObject private var nativeAdManager = NativeAdManager.shared
+    @StateObject private var profileManager = UserProfileManager.shared
     @State private var pendingCode: String = ""
+    @State private var showDebugAd = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                AppTheme.mainGradient
-                    .ignoresSafeArea()
-                VStack(spacing: 0) {
-                    // Header
-                    Header
-                    
-                    // Language List
-                    scrollView
-                    
-                    Spacer()
+        ZStack {
+            AppTheme.mainGradient
+                .ignoresSafeArea()
+            VStack(spacing: 0) {
+                // Header
+                Header
+                
+                // Language Display
+                scrollView
+                
+                Spacer(minLength: 0)
+                
+                // Native Ad ở dưới cùng
+                if profileManager.currentUser?.stats.premiumStatus == true {
+                    // Không hiển thị quảng cáo cho người dùng premium
+                    EmptyView()
+                } else {
+                    nativeAdView
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10) // Giảm padding dọc
+                        .frame(maxHeight: 220) // Giới hạn chiều cao tối đa
+                        .onTapGesture(count: 3) {
+                            showDebugAd.toggle()
+                            print("[LanguageView] Debug ad: \(showDebugAd)")
+                            
+                            if showDebugAd {
+                                // Reset và tải lại quảng cáo
+                                nativeAdManager.resetAndReloadAd()
+                            }
+                        }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-        
         }
+        .navigationBarTitle("Ngôn ngữ", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title2)
+                    .foregroundColor(.primary)
+            },
+            trailing: Button(action: {
+                // Áp dụng ngôn ngữ khi nhấn OK (UIKit bundle override)
+                if !pendingCode.isEmpty { viewModel.selectedCode = pendingCode }
+                viewModel.applyLanguage()
+                NotificationCenter.default.post(name: .languageChanged, object: nil)
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text(NSLocalizedString("Xong", comment: "Done"))
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.blue)
+            }
+        )
         .id(viewModel.refreshID) // Force reload toàn bộ view khi refreshID thay đổi
         .onAppear {
             pendingCode = viewModel.selectedCode
+            
+            // Hủy tất cả các yêu cầu quảng cáo đang chờ xử lý
+            nativeAdManager.cancelLoading()
+            
+            // Tải quảng cáo khi view xuất hiện nếu không phải là premium
+            if profileManager.currentUser?.stats.premiumStatus != true {
+                print("[LanguageView] onAppear - Will load native ad after delay")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    nativeAdManager.resetAndReloadAd()
+                }
+            }
         }
-        .navigationBarBackButtonHidden()
+        .onDisappear {
+            // Hủy tất cả các yêu cầu quảng cáo đang chờ xử lý khi rời khỏi view
+            nativeAdManager.cancelLoading()
+        }
+    }
+    
+    // MARK: - UI Components
+    
+    private var nativeAdView: some View {
+        Group {
+            if let _ = nativeAdManager.nativeAd {
+                NativeAdViewContainer()
+                    .frame(height: 200) // Giảm chiều cao từ 300 xuống 200
+            } else if showDebugAd {
+                // Debug view
+                VStack(spacing: 8) {
+                    Text("Debug Quảng Cáo")
+                        .font(.headline)
+                    
+                    Text("Trạng thái: \(nativeAdManager.isLoading ? "Đang tải" : "Chưa tải")")
+                    
+                    if let error = nativeAdManager.lastError {
+                        Text("Lỗi: \(error)")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    Button("Tải lại quảng cáo") {
+                        nativeAdManager.resetAndReloadAd()
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 8)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                }
+                .padding()
+                .frame(height: 120) // Giảm chiều cao từ 150 xuống 120
+                .frame(maxWidth: .infinity)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(12)
+            } else {
+                // Loading view
+                VStack(spacing: 8) {
+                    ProgressView()
+                    
+                    Text("Đang tải quảng cáo...")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding()
+                .frame(height: 60) // Giảm chiều cao từ 80 xuống 60
+                .frame(maxWidth: .infinity)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(12)
+            }
+        }
     }
     
     var Header: some View {
         VStack(spacing: 16) {
-            HStack {
-                Text(NSLocalizedString("Ngôn ngữ", comment: "Language"))
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .id(viewModel.refreshID) // Force reload khi refreshID thay đổi
-                    .padding(.leading, 100)
-                
-                Spacer()
-                
-                Button(NSLocalizedString("OK", comment: "OK")) {
-                    // Áp dụng ngôn ngữ khi nhấn OK (UIKit bundle override)
-                    if !pendingCode.isEmpty { viewModel.selectedCode = pendingCode }
-                    viewModel.applyLanguage()
-                    NotificationCenter.default.post(name: .languageChanged, object: nil)
-                    dismiss()
-                }
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundColor(.blue)
-                .id(viewModel.refreshID)
-            }
-     
             Text(NSLocalizedString("Chọn ngôn ngữ cho ứng dụng", comment: "Choose language for app"))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .id(viewModel.refreshID) // Force reload khi refreshID thay đổi
+                .padding(.top, 10)
         }
-        .padding(.top, 20)
         .padding(.horizontal, 20)
     }
     
@@ -158,7 +247,7 @@ struct LanguageRowView: View {
     }
 }
 
-#Preview {
-    LanguageView()
-        .environmentObject(LanguageViewModel())
-}
+//#Preview {
+//    LanguageView()
+//        .environmentObject(LanguageViewModel())
+//}

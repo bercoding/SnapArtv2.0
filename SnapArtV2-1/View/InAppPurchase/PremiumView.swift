@@ -2,74 +2,90 @@ import SwiftUI
 import StoreKit
 
 struct PremiumView: View {
-    @EnvironmentObject private var purchaseManager: InAppPurchaseManager
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.presentationMode) private var presentationMode
     @StateObject private var viewModel: PremiumViewModel
-    @State private var selectedProduct: Product?
     
     init(purchaseManager: InAppPurchaseManager) {
-        self._viewModel = StateObject(wrappedValue: PremiumViewModel(purchaseManager: purchaseManager))
+        _viewModel = StateObject(wrappedValue: PremiumViewModel(purchaseManager: purchaseManager))
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background gradient
-                LinearGradient(
-                    colors: [Color(hex: "667eea"), Color(hex: "764ba2")],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+        ZStack {
+            // Gradient background
+            AppTheme.mainGradient
                 .ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        // Hero Section - Compact
-                        heroSection
-                        
-                        // Features Grid - Compact
-                        featuresGridSection
-                        
-                        // Pricing Plans - Compact
-                        pricingSection
-                        
-                        // Action Buttons - Compact
-                        actionButtonsSection
-                        
-                        // Legal Info - Compact
-                        legalSection
-                    }
-                    .padding(.bottom, 30)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
-            }
-            .navigationTitle("")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title2)
+            
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Hero Section
+                    heroSection
+                    
+                    Divider()
+                        .background(Color.white.opacity(0.3))
+                    
+                    // Features Grid
+                    featuresGridSection
+                    
+                    Divider()
+                        .background(Color.white.opacity(0.3))
+                    
+                    // Pricing Section
+                    pricingSection
+                    
+                    // Restore Purchases Button
+                    Button(action: {
+                        Task {
+                            await viewModel.restorePurchases()
+                        }
+                    }) {
+                        Text(NSLocalizedString("Khôi phục giao dịch đã mua", comment: "Restore purchases"))
+                            .font(.subheadline)
                             .foregroundColor(.white.opacity(0.8))
+                            .padding(.vertical, 12)
                     }
+                    
+                    // Terms and Privacy
+                    VStack(spacing: 8) {
+                        Text(NSLocalizedString("Bằng việc mua, bạn đồng ý với", comment: "By purchasing you agree to"))
+                            .font(.caption2)
+                            .foregroundColor(.white.opacity(0.6))
+                        
+                        HStack(spacing: 4) {
+                            Text(NSLocalizedString("Điều khoản dịch vụ", comment: "Terms of Service"))
+                                .font(.caption2)
+                                .foregroundColor(.blue)
+                            
+                            Text("•")
+                                .font(.caption2)
+                                .foregroundColor(.white.opacity(0.6))
+                            
+                            Text(NSLocalizedString("Chính sách bảo mật", comment: "Privacy Policy"))
+                                .font(.caption2)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.bottom, 20)
                 }
+                .padding()
             }
         }
+        .navigationBarTitle("Premium", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.white)
+        })
         .alert(NSLocalizedString("Thông báo", comment: "Notice"), isPresented: $viewModel.showAlert) {
             Button(NSLocalizedString("OK", comment: "OK")) {}
         } message: {
             Text(viewModel.alertMessage)
         }
         .onAppear {
-            Task {
-                await viewModel.loadProducts()
-            }
+            // Sản phẩm đã được tải trong init của PremiumViewModel
         }
-        .navigationBarBackButtonHidden()
-       
     }
     
     // MARK: - Hero Section - Compact
@@ -160,45 +176,28 @@ struct PremiumView: View {
     // MARK: - Pricing Section - Compact
     
     private var pricingSection: some View {
-        VStack(spacing: 20) {
-            Text(NSLocalizedString("Chọn gói phù hợp", comment: "Choose your plan"))
+        VStack(spacing: 16) {
+            Text(NSLocalizedString("Chọn gói Premium", comment: "Choose Premium Plan"))
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
-            // Plan Selector
+            // Segment Control
             HStack(spacing: 0) {
-                PlanToggleButton(
-                    title: NSLocalizedString("Tháng", comment: "Monthly"),
+                SegmentButton(
+                    title: NSLocalizedString("Hàng tháng", comment: "Monthly"),
                     isSelected: viewModel.selectedPlan == "monthly",
                     action: { viewModel.selectedPlan = "monthly" }
                 )
                 
-                PlanToggleButton(
-                    title: NSLocalizedString("Năm", comment: "Yearly"),
+                SegmentButton(
+                    title: NSLocalizedString("Hàng năm", comment: "Yearly"),
                     isSelected: viewModel.selectedPlan == "yearly",
                     action: { viewModel.selectedPlan = "yearly" }
                 )
             }
             .background(Color.white.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            
-            // Upgrade message
-            if !viewModel.getUpgradeMessage().isEmpty {
-                HStack {
-                    Image(systemName: "arrow.up.circle.fill")
-                        .foregroundColor(.green)
-                        .font(.caption)
-                    Text(viewModel.getUpgradeMessage())
-                        .font(.caption)
-                        .foregroundColor(.green)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color.green.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-            }
             
             // Pricing Cards - Compact
             VStack(spacing: 16) {
@@ -213,7 +212,7 @@ struct PremiumView: View {
                             PricingCard(
                                 product: product,
                                 isPopular: false,
-                                isActive: viewModel.isSubscriptionActive(for: product),
+                                isActive: viewModel.isProductPurchased(product.id),
                                 onPurchase: {
                                     Task {
                                         await viewModel.purchaseSubscription(product)
@@ -233,7 +232,7 @@ struct PremiumView: View {
                             PricingCard(
                                 product: product,
                                 isPopular: true,
-                                isActive: viewModel.isSubscriptionActive(for: product),
+                                isActive: viewModel.isProductPurchased(product.id),
                                 onPurchase: {
                                     Task {
                                         await viewModel.purchaseSubscription(product)
@@ -275,51 +274,6 @@ struct PremiumView: View {
             }
         }
         .padding(.vertical, 20)
-    }
-    
-    // MARK: - Action Buttons Section - Compact
-    
-    private var actionButtonsSection: some View {
-        VStack(spacing: 16) {
-            Button {
-                Task {
-                    await viewModel.restorePurchases()
-                }
-            } label: {
-                HStack {
-                    Image(systemName: "arrow.clockwise")
-                    Text(NSLocalizedString("Khôi phục mua hàng", comment: "Restore purchases"))
-                }
-                .font(.subheadline)
-                .foregroundColor(.white.opacity(0.8))
-                .underline()
-            }
-            
-            Text(NSLocalizedString("* Miễn phí dùng thử 7 ngày", comment: "* 7-day free trial"))
-                .font(.caption)
-                .foregroundColor(.white.opacity(0.7))
-                .multilineTextAlignment(.center)
-        }
-        .padding(.vertical, 20)
-    }
-    
-    // MARK: - Legal Section - Compact
-    
-    private var legalSection: some View {
-        VStack(spacing: 8) {
-            Text(NSLocalizedString("Bằng việc mua, bạn đồng ý với", comment: "By purchasing, you agree to"))
-                .font(.caption)
-                .foregroundColor(.white.opacity(0.6))
-            
-            HStack(spacing: 20) {
-                Button(NSLocalizedString("Điều khoản sử dụng", comment: "Terms of Service")) {}
-                Button(NSLocalizedString("Chính sách bảo mật", comment: "Privacy Policy")) {}
-            }
-            .font(.caption)
-            .foregroundColor(.white.opacity(0.6))
-            .underline()
-        }
-        .padding(.bottom, 20)
     }
 }
 
@@ -378,7 +332,7 @@ struct FeatureCard: View {
     }
 }
 
-struct PlanToggleButton: View {
+struct SegmentButton: View {
     let title: String
     let isSelected: Bool
     let action: () -> Void
@@ -440,7 +394,7 @@ struct PricingCard: View {
             
             // Price
             HStack(alignment: .bottom, spacing: 6) {
-                Text(product.displayPrice)
+                Text(viewModel.formatPrice(product))
                     .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
@@ -498,32 +452,35 @@ struct PricingCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Button(action: onPurchase) {
-                    Text(NSLocalizedString("Bắt đầu ngay", comment: "Get Started"))
+                    Text(NSLocalizedString("Mua ngay", comment: "Buy now"))
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
+                        .padding(.vertical, 10)
                         .background(
                             LinearGradient(
-                                colors: [Color(hex: "ff6b6b"), Color(hex: "ee5a24")],
+                                colors: [Color.blue, Color.purple],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
+                .disabled(viewModel.isPurchasing)
+                .overlay(
+                    Group {
+                        if viewModel.isPurchasing {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        }
+                    }
+                )
             }
         }
-        .padding(18)
-        .background(
-            RoundedRectangle(cornerRadius: 18)
-                .fill(Color.white.opacity(0.1))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 18)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                )
-        )
+        .padding()
+        .background(Color.white.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
