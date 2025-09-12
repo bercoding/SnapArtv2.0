@@ -6,87 +6,95 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
 import GoogleMobileAds
-import Firebase
+import MediaPipeTasksVision
 
 @main
 struct SnapArtV2_0App: App {
-    @StateObject private var appFlowCoordinator = AppFlowCoordinator.shared
-    @StateObject private var resumeFlowCoordinator = ResumeFlowCoordinator.shared
+    let coreDataManager = CoreDataManager.shared
     
-    // Thêm lại các ViewModel cần thiết
-    @StateObject private var languageViewModel = LanguageViewModel()
     @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var onboardingManager = OnboardingManager()
     @StateObject private var galleryViewModel = GalleryViewModel()
+    @StateObject private var languageViewModel = LanguageViewModel()
+    @StateObject private var purchaseManager = InAppPurchaseManager.shared
+    @StateObject private var appState = AppState()
+    @StateObject private var appFlow = AppFlowCoordinator(state: AppState())
+    private var resumeFlow: ResumeFlowCoordinator { ResumeFlowCoordinator(state: appState) }
+    
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var showOverlaySplash = false
     
     init() {
-        // Khởi tạo Google Mobile Ads SDK
+        // QUAN TRỌNG: Phải khởi tạo Firebase trước, sau đó mới cấu hình Database
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+        
+        // Sau khi đã khởi tạo Firebase, mới cấu hình Database
+        let db = Database.database()
+        db.isPersistenceEnabled = true
+        
+        // Cấu hình quảng cáo và các thành phần khác
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [ "Simulator","Thanh Nhan" ]
         MobileAds.shared.start(completionHandler: nil)
         
-        // Khởi tạo Firebase
-        FirebaseApp.configure()
+        do {
+            _ = MediaPipeFaceMeshManager.shared
+        } catch {
+            // Xử lý lỗi nếu có
+        }
         
-        // Khởi tạo các ad managers
-        _ = NativeAdManager.shared
-        _ = RewardedAdManager.shared
-        _ = InterstitialAdManager.shared
-        _ = AppOpenAdManager.shared
+        // Thiết lập Firebase Realtime Database sau khi Firebase đã được khởi tạo
+        setupFirebaseRealtimeDatabase()
     }
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                // Main content
-                switch appFlowCoordinator.currentFlow {
-                case .splash:
-                    SplashView()
-                        .environmentObject(languageViewModel)
-                        .onAppear {
-                            // Splash hiển thị 1.5 giây
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                AppEvents.shared.notifySplashFinished()
-                            }
-                        }
+            SplashView()
+                .environment(\.managedObjectContext, coreDataManager.persistentContainer.viewContext)
+                .environmentObject(authViewModel)
+                .environmentObject(onboardingManager)
+                .environmentObject(galleryViewModel)
+                .environmentObject(languageViewModel)
+                .environmentObject(purchaseManager)
+                .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
+                .onAppear {
+                    Task { await purchaseManager.restoreOnAppLaunch() }
+                    // Preload Interstitial Ad
+                    InterstitialAdManager.shared.loadInterstitialAd()
                     
-                case .language:
-                    LanguageView()
-                        .environmentObject(languageViewModel)
-                        .onAppear {
-                            // Language chỉ hiển thị 1 lần
-                            if !AppState.shared.hasShownLanguageOnce {
-                                AppState.shared.setLanguageShownOnce()
-                            }
-                        }
-                        .onDisappear {
-                            AppEvents.shared.notifyLanguageFinished()
-                        }
+                    // Khởi tạo Native Ad
+                    _ = NativeAdManager.shared
                     
-                case .onboarding:
-                    OnboardingView()
-                        .environmentObject(onboardingManager)
-                        .environmentObject(languageViewModel)
-                        .onAppear {
-                            // Onboarding chỉ hiển thị 1 lần
-                            if !AppState.shared.hasCompletedOnboarding {
-                                AppState.shared.setOnboardingCompleted()
-                            }
-                        }
-                        .onDisappear {
-                            AppEvents.shared.notifyOnboardingFinished()
-                        }
-                    
-                case .main:
-                    ContentView()
-                        .environmentObject(authViewModel)
-                        .environmentObject(galleryViewModel)
-                        .environmentObject(languageViewModel)
-                        .environment(\.locale, Locale(identifier: languageViewModel.selectedCode))
+                    // Khởi tạo Rewarded Ad
+                    _ = RewardedAdManager.shared
                 }
+                .sheet(isPresented: $appFlow.showLanguage) {
+                    LanguageView().environmentObject(languageViewModel)
+                }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                resumeFlow.handleActive(
+                    showSplash: { showOverlaySplash = true },
+                    afterSplash: { showOverlaySplash = false }
+                )
             }
-            .environmentObject(appFlowCoordinator)
-            .environmentObject(resumeFlowCoordinator)
-            .environmentObject(languageViewModel) // Cung cấp cho tất cả view con
+        }
+    }
+    
+    // Thiết lập Firebase Realtime Database
+    private func setupFirebaseRealtimeDatabase() {
+        // Bảo vệ bằng try-catch để tránh crash
+        do {
+            // Thiết lập cấu trúc ban đầu cho database
+            ChatManager.setupInitialDatabaseStructure()
+        } catch {
+            print("ERROR: Không thể thiết lập Firebase Realtime Database: \(error.localizedDescription)")
         }
     }
 }

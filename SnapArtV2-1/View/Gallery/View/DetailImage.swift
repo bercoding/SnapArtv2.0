@@ -28,7 +28,7 @@ struct DetailImage: View {
                 
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
-                        Text("Thời gian chụp:")
+                        Text(NSLocalizedString("Thời gian chụp:", comment: "Capture time"))
                             .fontWeight(.medium)
                         Spacer()
                         Text(dateFormatter.string(from: dateCreated))
@@ -36,7 +36,7 @@ struct DetailImage: View {
                     
                     if let filterType = filterType {
                         HStack {
-                            Text("Bộ lọc:")
+                            Text(NSLocalizedString("Bộ lọc:", comment: "Filter"))
                                 .fontWeight(.medium)
                             Spacer()
                             Text(filterType)
@@ -50,14 +50,14 @@ struct DetailImage: View {
                 
                 Spacer()
             }
-            .navigationTitle("Chi tiết ảnh")
+            .navigationTitle(NSLocalizedString("Chi tiết ảnh", comment: "Image details"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("Đóng")
+                        Text(NSLocalizedString("Đóng", comment: "Close"))
                     }
                 }
                 
@@ -78,13 +78,13 @@ struct DetailImage: View {
                     }
                 }
             }
-            .alert("Xóa ảnh này?", isPresented: $showDeleteConfirmation) {
-                Button("Hủy", role: .cancel) { }
-                Button("Xóa", role: .destructive) {
+            .alert(NSLocalizedString("Xóa ảnh này?", comment: "Delete this image?"), isPresented: $showDeleteConfirmation) {
+                Button(NSLocalizedString("Hủy", comment: "Cancel"), role: .cancel) { }
+                Button(NSLocalizedString("Xóa", comment: "Delete"), role: .destructive) {
                     onDelete()
                 }
             } message: {
-                Text("Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng.")
+                Text(NSLocalizedString("Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng.", comment: "Image will be permanently deleted from the app"))
             }
         }
     }

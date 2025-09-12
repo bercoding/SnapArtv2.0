@@ -4,13 +4,114 @@
     "" : {
 
     },
-    "Ad" : {
+    "* Miễn phí dùng thử 7 ngày" : {
+      "comment" : "* 7-day free trial",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "* 7-day free trial"
+          }
+        }
+      }
+    },
+    "/năm" : {
+      "comment" : "/year",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/year"
+          }
+        }
+      }
+    },
+    "/tháng" : {
+      "comment" : "/month",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/month"
+          }
+        }
+      }
+    },
+    "%lld" : {
 
+    },
+    "•" : {
+
+    },
+    "1 tuần dùng thử miễn phí" : {
+      "comment" : "1 week free trial",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 week free trial"
+          }
+        }
+      }
+    },
+    "Accept" : {
+
+    },
+    "Ad" : {
+      "comment" : "Ad",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad"
+          }
+        }
+      }
     },
     "Ad Not Ready" : {
+      "comment" : "Ad Not Ready",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad Not Ready"
+          }
+        }
+      }
+    },
+    "Add Friend" : {
 
     },
+    "Add friends to start sharing your photos!" : {
+
+    },
+    "An toàn và tiện lợi" : {
+      "comment" : "Safe and convenient",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safe and convenient"
+          }
+        }
+      }
+    },
+    "An unknown error occurred" : {
+      "comment" : "Unknown error",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred"
+          }
+        }
+      }
+    },
     "Ảnh sẽ bị xóa vĩnh viễn khỏi ứng dụng." : {
+      "comment" : "Image will be permanently deleted from the app",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -92,8 +193,17 @@
         }
       }
     },
+    "Are you sure you want to remove %@ from your friends?" : {
+
+    },
+    "Bạn bè" : {
+
+    },
+    "Bạn có chắc chắn muốn xóa toàn bộ dữ liệu chat không? Hành động này không thể hoàn tác." : {
+
+    },
     "Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác." : {
-      "comment" : "Delete all message",
+      "comment" : "Delete all confirmation message",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -175,8 +285,19 @@
         }
       }
     },
+    "Bằng việc mua, bạn đồng ý với" : {
+      "comment" : "By purchasing you agree to",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By purchasing, you agree to"
+          }
+        }
+      }
+    },
     "Bắt đầu" : {
-      "comment" : "Start button",
+      "comment" : "Get Started",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -258,7 +379,35 @@
         }
       }
     },
+    "Bắt đầu cuộc trò chuyện" : {
+
+    },
+    "Bắt đầu ngay" : {
+      "comment" : "Get Started",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        }
+      }
+    },
+    "Beauty" : {
+      "comment" : "Beauty",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beauty"
+          }
+        }
+      }
+    },
     "Bộ lọc khuôn mặt" : {
+      "comment" : "Face filters",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -342,6 +491,7 @@
     },
     "Bộ lọc khuôn mặt AR" : {
       "comment" : "Onboarding page 2 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -424,6 +574,7 @@
       }
     },
     "Bộ lọc:" : {
+      "comment" : "Filter",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -506,7 +657,7 @@
       }
     },
     "Bỏ qua" : {
-      "comment" : "Skip button",
+      "comment" : "Skip",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -588,8 +739,46 @@
         }
       }
     },
+    "Cần quyền truy cập Camera" : {
+      "comment" : "Camera access required",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera access required"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+
+    },
+    "Cập nhật thường xuyên" : {
+      "comment" : "Regular updates",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regular updates"
+          }
+        }
+      }
+    },
+    "Câu hỏi thường gặp" : {
+      "comment" : "Frequently Asked Questions",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequently Asked Questions"
+          }
+        }
+      }
+    },
     "Chào mừng đến với SnapArt" : {
       "comment" : "Onboarding page 1 title",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -671,7 +860,20 @@
         }
       }
     },
+    "Chất lượng filter rất cao, rất hài lòng!" : {
+      "comment" : "Filter quality is very high, very satisfied!",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter quality is very high, very satisfied!"
+          }
+        }
+      }
+    },
     "Chi tiết ảnh" : {
+      "comment" : "Image details",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -752,6 +954,50 @@
           }
         }
       }
+    },
+    "Chính sách bảo mật" : {
+      "comment" : "Privacy Policy",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
+    "Chỉnh sửa hồ sơ" : {
+      "comment" : "Edit profile"
+    },
+    "Chỉnh sửa nâng cao" : {
+      "comment" : "Advanced editing",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced editing"
+          }
+        }
+      }
+    },
+    "Chọn Filter" : {
+      "comment" : "Select Filter"
+    },
+    "Chọn gói phù hợp" : {
+      "comment" : "Choose your plan",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your plan"
+          }
+        }
+      }
+    },
+    "Chọn gói Premium" : {
+      "comment" : "Choose Premium Plan"
     },
     "Chọn một danh mục phía trên để xem các filter" : {
       "comment" : "Select category message",
@@ -837,6 +1083,8 @@
       }
     },
     "Chọn một tùy chọn bên dưới" : {
+      "comment" : "Choose an option below",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -919,7 +1167,7 @@
       }
     },
     "Chọn ngôn ngữ cho ứng dụng" : {
-      "comment" : "Choose language subtitle",
+      "comment" : "Choose language for app",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1002,7 +1250,7 @@
       }
     },
     "Chưa có ảnh nào" : {
-      "comment" : "Empty gallery title",
+      "comment" : "No photos yet",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1084,8 +1332,11 @@
         }
       }
     },
+    "Chưa có bạn bè nào" : {
+
+    },
     "Chưa có tài khoản?" : {
-      "comment" : "No account",
+      "comment" : "Don't have an account?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1168,7 +1419,7 @@
       }
     },
     "Chụp ảnh từ camera để lưu vào thư viện" : {
-      "comment" : "Empty gallery message",
+      "comment" : "Take photos from camera to save to gallery",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1203,7 +1454,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इसे लाइब्रेरी में सहेजने के लिए कैमरे से तस्वीरें लें"
+            "value" : "इसे लाइब्रेरी में सहेजने के लिए कैमरे से तस्वीرें लें"
           }
         },
         "hu" : {
@@ -1250,8 +1501,56 @@
         }
       }
     },
+    "Có, bạn có 1 tuần dùng thử miễn phí." : {
+      "comment" : "Yes, you get 1 week free trial.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you get 1 week free trial."
+          }
+        }
+      }
+    },
+    "Có, bạn có thể hủy bất cứ lúc nào trong App Store." : {
+      "comment" : "Yes, you can cancel anytime in the App Store.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, you can cancel anytime in the App Store."
+          }
+        }
+      }
+    },
+    "Có, premium được đồng bộ qua iCloud." : {
+      "comment" : "Yes, premium syncs via iCloud.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, premium syncs via iCloud."
+          }
+        }
+      }
+    },
+    "Công cụ chuyên nghiệp" : {
+      "comment" : "Professional tools",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Professional tools"
+          }
+        }
+      }
+    },
     "Đã chọn" : {
-      "comment" : "Selected language text",
+      "comment" : "Selected",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1334,7 +1633,7 @@
       }
     },
     "Đã có tài khoản?" : {
-      "comment" : "Have account",
+      "comment" : "Already have an account?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1416,11 +1715,44 @@
         }
       }
     },
+    "Đã mua" : {
+      "comment" : "Purchased",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchased"
+          }
+        }
+      }
+    },
     "Đã xảy ra lỗi không xác định." : {
-      "comment" : "Unknown error"
+      "comment" : "An unknown error occurred",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred"
+          }
+        }
+      }
+    },
+    "Đang hoạt động" : {
+      "comment" : "Active",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active"
+          }
+        }
+      }
+    },
+    "Đang khởi tạo database..." : {
+
     },
     "Đăng ký" : {
-      "comment" : "Sign up\nSignup button\nSignup title",
+      "comment" : "Sign Up",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1503,7 +1835,7 @@
       }
     },
     "Đăng ký tài khoản mới" : {
-      "comment" : "Signup title",
+      "comment" : "Create new account",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1585,8 +1917,20 @@
         }
       }
     },
+    "Đăng ký thành công!" : {
+      "comment" : "Subscription successful!",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription successful!"
+          }
+        }
+      }
+    },
     "Đăng nhập" : {
-      "comment" : "Login\nLogin button\nLogin title",
+      "comment" : "Sign In",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1669,7 +2013,7 @@
       }
     },
     "Đăng Nhập" : {
-      "comment" : "Auth title",
+      "comment" : "Sign In",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1753,6 +2097,7 @@
     },
     "Đăng nhập để lưu trữ ảnh của bạn trên đám mây và đồng bộ giữa các thiết bị" : {
       "comment" : "Onboarding page 4 description",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1835,7 +2180,7 @@
       }
     },
     "Đăng nhập để tiếp tục" : {
-      "comment" : "Login subtitle",
+      "comment" : "Sign in to continue",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -1918,7 +2263,7 @@
       }
     },
     "Đang tải ảnh..." : {
-      "comment" : "Loading images",
+      "comment" : "Loading photos",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2000,8 +2345,34 @@
         }
       }
     },
+    "Đang tải cuộc trò chuyện..." : {
+
+    },
+    "Đang tải danh sách bạn bè..." : {
+
+    },
+    "Đang tải hồ sơ..." : {
+      "comment" : "Loading profile"
+    },
+    "Đang tải quảng cáo..." : {
+
+    },
+    "Đang tải sản phẩm..." : {
+      "comment" : "Loading products...",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading products..."
+          }
+        }
+      }
+    },
+    "Đang tải tin nhắn..." : {
+
+    },
     "Đang tải..." : {
-      "comment" : "Loading",
+      "comment" : "Loading...",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2083,7 +2454,198 @@
         }
       }
     },
+    "Đăng xuất" : {
+      "comment" : "Sign out",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسجيل خروج"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign out"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar sesión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnexion"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साइन आउट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelentkezés"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サインアウト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그아웃"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log keluar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ออกจากระบบ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oturumu kapat"
+          }
+        }
+      }
+    },
+    "Đăng xuất khỏi tài khoản" : {
+      "comment" : "Sign out of account"
+    },
+    "Đặt lại bộ lọc" : {
+      "comment" : "Reset filters",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعادة تعيين المرشحات"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset filters"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restablecer filtros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser les filtres"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़िल्टर रीसेट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szűrők visszaállítása"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setel ulang filter"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィルターをリセット"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터 재설정"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetapkan semula penapis"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "รีเซ็ตตัวกรอง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtreleri sıfırla"
+          }
+        }
+      }
+    },
+    "Debug Quảng Cáo" : {
+
+    },
+    "Điều khoản dịch vụ" : {
+      "comment" : "Terms of Service"
+    },
+    "Điều khoản sử dụng" : {
+      "comment" : "Terms of Service",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Service"
+          }
+        }
+      }
+    },
+    "Done" : {
+
+    },
     "Đóng" : {
+      "comment" : "Close",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2164,6 +2726,20 @@
           }
         }
       }
+    },
+    "Đồng bộ đám mây" : {
+      "comment" : "Cloud sync",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloud sync"
+          }
+        }
+      }
+    },
+    "Đồng ý" : {
+
     },
     "Dùng tài khoản demo" : {
       "comment" : "Use demo account",
@@ -2247,6 +2823,70 @@
           }
         }
       }
+    },
+    "Filter" : {
+      "comment" : "Filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filters"
+          }
+        }
+      }
+    },
+    "Filter đẹp quá! Tôi rất thích tính năng premium." : {
+      "comment" : "Beautiful filters! I love the premium features.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beautiful filters! I love the premium features."
+          }
+        }
+      }
+    },
+    "Filter mới hàng tuần" : {
+      "comment" : "New filters weekly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New filters weekly"
+          }
+        }
+      }
+    },
+    "Friend Request" : {
+
+    },
+    "Friend requests will appear here" : {
+
+    },
+    "Friends" : {
+
+    },
+    "From: %@" : {
+
+    },
+    "Gói định kỳ" : {
+      "comment" : "Subscription plans",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription plans"
+          }
+        }
+      }
+    },
+    "Hàng năm" : {
+      "comment" : "Yearly"
+    },
+    "Hàng tháng" : {
+      "comment" : "Monthly"
     },
     "Hiển thị nhỏ" : {
       "comment" : "Small grid",
@@ -2414,6 +3054,23 @@
         }
       }
     },
+    "Hình ảnh" : {
+
+    },
+    "Hồ sơ" : {
+      "comment" : "Profile"
+    },
+    "Hỗ trợ" : {
+      "comment" : "Support",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support"
+          }
+        }
+      }
+    },
     "Hủy" : {
       "comment" : "Cancel",
       "localizations" : {
@@ -2497,8 +3154,150 @@
         }
       }
     },
+    "Hủy kết bạn" : {
+
+    },
+    "Invalid product" : {
+      "comment" : "Invalid product",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid product"
+          }
+        }
+      }
+    },
+    "Kéo méo (tay)(disable)" : {
+      "comment" : "Face warp (hand) (disabled)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face warp (hand) (disabled)"
+          }
+        }
+      }
+    },
+    "Kết bạn" : {
+
+    },
+    "Kết quả tìm kiếm" : {
+
+    },
+    "Khôi phục giao dịch đã mua" : {
+      "comment" : "Restore purchases"
+    },
+    "Khôi phục hoàn tất. Không tìm thấy sản phẩm nào." : {
+      "comment" : "Restore completed but no products found",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore completed. No products found."
+          }
+        }
+      }
+    },
+    "Khôi phục mua hàng" : {
+      "comment" : "Restore purchases",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore purchases"
+          }
+        }
+      }
+    },
+    "Khôi phục mua hàng thành công!" : {
+      "comment" : "Restore successful!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore successful!"
+          }
+        }
+      }
+    },
+    "Khởi tạo Database" : {
+
+    },
+    "Không có cuộc trò chuyện nào" : {
+
+    },
+    "Không có filter" : {
+      "comment" : "No filter",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No filter"
+          }
+        }
+      }
+    },
+    "Không có gói mua một lần" : {
+      "comment" : "No one-time purchase available",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No one-time purchase available"
+          }
+        }
+      }
+    },
+    "Không có gói năm" : {
+      "comment" : "No yearly plan available",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No yearly plan available"
+          }
+        }
+      }
+    },
+    "Không có gói tháng" : {
+      "comment" : "No monthly plan available",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No monthly plan available"
+          }
+        }
+      }
+    },
+    "Không giới hạn" : {
+      "comment" : "Unlimited",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited"
+          }
+        }
+      }
+    },
+    "Không quảng cáo" : {
+      "comment" : "No ads",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ads"
+          }
+        }
+      }
+    },
     "Không thể kết nối đến máy chủ" : {
-      "comment" : "Cannot connect",
+      "comment" : "Cannot connect to server",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2580,7 +3379,26 @@
         }
       }
     },
+    "Không thể tải lên ảnh đại diện. Vui lòng thử lại." : {
+      "comment" : "ProfileError: Upload failed"
+    },
+    "Không tìm thấy hồ sơ" : {
+      "comment" : "No profile found"
+    },
+    "Không tìm thấy người dùng" : {
+
+    },
+    "Không tìm thấy người dùng hiện tại. Vui lòng đăng nhập lại." : {
+      "comment" : "ProfileError: No current user"
+    },
+    "Không tìm thấy thông tin người dùng này." : {
+      "comment" : "ProfileError: User not found"
+    },
+    "Kiểm tra cấu trúc DB" : {
+
+    },
     "Kiểm tra MediaPipe" : {
+      "comment" : "Test MediaPipe",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2662,8 +3480,46 @@
         }
       }
     },
+    "Kính" : {
+      "comment" : "Glasses",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glasses"
+          }
+        }
+      }
+    },
+    "Làm mới" : {
+
+    },
+    "Language" : {
+      "comment" : "Language",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        }
+      }
+    },
+    "Loading Ad..." : {
+      "comment" : "Loading Ad...",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading Ad..."
+          }
+        }
+      }
+    },
     "Lỗi" : {
-      "comment" : "Error title",
+      "comment" : "Error",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2745,8 +3601,15 @@
         }
       }
     },
+    "Lời mời kết bạn" : {
+
+    },
+    "Lỗi: %@" : {
+
+    },
     "Lưu ảnh của bạn vào thư viện và chia sẻ với bạn bè" : {
       "comment" : "Onboarding page 3 description",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2781,7 +3644,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "अपनी तस्वीर को लाइब्रेरी में सहेजें और दोस्तों के साथ साझा करें"
+            "value" : "अपनी तस्वीر को लाइब्रेरी में सहेजें और दोस्तों के साथ साझा करें"
           }
         },
         "hu" : {
@@ -2828,8 +3691,12 @@
         }
       }
     },
+    "Lưu thay đổi" : {
+
+    },
     "Lưu trữ và chia sẻ" : {
       "comment" : "Onboarding page 3 title",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2911,7 +3778,290 @@
         }
       }
     },
+    "Mắt & miệng khổng lồ" : {
+      "comment" : "Giant eyes & mouth",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giant eyes & mouth"
+          }
+        }
+      }
+    },
+    "Mặt chó(disable)" : {
+      "comment" : "Dog face (disabled)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dog face (disabled)"
+          }
+        }
+      }
+    },
+    "Mắt hí" : {
+      "comment" : "Squinty eyes",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Squinty eyes"
+          }
+        }
+      }
+    },
+    "Mắt to" : {
+      "comment" : "Big eyes",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عيون كبيرة"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Große Augen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Big eyes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ojos grandes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grands yeux"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बड़ी आँखें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagy szemek"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mata besar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大きな目"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "큰 눈"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mata besar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ตาใหญ่"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Büyük gözler"
+          }
+        }
+      }
+    },
+    "Mặt vuông" : {
+      "comment" : "Square face",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجه مربع"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadratisches Gesicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Square face"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara cuadrada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visage carré"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चौकोर चेहरा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Négyzet alakú arc"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wajah persegi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "四角い顔"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사각형 얼굴"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muka segi empat"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หน้าสี่เหลี่ยม"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kare yüz"
+          }
+        }
+      }
+    },
+    "Mặt xấu" : {
+      "comment" : "Ugly face",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجه قبيح"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hässliches Gesicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugly face"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara fea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visage laid"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बदसूरत चेहरा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csúnya arc"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wajah jelek"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "醜い顔"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "못생긴 얼굴"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muka hodoh"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หน้าอัปลักษณ์"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çirkin yüz"
+          }
+        }
+      }
+    },
     "MediaPipe Test" : {
+      "comment" : "MediaPipe Test",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -2993,90 +4143,241 @@
         }
       }
     },
-    "Mở Camera với Filter" : {
+    "Miệng rộng" : {
+      "comment" : "Wide mouth",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wide mouth"
+          }
+        }
+      }
+    },
+    "Mở Cài đặt" : {
+      "comment" : "Open Settings",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "افتح الكاميرا مع مرشح"
+            "value" : "فتح الإعدادات"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffnen Sie die Kamera mit Filter"
+            "value" : "Einstellungen öffnen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open the camera with filter"
+            "value" : "Open Settings"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abra la cámara con el filtro"
+            "value" : "Abrir Configuración"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrez la caméra avec filtre"
+            "value" : "Ouvrir les paramètres"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़िल्टर के साथ कैमरा खोलें"
+            "value" : "सेटिंग्स खोलें"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nyissa ki a kamerát szűrővel"
+            "value" : "Beállítások megnyitása"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka kamera dengan filter"
+            "value" : "Buka Pengaturan"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フィルターでカメラを開きます"
+            "value" : "設定を開く"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "필터로 카메라를 엽니 다"
+            "value" : "설정 열기"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka kamera dengan penapis"
+            "value" : "Buka Tetapan"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิดกล้องด้วยตัวกรอง"
+            "value" : "เปิดการตั้งค่า"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamerayı filtre ile açın"
+            "value" : "Ayarları Aç"
+          }
+        }
+      }
+    },
+    "Mở Camera" : {
+      "comment" : "Open Camera"
+    },
+    "Mở khóa" : {
+
+    },
+    "Mở khóa tất cả tính năng" : {
+      "comment" : "Unlock all features"
+    },
+    "Mở khóa tất cả tính năng và filter cao cấp" : {
+      "comment" : "Unlock all premium features and filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock all premium features and filters"
+          }
+        }
+      }
+    },
+    "mỗi năm" : {
+      "comment" : "per year",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per year"
+          }
+        }
+      }
+    },
+    "mỗi tháng" : {
+      "comment" : "per month",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per month"
+          }
+        }
+      }
+    },
+    "Mũ" : {
+      "comment" : "Hat",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hat"
+          }
+        }
+      }
+    },
+    "Mũ Noel" : {
+      "comment" : "Christmas hat",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Christmas hat"
+          }
+        }
+      }
+    },
+    "Mua hàng thành công!" : {
+      "comment" : "Purchase successful!",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase successful!"
+          }
+        }
+      }
+    },
+    "Mua một lần" : {
+      "comment" : "One-time purchase",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-time purchase"
+          }
+        }
+      }
+    },
+    "Mua ngay" : {
+      "comment" : "Buy now"
+    },
+    "Mũi nhỏ" : {
+      "comment" : "Tiny nose",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiny nose"
+          }
+        }
+      }
+    },
+    "Năm" : {
+      "comment" : "Yearly",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yearly"
+          }
+        }
+      }
+    },
+    "Nâng cấp lên gói năm để tiết kiệm hơn!" : {
+      "comment" : "Upgrade to yearly for better savings!",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to yearly for better savings!"
+          }
+        }
+      }
+    },
+    "Nâng cấp lên Premium" : {
+      "comment" : "Upgrade to Premium",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to Premium"
           }
         }
       }
     },
     "Ngôn ngữ" : {
-      "comment" : "Languages title",
+      "comment" : "Language",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3158,8 +4459,49 @@
         }
       }
     },
+    "Người dùng nói gì" : {
+      "comment" : "What users say",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What users say"
+          }
+        }
+      }
+    },
+    "Nhắn tin" : {
+
+    },
+    "Nhập tên hiển thị" : {
+
+    },
+    "Nhập tin nhắn..." : {
+
+    },
+    "No friend requests" : {
+
+    },
+    "No friends yet" : {
+
+    },
+    "Noel ấm áp" : {
+      "comment" : "Warm Christmas",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warm Christmas"
+          }
+        }
+      }
+    },
+    "Offline" : {
+
+    },
     "OK" : {
-      "comment" : "OK button",
+      "comment" : "OK",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3241,8 +4583,181 @@
         }
       }
     },
-    "Please wait a moment for the ad to load, then try again." : {
+    "Ông già Noel" : {
+      "comment" : "Santa Claus",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Santa Claus"
+          }
+        }
+      }
+    },
+    "Online" : {
 
+    },
+    "PHỔ BIẾN" : {
+      "comment" : "POPULAR",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POPULAR"
+          }
+        }
+      }
+    },
+    "Please wait a moment for the ad to load, then try again." : {
+      "comment" : "Please wait for ad to load",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please wait a moment for the ad to load, then try again."
+          }
+        }
+      }
+    },
+    "Premium" : {
+      "comment" : "Premium",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بريميوم"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रीमियम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prémium"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プレミアム"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프리미엄"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "พรีเมียม"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        }
+      }
+    },
+    "PREMIUM" : {
+      "comment" : "PREMIUM",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PREMIUM"
+          }
+        }
+      }
+    },
+    "Premium có hoạt động trên tất cả thiết bị không?" : {
+      "comment" : "Does premium work on all devices?",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does premium work on all devices?"
+          }
+        }
+      }
+    },
+    "Purchase is pending" : {
+      "comment" : "Purchase pending",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase is pending"
+          }
+        }
+      }
+    },
+    "Purchase verification failed" : {
+      "comment" : "Verification failed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase verification failed"
+          }
+        }
+      }
+    },
+    "Purchase was cancelled" : {
+      "comment" : "Purchase cancelled",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase was cancelled"
+          }
+        }
+      }
     },
     "Quá thời gian chờ" : {
       "comment" : "Timeout",
@@ -3327,8 +4842,11 @@
         }
       }
     },
+    "Quảng cáo chưa sẵn sàng" : {
+
+    },
     "Quên mật khẩu?" : {
-      "comment" : "Forgot password",
+      "comment" : "Forgot password?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3409,6 +4927,58 @@
           }
         }
       }
+    },
+    "Râu" : {
+      "comment" : "Mustache",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mustache"
+          }
+        }
+      }
+    },
+    "Râu Noel" : {
+      "comment" : "Christmas beard",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Christmas beard"
+          }
+        }
+      }
+    },
+    "Reject" : {
+
+    },
+    "Reload Ad" : {
+      "comment" : "Reload Ad",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload Ad"
+          }
+        }
+      }
+    },
+    "Remove" : {
+
+    },
+    "Remove Friend" : {
+
+    },
+    "Requests" : {
+
+    },
+    "Search" : {
+
+    },
+    "Search users..." : {
+
     },
     "SnapArt" : {
       "comment" : "App name",
@@ -3495,6 +5065,7 @@
     },
     "Tài khoản cá nhân" : {
       "comment" : "Onboarding page 4 title",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3576,8 +5147,11 @@
         }
       }
     },
+    "Tải lại quảng cáo" : {
+
+    },
     "Tạo ảnh độc đáo với filter AR" : {
-      "comment" : "App tagline",
+      "comment" : "Create unique photos with AR filters",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3743,7 +5317,7 @@
       }
     },
     "Tạo tài khoản để bắt đầu sử dụng SnapArt" : {
-      "comment" : "Signup subtitle",
+      "comment" : "Create account to start using SnapArt",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3825,7 +5399,117 @@
         }
       }
     },
+    "Tất cả filter premium" : {
+      "comment" : "All premium filters",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All premium filters"
+          }
+        }
+      }
+    },
+    "Tên hiển thị" : {
+
+    },
+    "Test Crash" : {
+      "comment" : "Test crash button",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اختبار الانهيار"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test Absturz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test Crash"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba de Fallo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test de Plantage"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रैश परीक्षण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teszt összeomlás"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uji Crash"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クラッシュテスト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "충돌 테스트"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ujian Kemalangan"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ทดสอบการขัดข้อง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çökme Testi"
+          }
+        }
+      }
+    },
+    "Tháng" : {
+      "comment" : "Monthly",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly"
+          }
+        }
+      }
+    },
     "Thời gian chụp:" : {
+      "comment" : "Capture time",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3907,8 +5591,22 @@
         }
       }
     },
+    "Thông báo" : {
+      "comment" : "Notice",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notice"
+          }
+        }
+      }
+    },
+    "Thông tin cá nhân" : {
+
+    },
     "Thử lại" : {
-      "comment" : "Retry",
+      "comment" : "Try again",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -3991,6 +5689,7 @@
       }
     },
     "Thử nghiệm Filter với ảnh" : {
+      "comment" : "Test Filter with image",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4071,6 +5770,9 @@
           }
         }
       }
+    },
+    "Thư viện" : {
+      "comment" : "Gallery"
     },
     "Thư viện ảnh" : {
       "comment" : "Gallery",
@@ -4156,7 +5858,7 @@
       }
     },
     "Tiếp theo" : {
-      "comment" : "Next button",
+      "comment" : "Next",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4238,8 +5940,97 @@
         }
       }
     },
+    "Tiết kiệm 33%" : {
+      "comment" : "Save 33%",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 33%"
+          }
+        }
+      }
+    },
+    "Tiết kiệm 33% so với gói tháng" : {
+      "comment" : "Save 33% vs monthly",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 33% vs monthly"
+          }
+        }
+      }
+    },
+    "Tiểu sử" : {
+
+    },
+    "Tìm kiếm bạn bè..." : {
+
+    },
+    "Tìm kiếm người dùng để bắt đầu trò chuyện" : {
+
+    },
+    "Tìm kiếm người dùng để kết bạn và trò chuyện" : {
+
+    },
+    "Tìm kiếm tin nhắn..." : {
+
+    },
+    "Tin nhắn" : {
+      "comment" : "Chat\nMessages"
+    },
+    "Tính năng Premium" : {
+      "comment" : "Premium Features",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium Features"
+          }
+        }
+      }
+    },
+    "Tốc độ cao" : {
+      "comment" : "High speed",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High speed"
+          }
+        }
+      }
+    },
+    "Tôi có thể dùng thử trước khi mua không?" : {
+      "comment" : "Can I try before buying?",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I try before buying?"
+          }
+        }
+      }
+    },
+    "Tôi có thể hủy subscription không?" : {
+      "comment" : "Can I cancel my subscription?",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can I cancel my subscription?"
+          }
+        }
+      }
+    },
     "Trải nghiệm các bộ lọc khuôn mặt thời gian thực với công nghệ MediaPipe" : {
       "comment" : "Onboarding page 2 description",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4321,8 +6112,53 @@
         }
       }
     },
+    "Trải nghiệm mượt mà" : {
+      "comment" : "Smooth experience",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smooth experience"
+          }
+        }
+      }
+    },
+    "Trang Chủ" : {
+      "comment" : "Home",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "Trạng thái: %@" : {
+
+    },
+    "Truy cập không giới hạn" : {
+      "comment" : "Unlimited access",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited access"
+          }
+        }
+      }
+    },
+    "Từ chối" : {
+
+    },
+    "Từ: %@" : {
+
+    },
+    "Tùy chọn" : {
+
+    },
     "Ứng dụng chỉnh sửa ảnh với bộ lọc khuôn mặt" : {
-      "comment" : "Auth subtitle",
+      "comment" : "App description",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4406,6 +6242,7 @@
     },
     "Ứng dụng chỉnh sửa ảnh với các bộ lọc khuôn mặt thú vị và độc đáo" : {
       "comment" : "Onboarding page 1 description",
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4487,11 +6324,49 @@
         }
       }
     },
+    "Ứng dụng tuyệt vời, đáng để mua premium." : {
+      "comment" : "Great app, worth buying premium.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great app, worth buying premium."
+          }
+        }
+      }
+    },
     "Unlock" : {
+      "comment" : "Unlock",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock"
+          }
+        }
+      }
+    },
+    "Vui lòng cho phép ứng dụng truy cập camera trong Cài đặt để sử dụng tính năng này" : {
+      "comment" : "Please allow the app to access camera in Settings to use this feature",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please allow the app to access camera in Settings to use this feature"
+          }
+        }
+      }
+    },
+    "Vui lòng đăng nhập để xem hồ sơ của bạn" : {
+      "comment" : "Please log in to view your profile"
+    },
+    "Vui lòng đợi một chút để quảng cáo tải xong, sau đó thử lại." : {
 
     },
     "Xác nhận xóa" : {
-      "comment" : "Delete confirm title",
+      "comment" : "Delete confirmation",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4573,7 +6448,14 @@
         }
       }
     },
+    "Xem quảng cáo" : {
+
+    },
+    "Xem tất cả cuộc trò chuyện" : {
+      "comment" : "View all conversations"
+    },
     "Xóa" : {
+      "comment" : "Delete",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4656,6 +6538,7 @@
       }
     },
     "Xóa ảnh này?" : {
+      "comment" : "Delete this image?",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -4737,6 +6620,9 @@
         }
       }
     },
+    "Xóa dữ liệu" : {
+
+    },
     "Xóa tất cả" : {
       "comment" : "Delete all",
       "localizations" : {
@@ -4816,6 +6702,107 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hepsini sil"
+          }
+        }
+      }
+    },
+    "Xóa toàn bộ dữ liệu" : {
+
+    },
+    "Xoáy mặt" : {
+      "comment" : "Face swirl",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دوامة الوجه"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesichtswirbel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face swirl"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remolino facial"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tourbillon facial"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेहरा घुमाव"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arc örvény"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pusaran wajah"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顔の渦巻き"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "얼굴 소용돌이"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pusaran muka"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หมุนวนใบหน้า"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yüz girdabı"
+          }
+        }
+      }
+    },
+    "Xong" : {
+      "comment" : "Done"
+    },
+    "Xử lý nhanh chóng" : {
+      "comment" : "Fast processing",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast processing"
           }
         }
       }

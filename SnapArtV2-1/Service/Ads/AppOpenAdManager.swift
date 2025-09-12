@@ -5,61 +5,83 @@ import UIKit
 class AppOpenAdManager: NSObject, ObservableObject {
     static let shared = AppOpenAdManager()
     
-    @Published var isAdAvailable = false
     private var appOpenAd: AppOpenAd?
     private var loadTime: Date?
+    @Published var isAdLoaded = false
     
-    // Test ID App Open Ad
-    private let adUnitId = "ca-app-pub-3940256099942544/5662855259"
+    // Sử dụng ID quảng cáo test chính xác cho App Open Ad
+    private let adUnitID = "ca-app-pub-3940256099942544/9257395921" // Test ID cho App Open Ad
+    
+    // Thời gian tối đa để sử dụng lại quảng cáo đã tải (4 giờ)
+    private let adCacheTimeout: TimeInterval = 4 * 3600
     
     private override init() {
         super.init()
-        loadAdIfNeeded()
+        print("AppOpenAdManager initialized")
+        loadAppOpenAd() // Tự động tải quảng cáo khi khởi tạo
     }
     
-    func loadAdIfNeeded() {
-        // Kiểm tra xem ad có cần load lại không
-        if wasLoadTimeLessThanNHoursAgo(4) && appOpenAd != nil {
+    func loadAppOpenAd() {
+        // Kiểm tra nếu người dùng là premium thì không tải quảng cáo
+        if let currentUser = UserProfileManager.shared.currentUser, 
+           currentUser.stats.premiumStatus == true {
+            print("User is premium, not loading app open ad")
+            self.appOpenAd = nil
+            self.isAdLoaded = false
             return
         }
         
-        // Load ad mới
+        print("App open ad loading started with ID: \(adUnitID)")
+        
+        // Sử dụng cú pháp đúng cho AppOpenAd.load
         let request = Request()
-        AppOpenAd.load(with: adUnitId, request: request) { [weak self] ad, error in
+        AppOpenAd.load(with: adUnitID, 
+                      request: request) { [weak self] ad, error in
+            guard let self = self else { return }
+            
             if let error = error {
-                print("Failed to load app open ad: \(error.localizedDescription)")
+                print("App open ad failed to load with error: \(error.localizedDescription)")
+                
+                // Thử tải lại sau 30 giây
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in
+                    self?.loadAppOpenAd()
+                }
                 return
             }
             
-            self?.appOpenAd = ad
-            self?.loadTime = Date()
-            self?.isAdAvailable = true
+            self.appOpenAd = ad
+            self.appOpenAd?.fullScreenContentDelegate = self
+            self.loadTime = Date()
+            self.isAdLoaded = true
             print("App open ad loaded successfully")
         }
     }
     
-    func presentAdIfAvailable(from viewController: UIViewController, completion: @escaping () -> Void) {
-        guard let appOpenAd = appOpenAd else {
-            print("App open ad not available")
-            completion()
+    func showAppOpenAdIfAvailable() {
+        // Kiểm tra nếu người dùng là premium thì không hiển thị quảng cáo
+        if let currentUser = UserProfileManager.shared.currentUser, 
+           currentUser.stats.premiumStatus == true {
+            print("User is premium, not showing app open ad")
             return
         }
         
-        appOpenAd.fullScreenContentDelegate = self
-        appOpenAd.present(from: viewController)
-        
-        // Reset ad sau khi present
-        self.appOpenAd = nil
-        self.isAdAvailable = false
-        
-        completion()
+        // Kiểm tra quảng cáo đã tải và chưa hết hạn
+        if let ad = appOpenAd, !isAdExpired() {
+            if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                print("Showing app open ad")
+                ad.present(from: rootViewController)
+            } else {
+                print("No root view controller found")
+            }
+        } else {
+            print("App open ad not ready or expired")
+            loadAppOpenAd()
+        }
     }
     
-    private func wasLoadTimeLessThanNHoursAgo(_ n: Int) -> Bool {
-        guard let loadTime = loadTime else { return false }
-        let timeIntervalBetweenNowAndLoad = Date().timeIntervalSince(loadTime)
-        let intervalInSeconds = TimeInterval(n * 3600)
-        return timeIntervalBetweenNowAndLoad < intervalInSeconds
+    private func isAdExpired() -> Bool {
+        guard let loadTime = loadTime else { return true }
+        return Date().timeIntervalSince(loadTime) > adCacheTimeout
     }
 }
 
@@ -67,11 +89,11 @@ class AppOpenAdManager: NSObject, ObservableObject {
 extension AppOpenAdManager: FullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("App open ad dismissed")
-        loadAdIfNeeded()
+        loadAppOpenAd() // Tải quảng cáo mới cho lần sau
     }
     
     func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("App open ad failed to present with error: \(error.localizedDescription)")
-        loadAdIfNeeded()
+        loadAppOpenAd() // Thử tải lại quảng cáo
     }
 } 

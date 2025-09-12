@@ -19,7 +19,7 @@ struct MediaPipeTestButton: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.white)
 
-                Text("Kiểm tra MediaPipe")
+                Text(NSLocalizedString("Kiểm tra MediaPipe", comment: "Test MediaPipe"))
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(.white)
             }
@@ -45,5 +45,5 @@ struct MediaPipeTestViewControllerWrapper: UIViewControllerRepresentable {
 var mediaTestView: some View {
     MediaPipeTestViewControllerWrapper()
         .edgesIgnoringSafeArea(.all)
-        .navigationBarTitle("MediaPipe Test", displayMode: .inline)
+        .navigationBarTitle(NSLocalizedString("MediaPipe Test", comment: "MediaPipe Test"), displayMode: .inline)
 }

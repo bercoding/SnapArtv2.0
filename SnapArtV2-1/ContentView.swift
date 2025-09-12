@@ -2,29 +2,22 @@ import AVFoundation
 import CoreData
 import SwiftUI
 import UIKit
-
-import class SnapArtV2_1.CameraViewController
-
-import struct SnapArtV2_1.FilterView
-
-// Import các View khác cần thiết
-import struct SnapArtV2_1.MediaPipeTestButton
+import FirebaseCrashlytics
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var authViewModel = AuthViewModel()
     @EnvironmentObject private var languageViewModel: LanguageViewModel
-
+    
     var body: some View {
-        NavigationStack {
-            Group {
-                if authViewModel.authState == .signedIn {
-                    HomePage()
-                        .environment(\.managedObjectContext, viewContext)
-                        .environmentObject(authViewModel)
-                        .environmentObject(languageViewModel)
-
-                } else {
+        Group {
+            if authViewModel.authState == .signedIn {
+                MainTabView()
+                    .environment(\.managedObjectContext, viewContext)
+                    .environmentObject(authViewModel)
+                    .environmentObject(languageViewModel)
+            } else {
+                NavigationStack {
                     LoginView()
                         .environmentObject(authViewModel)
                         .environmentObject(languageViewModel)

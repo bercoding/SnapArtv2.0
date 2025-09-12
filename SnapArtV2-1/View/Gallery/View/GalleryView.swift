@@ -3,6 +3,7 @@ import SwiftUI
 
 struct GalleryView: View {
     @StateObject private var viewModel = GalleryViewModel()
+    @StateObject private var interstitialAdManager = InterstitialAdManager.shared
     @State private var showingImageDetail = false
     @State private var showingDeleteConfirmation = false
     @State private var imageToDelete: UUID?
@@ -22,7 +23,7 @@ struct GalleryView: View {
                 VStack {
                     ScrollView {
                         if viewModel.isLoading {
-                            ProgressView("Đang tải ảnh...")
+                            ProgressView(NSLocalizedString("Đang tải ảnh...", comment: "Loading photos"))
                                 .padding()
                                 .foregroundColor(.white)
                                 .id(languageViewModel.refreshID)
@@ -33,6 +34,11 @@ struct GalleryView: View {
                         }
                     }
                     .refreshable {
+                        // Hiện Interstitial Ad khi refresh Gallery
+                        if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+                            print("Attempting to show interstitial ad from GalleryView")
+                            interstitialAdManager.showInterstitialAd()
+                        }
                         viewModel.fetchSavedImages()
                     }
                 }
@@ -55,29 +61,29 @@ struct GalleryView: View {
                         }
                 }
             }
-            .navigationTitle("Thư viện ảnh")
-            .foregroundColor(.white)
+            .navigationTitle(NSLocalizedString("Thư viện ảnh", comment: "Gallery"))
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: {
                             gridColumns = [GridItem(.adaptive(minimum: 100))]
                         }) {
-                            Label("Hiển thị nhỏ", systemImage: "square.grid.3x3")
+                            Label(NSLocalizedString("Hiển thị nhỏ", comment: "Small grid"), systemImage: "square.grid.3x3")
                                 .id(languageViewModel.refreshID)
                         }
                         
                         Button(action: {
                             gridColumns = [GridItem(.adaptive(minimum: 150))]
                         }) {
-                            Label("Hiển thị vừa", systemImage: "square.grid.2x2")
+                            Label(NSLocalizedString("Hiển thị vừa", comment: "Medium grid"), systemImage: "square.grid.2x2")
                                 .id(languageViewModel.refreshID)
                         }
                         
                         Button(action: {
                             showingDeleteConfirmation = true
                         }) {
-                            Label("Xóa tất cả", systemImage: "trash")
+                            Label(NSLocalizedString("Xóa tất cả", comment: "Delete all"), systemImage: "trash")
                                 .id(languageViewModel.refreshID)
                         }
                     } label: {
@@ -86,14 +92,15 @@ struct GalleryView: View {
                     }
                 }
             }
-            .alert("Xác nhận xóa", isPresented: $showingDeleteConfirmation) {
-                Button("Hủy", role: .cancel) {}
-                Button("Xóa tất cả", role: .destructive) {
+            .alert(NSLocalizedString("Xác nhận xóa", comment: "Delete confirmation"), isPresented: $showingDeleteConfirmation) {
+                Button(NSLocalizedString("Hủy", comment: "Cancel"), role: .cancel) {}
+                Button(NSLocalizedString("Xóa tất cả", comment: "Delete all"), role: .destructive) {
                     viewModel.deleteAllImages()
                 }
             } message: {
-                Text("Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác.")
+                Text(NSLocalizedString("Bạn có chắc muốn xóa tất cả ảnh? Hành động này không thể hoàn tác.", comment: "Delete all confirmation message"))
             }
+           
         }
         .id(languageViewModel.refreshID)
         .sheet(isPresented: $showingImageDetail) {
@@ -107,6 +114,7 @@ struct GalleryView: View {
                 })
             }
         }
+        .withBannerAd(adUnitId: "ca-app-pub-3940256099942544/2934735716")
     }
     
     // Grid view hiển thị các ảnh
@@ -140,13 +148,13 @@ struct GalleryView: View {
                 .foregroundColor(.white)
                 .padding()
             
-            Text(String(localized: "Chưa có ảnh nào"))
+            Text(NSLocalizedString("Chưa có ảnh nào", comment: "No photos yet"))
                 .font(.title3)
                 .fontWeight(.medium)
                 .foregroundColor(.white)
                 .id(languageViewModel.refreshID)
             
-            Text(String(localized: "Chụp ảnh từ camera để lưu vào thư viện"))
+            Text(NSLocalizedString("Chụp ảnh từ camera để lưu vào thư viện", comment: "Take photos from camera to save to gallery"))
                 .font(.body)
                 .foregroundColor(.white.opacity(0.8))
                 .multilineTextAlignment(.center)
@@ -164,3 +172,4 @@ struct GalleryView_Previews: PreviewProvider {
             .environmentObject(LanguageViewModel())
     }
 }
+

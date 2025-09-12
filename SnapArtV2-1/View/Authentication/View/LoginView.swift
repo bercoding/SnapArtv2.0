@@ -18,19 +18,19 @@ struct LoginView: View {
                         .frame(width: 100, height: 100)
                         .foregroundColor(.white)
                     
-                    Text(String(localized: "SnapArt"))
+                    Text(NSLocalizedString("SnapArt", comment: "App name"))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .id(languageViewModel.refreshID)
                     
-                    Text(String(localized: "Đăng nhập để tiếp tục"))
+                    Text(NSLocalizedString("Đăng nhập để tiếp tục", comment: "Sign in to continue"))
                         .font(.headline)
                         .foregroundColor(.white.opacity(0.8))
                         .id(languageViewModel.refreshID)
                 }
                 .padding(.top, 20)
-
+                
                 // Login Form
                 VStack(spacing: 20) {
                     AuthTextFieldView(
@@ -48,18 +48,18 @@ struct LoginView: View {
                     )
                 }
                 .padding(.horizontal, 30)
-
+                
                 // Forgot Password
-                Button(String(localized: "Quên mật khẩu?")) {
+                Button(NSLocalizedString("Quên mật khẩu?", comment: "Forgot password?")) {
                     // Handle forgot password
                 }
                 .font(.footnote)
                 .foregroundColor(.white.opacity(0.8))
                 .padding(.bottom, 10)
                 .id(languageViewModel.refreshID)
-
+                
                 // Test account button
-                Button(String(localized: "Dùng tài khoản demo")) {
+                Button(NSLocalizedString("Dùng tài khoản demo", comment: "Use demo account")) {
                     authViewModel.email = "test@example.com"
                     authViewModel.password = "password123"
                     authViewModel.signIn()
@@ -68,7 +68,7 @@ struct LoginView: View {
                 .foregroundColor(.white.opacity(0.6))
                 .padding(.bottom, 20)
                 .id(languageViewModel.refreshID)
-
+                
                 Button(action: {
                     authViewModel.signIn()
                 }) {
@@ -76,7 +76,7 @@ struct LoginView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
-                        Text(String(localized: "Đăng nhập"))
+                        Text(NSLocalizedString("Đăng nhập", comment: "Sign In"))
                             .font(.headline)
                             .foregroundColor(.white)
                             .id(languageViewModel.refreshID)
@@ -85,12 +85,12 @@ struct LoginView: View {
                 .buttonStyle(AppTheme.primaryButtonStyle())
                 .padding(.horizontal, 30)
                 .disabled(authViewModel.isLoading)
-
+                
                 HStack {
-                    Text(String(localized: "Chưa có tài khoản?"))
+                    Text(NSLocalizedString("Chưa có tài khoản?", comment: "Don't have an account?"))
                         .foregroundColor(.white.opacity(0.8))
                         .id(languageViewModel.refreshID)
-                    NavigationLink(String(localized: "Đăng ký")) {
+                    NavigationLink(NSLocalizedString("Đăng ký", comment: "Sign Up")) {
                         SignUpView()
                     }
                     .foregroundColor(AppTheme.secondaryColor)
@@ -99,10 +99,10 @@ struct LoginView: View {
                 .padding(.vertical)
             }
         }
-        .alert(String(localized: "Lỗi"), isPresented: $showingAlert) {
-            Button(String(localized: "OK")) { }
+        .alert(NSLocalizedString("Lỗi", comment: "Error"), isPresented: $showingAlert) {
+            Button(NSLocalizedString("OK", comment: "OK")) { }
         } message: {
-            Text(authViewModel.errorMessage ?? String(localized: "Đã xảy ra lỗi không xác định."))
+            Text(authViewModel.errorMessage ?? NSLocalizedString("Đã xảy ra lỗi không xác định.", comment: "An unknown error occurred"))
         }
         .onReceive(authViewModel.$errorMessage) { errorMessage in
             if errorMessage != nil {
@@ -115,13 +115,15 @@ struct LoginView: View {
             }
         }
         .id(languageViewModel.refreshID)
+        .withBannerAd(adUnitId: "ca-app-pub-3940256099942544/2934735716")
+        
+    }
+    
+    struct LoginView_Previews: PreviewProvider {
+        static var previews: some View {
+            LoginView()
+                .environmentObject(AuthViewModel.example)
+                .environmentObject(LanguageViewModel())
+        }
     }
 }
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-            .environmentObject(AuthViewModel.example)
-            .environmentObject(LanguageViewModel())
-    }
-} 

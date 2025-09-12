@@ -1,10 +1,12 @@
 import SwiftUI
 import GoogleMobileAds
+import UIKit
 
 struct LockedFilterView: View {
     let filter: FilterType
     @StateObject private var unlockManager = FilterUnlockManager.shared
     @StateObject private var rewardedAdManager = RewardedAdManager.shared
+    @StateObject private var profileManager = UserProfileManager.shared
     @State private var showingUnlockAlert = false
     
     var body: some View {
@@ -25,17 +27,24 @@ struct LockedFilterView: View {
             
             // Nút unlock nhỏ gọn
             Button(action: {
+                // Nếu người dùng là premium, tự động mở khóa
+                if profileManager.currentUser?.stats.premiumStatus == true {
+                    unlockManager.unlockFilter(filter)
+                    return
+                }
+                
                 if rewardedAdManager.isAdReady {
                     showRewardedAd()
                 } else {
+                    rewardedAdManager.loadRewardedAd() // Tải quảng cáo nếu chưa sẵn sàng
                     showingUnlockAlert = true
                 }
             }) {
                 HStack(spacing: 4) {
-                    Image(systemName: "play.circle.fill")
+                    Image(systemName: profileManager.currentUser?.stats.premiumStatus == true ? "crown.fill" : "play.circle.fill")
                         .font(.system(size: 12))
                     
-                    Text("Unlock")
+                    Text(profileManager.currentUser?.stats.premiumStatus == true ? "Mở khóa" : "Xem quảng cáo")
                         .font(.caption)
                         .fontWeight(.medium)
                 }
@@ -43,29 +52,42 @@ struct LockedFilterView: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
                 .background(
-                    rewardedAdManager.isAdReady ? 
-                    Color.blue.opacity(0.8) :
-                    Color.gray.opacity(0.6)
+                    Group {
+                        if profileManager.currentUser?.stats.premiumStatus == true {
+                            Color.orange.opacity(0.8)
+                        } else if rewardedAdManager.isAdReady {
+                            Color.blue.opacity(0.8)
+                        } else {
+                            Color.gray.opacity(0.6)
+                        }
+                    }
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             }
-            .disabled(!rewardedAdManager.isAdReady)
+            .disabled(!rewardedAdManager.isAdReady && profileManager.currentUser?.stats.premiumStatus != true)
         }
         .frame(maxWidth: .infinity, minHeight: 84)
         .padding(10)
         .background(
-            Color.white.opacity(0.15) // Giống filter bình thường
-                .overlay(
-                    // Viền cam nhẹ để phân biệt
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(Color.orange.opacity(0.3), lineWidth: 1)
-                )
+            ZStack {
+                Color.white.opacity(0.15) // Giống filter bình thường
+                
+                // Viền cam nhẹ để phân biệt
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+            }
         )
         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .alert("Ad Not Ready", isPresented: $showingUnlockAlert) {
+        .alert("Quảng cáo chưa sẵn sàng", isPresented: $showingUnlockAlert) {
             Button("OK") { }
         } message: {
-            Text("Please wait a moment for the ad to load, then try again.")
+            Text("Vui lòng đợi một chút để quảng cáo tải xong, sau đó thử lại.")
+        }
+        .onAppear {
+            // Tải quảng cáo khi view xuất hiện
+            if !rewardedAdManager.isAdReady && profileManager.currentUser?.stats.premiumStatus != true {
+                rewardedAdManager.loadRewardedAd()
+            }
         }
     }
     
@@ -79,9 +101,10 @@ struct LockedFilterView: View {
             return 
         }
         
-        rewardedAdManager.showAd(from: rootVC) { [weak unlockManager] success in
+        print("[LockedFilterView] Attempting to show rewarded ad")
+        rewardedAdManager.presentAdIfAvailable(from: rootVC) { success in
             if success {
-                unlockManager?.unlockFilter(filter)
+                unlockManager.unlockFilter(filter)
                 print("[LockedFilterView] Filter unlocked successfully: \(filter)")
             } else {
                 print("[LockedFilterView] Failed to unlock filter: \(filter)")

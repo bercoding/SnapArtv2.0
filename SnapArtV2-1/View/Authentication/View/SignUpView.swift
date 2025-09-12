@@ -12,14 +12,14 @@ struct SignUpView: View {
             AppTheme.mainGradient.ignoresSafeArea()
             VStack(spacing: 20) {
                 // Header
-                Text(String(localized: "Đăng ký tài khoản mới"))
+                Text(NSLocalizedString("Đăng ký tài khoản mới", comment: "Create new account"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .padding(.top, 20)
                     .id(languageViewModel.refreshID)
                 
-                Text(String(localized: "Tạo tài khoản để bắt đầu sử dụng SnapArt"))
+                Text(NSLocalizedString("Tạo tài khoản để bắt đầu sử dụng SnapArt", comment: "Create account to start using SnapArt"))
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.8))
                     .multilineTextAlignment(.center)
@@ -63,7 +63,7 @@ struct SignUpView: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
-                        Text(String(localized: "Đăng ký"))
+                        Text(NSLocalizedString("Đăng ký", comment: "Sign Up"))
                             .font(.headline)
                             .foregroundColor(.white)
                             .id(languageViewModel.refreshID)
@@ -74,10 +74,10 @@ struct SignUpView: View {
                 .disabled(authViewModel.isLoading)
 
                 HStack {
-                    Text(String(localized: "Đã có tài khoản?"))
+                    Text(NSLocalizedString("Đã có tài khoản?", comment: "Already have an account?"))
                         .foregroundColor(.white.opacity(0.8))
                         .id(languageViewModel.refreshID)
-                    Button(String(localized: "Đăng nhập")) {
+                    Button(NSLocalizedString("Đăng nhập", comment: "Sign In")) {
                         dismiss()
                     }
                     .foregroundColor(AppTheme.secondaryColor)
@@ -86,10 +86,10 @@ struct SignUpView: View {
                 .padding(.vertical)
             }
         }
-        .alert(String(localized: "Lỗi"), isPresented: $showingAlert) {
-            Button(String(localized: "OK")) { }
+        .alert(NSLocalizedString("Lỗi", comment: "Error"), isPresented: $showingAlert) {
+            Button(NSLocalizedString("OK", comment: "OK")) { }
         } message: {
-            Text(authViewModel.errorMessage ?? String(localized: "Đã xảy ra lỗi không xác định."))
+            Text(authViewModel.errorMessage ?? NSLocalizedString("Đã xảy ra lỗi không xác định.", comment: "An unknown error occurred"))
         }
         .onReceive(authViewModel.$errorMessage) { errorMessage in
             if errorMessage != nil {

@@ -28,25 +28,25 @@ public enum FilterType: Int, CaseIterable {
     // Lấy tên hiển thị của filter
     var displayName: String {
         switch self {
-        case .none: return "Không có filter"
-        case .dogFace: return "Mặt chó(disable)"
-        case .glasses: return "Kính"
-        case .mustache: return "Râu"
-        case .hat: return "Mũ"
-        case .beauty: return "Beauty"
-        case .funnyBigEyes: return "Mắt to"
-        case .funnyTinyNose: return "Mũi nhỏ"
-        case .funnyWideMouth: return "Miệng rộng"
-        case .funnyPuffyCheeks: return "Mắt hí"
-        case .funnySwirl: return "Xoáy mặt"
-        case .funnyLongChin: return "Mặt vuông"
-        case .funnyMegaFace: return "Mắt & miệng khổng lồ"
-        case .funnyAlienHead: return "Mặt xấu"
-        case .funnyWarp: return "Kéo méo (tay)(disable)"
-        case .xmasWarm: return "Noel ấm áp"
-        // case .xmasHat: return "Mũ Noel"
-        case .xmasSanta: return "Ông già Noel"
-        case .xmasBeard: return "Râu Noel"
+        case .none: return NSLocalizedString("Không có filter", comment: "No filter")
+        case .dogFace: return NSLocalizedString("Mặt chó(disable)", comment: "Dog face (disabled)")
+        case .glasses: return NSLocalizedString("Kính", comment: "Glasses")
+        case .mustache: return NSLocalizedString("Râu", comment: "Mustache")
+        case .hat: return NSLocalizedString("Mũ", comment: "Hat")
+        case .beauty: return NSLocalizedString("Beauty", comment: "Beauty")
+        case .funnyBigEyes: return NSLocalizedString("Mắt to", comment: "Big eyes")
+        case .funnyTinyNose: return NSLocalizedString("Mũi nhỏ", comment: "Tiny nose")
+        case .funnyWideMouth: return NSLocalizedString("Miệng rộng", comment: "Wide mouth")
+        case .funnyPuffyCheeks: return NSLocalizedString("Mắt hí", comment: "Squinty eyes")
+        case .funnySwirl: return NSLocalizedString("Xoáy mặt", comment: "Face swirl")
+        case .funnyLongChin: return NSLocalizedString("Mặt vuông", comment: "Square face")
+        case .funnyMegaFace: return NSLocalizedString("Mắt & miệng khổng lồ", comment: "Giant eyes & mouth")
+        case .funnyAlienHead: return NSLocalizedString("Mặt xấu", comment: "Ugly face")
+        case .funnyWarp: return NSLocalizedString("Kéo méo (tay)(disable)", comment: "Face warp (hand) (disabled)")
+        case .xmasWarm: return NSLocalizedString("Noel ấm áp", comment: "Warm Christmas")
+        // case .xmasHat: return NSLocalizedString("Mũ Noel", comment: "Christmas hat")
+        case .xmasSanta: return NSLocalizedString("Ông già Noel", comment: "Santa Claus")
+        case .xmasBeard: return NSLocalizedString("Râu Noel", comment: "Christmas beard")
         }
     }
     

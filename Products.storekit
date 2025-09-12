@@ -1,0 +1,147 @@
+{
+  "identifier" : "SnapArtProducts",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "1234567890",
+      "localizations" : [
+        {
+          "description" : "Unlock all premium filters and remove ads forever",
+          "displayName" : "Premium Unlock",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Mở khóa tất cả filter premium và loại bỏ quảng cáo vĩnh viễn",
+          "displayName" : "Mở khóa Premium",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.snapart.premium",
+      "referenceName" : "Premium Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1234567890",
+    "_developerTeamID" : "YOUR_TEAM_ID",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 1234567890.0,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21456789",
+      "localizations" : [
+        {
+          "description" : "Access to premium features and new filters",
+          "displayName" : "Premium Subscription",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Truy cập tính năng premium và filter mới",
+          "displayName" : "Gói Premium",
+          "locale" : "vi"
+        }
+      ],
+      "name" : "Premium Subscription Group",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1234567891",
+          "introductoryOffer" : {
+            "internalID" : "1234567892",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Monthly premium subscription with 1 week free trial",
+              "displayName" : "Premium Monthly",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Gói premium hàng tháng với 1 tuần dùng thử miễn phí",
+              "displayName" : "Premium Tháng",
+              "locale" : "vi"
+            }
+          ],
+          "productID" : "com.snapart.premium.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Premium Monthly",
+          "subscriptionGroupID" : "21456789",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "1234567893",
+          "introductoryOffer" : {
+            "internalID" : "1234567894",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Yearly premium subscription with 1 week free trial (Save 33%)",
+              "displayName" : "Premium Yearly",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Gói premium hàng năm với 1 tuần dùng thử miễn phí (Tiết kiệm 33%)",
+              "displayName" : "Premium Năm",
+              "locale" : "vi"
+            }
+          ],
+          "productID" : "com.snapart.premium.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Premium Yearly",
+          "subscriptionGroupID" : "21456789",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+} 

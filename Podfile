@@ -24,7 +24,6 @@ target 'SnapArtV2-1' do
   
   # Promises dependency (giải quyết lỗi FBLPromises)
   pod 'PromisesObjC'
-  
   # MediaPipe Face Mesh dependencies
   pod 'MediaPipeTasksVision'
   # UI dependencies
@@ -34,6 +33,6 @@ target 'SnapArtV2-1' do
   # Reactive programming
   pod 'RxSwift'
   pod 'RxCocoa'
-  
+  #Google Admob 
   pod 'Google-Mobile-Ads-SDK'
 end

@@ -6,10 +6,10 @@ private var kAssociatedLanguageBundleKey: UInt8 = 0
 extension Bundle {
 	/// Thiết lập ngôn ngữ runtime cho NSLocalizedString mà không cần restart app
 	class func setLanguage(_ languageCode: String) {
-		// Xử lý RTL nếu cần
-		let isRTL = Locale.characterDirection(forLanguage: languageCode) == .rightToLeft
-		UserDefaults.standard.set(isRTL ? "YES" : "NO", forKey: "AppleTextDirection")
-		UserDefaults.standard.set(isRTL ? "YES" : "NO", forKey: "NSForceRightToLeftWritingDirection")
+//		// Xử lý RTL nếu cần
+//		let isRTL = Locale.characterDirection(forLanguage: languageCode) == .rightToLeft
+//		UserDefaults.standard.set(isRTL ? "YES" : "NO", forKey: "AppleTextDirection")
+//		UserDefaults.standard.set(isRTL ? "YES" : "NO", forKey: "NSForceRightToLeftWritingDirection")
 		
 		// Trỏ tới bundle .lproj tương ứng
 		let path = Bundle.main.path(forResource: languageCode, ofType: "lproj")
