@@ -32,13 +32,15 @@ struct HomeTabView: View {
                             FiltersGrid(category: cat, onSelect: { ft in
                                 selectedFilter = ft
                                 FilterManager.shared.setFilter(ft)
-                                // Hiện Interstitial Ad trước khi mở Camera
+                                
+                                // Hiện Interstitial Ad trước khi mở Camera với callback
                                 if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
                                     print("Attempting to show interstitial ad from HomePage")
-                                    interstitialAdManager.showInterstitialAd()
-                                    // Đợi một chút để quảng cáo có thể hiển thị trước khi mở camera
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        showCamera = true
+                                    interstitialAdManager.showInterstitialAd {
+                                        // Mở camera sau khi quảng cáo đóng (hoặc không có quảng cáo)
+                                        DispatchQueue.main.async {
+                                            showCamera = true
+                                        }
                                     }
                                 } else {
                                     showCamera = true
@@ -123,20 +125,20 @@ struct HomeTabView: View {
             }
             Spacer()
             
-            // Nút Premium
-            if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
-                Button {
-                    navigateToPremium = true
-                } label: {
-                    Image(systemName: "crown")
-                        .font(.title2)
-                        .foregroundColor(.yellow)
-                        .padding(8)
-                        .background(Color.white.opacity(0.2))
-                        .clipShape(Circle())
-                }
-                .accessibilityLabel(Text(NSLocalizedString("Premium", comment: "Premium")))
-            }
+//            // Nút Premium
+//            if UserProfileManager.shared.currentUser?.stats.premiumStatus != true {
+//                Button {
+//                    navigateToPremium = true
+//                } label: {
+//                    Image(systemName: "crown")
+//                        .font(.title2)
+//                        .foregroundColor(.yellow)
+//                        .padding(8)
+//                        .background(Color.white.opacity(0.2))
+//                        .clipShape(Circle())
+//                }
+//                .accessibilityLabel(Text(NSLocalizedString("Premium", comment: "Premium")))
+//            }
             
             // Nút Force Crash
             Button {
@@ -166,16 +168,16 @@ struct HomeTabView: View {
             .accessibilityLabel(Text(NSLocalizedString("Đăng xuất", comment: "Sign out")))
             
             // Nút reset filter - đã di chuyển xuống cuối
-            Button {
-                FilterUnlockManager.shared.resetAllFilters()
-            } label: {
-                Image(systemName: "arrow.counterclockwise")
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(Circle())
-            }
+//            Button {
+//                FilterUnlockManager.shared.resetAllFilters()
+//            } label: {
+//                Image(systemName: "arrow.counterclockwise")
+//                    .font(.title2)
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                    .background(Color.white.opacity(0.2))
+//                    .clipShape(Circle())
+//            }
             .accessibilityLabel(Text(NSLocalizedString("Đặt lại bộ lọc", comment: "Reset filters")))
         }
         .padding(.horizontal)

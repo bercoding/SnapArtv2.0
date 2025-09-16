@@ -11,6 +11,9 @@ class InterstitialAdManager: NSObject, ObservableObject {
     
     @Published var isAdLoaded = false
     
+    // Callback để thông báo khi quảng cáo đóng
+    private var adDismissCallback: (() -> Void)?
+    
     override init() {
         super.init()
         print("InterstitialAdManager initialized")
@@ -53,11 +56,15 @@ class InterstitialAdManager: NSObject, ObservableObject {
         }
     }
     
-    func showInterstitialAd() {
+    func showInterstitialAd(completion: @escaping () -> Void) {
+        // Lưu callback để gọi khi quảng cáo đóng
+        adDismissCallback = completion
+        
         // Kiểm tra nếu người dùng là premium thì không hiển thị quảng cáo
         if let currentUser = UserProfileManager.shared.currentUser, 
            currentUser.stats.premiumStatus == true {
             print("User is premium, not showing interstitial ad")
+            completion()
             return
         }
         
@@ -68,10 +75,18 @@ class InterstitialAdManager: NSObject, ObservableObject {
             } else {
                 print("Interstitial ad wasn't ready, loading new ad")
                 loadInterstitialAd()
+                // Nếu quảng cáo không sẵn sàng, gọi callback ngay lập tức
+                completion()
             }
         } else {
             print("No root view controller found")
+            completion()
         }
+    }
+    
+    // Hàm cũ để tương thích ngược
+    func showInterstitialAd() {
+        showInterstitialAd(completion: {})
     }
 }
 
@@ -80,10 +95,18 @@ extension InterstitialAdManager: FullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("Interstitial ad dismissed")
         loadInterstitialAd()
+        
+        // Gọi callback khi quảng cáo đóng
+        adDismissCallback?()
+        adDismissCallback = nil
     }
     
     func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Interstitial ad failed to present with error: \(error.localizedDescription)")
         loadInterstitialAd()
+        
+        // Gọi callback khi quảng cáo lỗi
+        adDismissCallback?()
+        adDismissCallback = nil
     }
 }
